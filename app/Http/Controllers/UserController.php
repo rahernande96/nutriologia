@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
+use App\Event;
 use App\Http\Requests\PictureRequest;
 use App\Http\Requests\UpdatePasswordRequest;
-use Illuminate\Support\Facades\Storage;
+use App\Patient;
 use App\User;
+use Auth;
+use Carbon\Carbon;
 use File;
 use Hash;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -17,7 +19,15 @@ class UserController extends Controller
 
     	$user = Auth::user();
 
-    	return view('admin.dashboard', compact('user'));
+        $countPatients = Patient::where('user_id',$user->id)->count();
+
+        $patients = Patient::where('user_id',$user->id)->latest()->paginate(6); 
+
+        $dateNow = Carbon::now();
+
+        $eventCount = Event::where('user_id',$user->id)->where('start_date',">=",$dateNow)->orWhere('end_date',">=",$dateNow)->count();
+
+    	return view('admin.dashboard', compact(['user','countPatients','patients','dateNow','eventCount']));
     }
 
     public function config(){
