@@ -1,0 +1,1 @@
+<img class="img-info-pliegue" src="{{ asset('images/pliegues/pantorrilla.png') }}" alt="Pliegue pantorrilla">

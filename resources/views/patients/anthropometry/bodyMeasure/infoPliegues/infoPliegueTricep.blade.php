@@ -1,0 +1,1 @@
+<img class="img-info-pliegue" src="{{ asset('images/pliegues/tricep.png') }}" alt="Pliegue abdominal">

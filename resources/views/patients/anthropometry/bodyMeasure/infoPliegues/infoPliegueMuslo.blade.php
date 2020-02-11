@@ -1,0 +1,1 @@
+<img class="img-info-pliegue" src="{{ asset('images/pliegues/muslo.png') }}" alt="Pliegue muslo">

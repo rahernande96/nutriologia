@@ -1,0 +1,22 @@
+#loadPayment{
+	min-height: 155%;
+	background-size: cover;
+	background-position: center center;
+	margin:0;
+	top: 0;
+	bottom: 0;
+	opacity: 0.6;
+	background-color: #000;
+	display: flex;
+	flex-direction: column;	
+	z-index: 9999;
+	position: absolute;
+	display: none;
+}
+
+#load{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
