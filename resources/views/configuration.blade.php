@@ -94,7 +94,65 @@ Configuración
 </div>
 
 
-@if(auth()->)
+@if(Auth::user()->role_id == 2)
+
+<div class="row">
+  
+  <div class="col-md-12">
+
+    <div class="card">
+
+      <div class="card-header">
+
+        <h3 class="card-title">Suscripcion</h3>
+        
+      </div>
+
+      <div class="card-body">
+        
+        <div class="row">
+          
+          <div class="col-md-6">
+
+            @if($user->subscription('main')->onGracePeriod())
+              
+              <div class="alert alert-warning">
+
+                <p>Su suscripcion no se renovara automaticamente ya que la ha cancelado</p>
+
+              </div>
+
+              <a class="btn btn-success" href="{{ route('resume.subscription') }}">Renovar Suscripcion</a>
+
+            @elseif($user->subscription('main')->ended())
+
+              <div class="alert alert-warning">
+
+                <p>No posee una suscripcion activa</p>
+
+              </div>
+
+              <a class="btn btn-success" href="{{ route('create.subscription') }}"> Suscribirme</a>
+
+            @else
+
+              <a class="btn btn-danger" href="{{ route('cancel.subscription') }}">Cancelar Suscripcion</a>
+
+            @endif
+
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+    
+  </div>
+
+</div>
+
+@endif
 
 <script>
   function desactiveNutriologist(e) {

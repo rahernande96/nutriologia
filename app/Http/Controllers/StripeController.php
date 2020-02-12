@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -71,5 +72,45 @@ class StripeController extends Controller
 				
 				return redirect()->route('register')->with('info', $e->getMessage());
 			} 
+    }
+
+    public function cancelSubscription()
+    {
+    	$user = Auth::user();
+    	
+    	if ($user->role_id == 2) {
+    		
+    		$user->subscription('main')->cancel();
+    	}
+
+    	return back();
+    }
+
+    public function resumeSubscription()
+    {
+    	$user = Auth::user();
+    	
+    	if ($user->role_id == 2) {
+    		
+    		$user->subscription('main')->resume();
+    	}
+
+
+    	return back();
+    }
+
+    public function createSuscription()
+    {
+    	$user = Auth::user();
+    	
+    	if ($user->role_id == 2) {
+
+    		$paymentMethod = $user->defaultPaymentMethod();
+    		
+    		$user->newSubscription('main', 'plan_GVtuWIHiSH3obG')->create($paymentMethod->id);
+    	}
+
+
+    	return back();
     }
 }
