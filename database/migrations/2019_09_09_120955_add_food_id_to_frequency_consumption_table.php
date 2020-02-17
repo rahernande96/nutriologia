@@ -26,6 +26,9 @@ class AddFoodIdToFrequencyConsumptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('food_id');
+        Schema::table('frequency_consumptions', function (Blueprint $table) {
+            $table->dropForeign(['food_id']);
+        });
+        
     }
 }

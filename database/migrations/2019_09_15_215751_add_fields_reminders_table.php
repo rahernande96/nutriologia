@@ -28,8 +28,8 @@ class AddFieldsRemindersTable extends Migration
     public function down()
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->dropColumn('type');
-            $table->dropForeign('patient_id');
+            //$table->dropColumn(['type']);
+            $table->dropForeign(['patient_id']);
         });
         
     }

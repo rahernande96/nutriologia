@@ -27,8 +27,10 @@ class AddPercentagesTotalEnergyExpendituresTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('percentage_carbohydrates');
-        Schema::dropColumn('percentage_protein');
-        Schema::dropColumn('percentage_lipids');
+        Schema::table('total_energy_expenditures', function (Blueprint $table) {
+            $table->dropColumn('percentage_carbohydrates');
+            $table->dropColumn('percentage_protein');
+            $table->dropColumn('percentage_lipids');
+        });
     }
 }

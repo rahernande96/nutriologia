@@ -28,6 +28,10 @@ class AddGrKgTotalEnergyExpendituresTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('gr_kg');
+        Schema::table('total_energy_expenditures', function (Blueprint $table) {
+            $table->dropColumn('gr_kg_proteins');
+            $table->dropColumn('gr_kg_lipids');
+            $table->dropColumn('gr_kg_carbohydrates');
+        });
     }
 }

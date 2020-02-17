@@ -34,10 +34,14 @@ class AddCategoriesDishesTable extends Migration
     public function down()
     {
         Schema::table('dishes', function (Blueprint $table) {
-            $table->dropColumn('cost_id');
-            $table->dropColumn('style_id');
-            $table->dropColumn('temperature_id');
-            $table->dropColumn('type_id');
+            $table->dropForeign(['cost_id']);
+            
+            $table->dropForeign(['style_id']);
+            
+            $table->dropForeign(['temperature_id']);
+            
+            $table->dropForeign(['type_id']);
+            
         });
     }
 }

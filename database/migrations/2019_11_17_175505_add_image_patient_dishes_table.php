@@ -27,9 +27,9 @@ class AddImagePatientDishesTable extends Migration
      */
     public function down()
     {
-        Schema::table('vital_signs', function (Blueprint $table) {
-            $table->dropColumn('patient_id');
-            $table->dropColumn('image');
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->dropForeign(['patient_id']);
+            $table->dropColumn(['image']);
         });
     }
 }

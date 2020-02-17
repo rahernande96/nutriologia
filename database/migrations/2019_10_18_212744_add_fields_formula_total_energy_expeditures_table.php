@@ -34,15 +34,18 @@ class AddFieldsFormulaTotalEnergyExpedituresTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('weight_type');
-        Schema::dropColumn('weight');
-        Schema::dropColumn('formula');
-        Schema::dropColumn('thermic_effect');
-        Schema::dropColumn('stress_factor');
-        Schema::dropColumn('stress_factor_type');
-        Schema::dropColumn('fisic_activity');
-        Schema::dropColumn('met_id');
-        Schema::dropColumn('activity_time');
-        Schema::dropColumn('met');
+        Schema::table('total_energy_expenditures', function (Blueprint $table) {
+            $table->dropColumn('weight_type');
+            $table->dropColumn('weight');
+            $table->dropColumn('formula');
+            $table->dropColumn('thermic_effect');
+            $table->dropColumn('stress_factor');
+            $table->dropColumn('stress_factor_type');
+            $table->dropColumn('fisic_activity');
+            $table->dropColumn('met_id');
+            $table->dropColumn('activity_time');
+            $table->dropColumn('met');
+        });
+        
     }
 }

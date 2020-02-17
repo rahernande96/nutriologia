@@ -29,10 +29,13 @@ class AddProtLipHidratToFoodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('energy');
-        Schema::dropColumn('protein');
-        Schema::dropColumn('lipids');
-        Schema::dropColumn('carbohydrates');
-        Schema::dropColumn('fiber');
+        Schema::table('foods', function (Blueprint $table) {
+            $table->dropColumn('energy');
+            $table->dropColumn('protein');
+            $table->dropColumn('lipids');
+            $table->dropColumn('carbohydrates');
+            $table->dropColumn('fiber');
+        });
+        
     }
 }
