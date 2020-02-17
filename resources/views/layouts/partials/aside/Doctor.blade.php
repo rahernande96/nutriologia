@@ -30,6 +30,15 @@
                           </p>
                       </a>
                   </li>
+
+                  <li class="nav-item">
+                      <a href="{{ route('index.payment.method') }}" class="nav-link {{ request()->is('administrar-pagos-de-pacientes') ? 'active' : '' }} ">
+                          <i class="nav-icon fa fa-setings" aria-hidden="true"></i>
+                          <p>
+                              Configurar Pagos
+                          </p>
+                      </a>
+                  </li>
                   <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>

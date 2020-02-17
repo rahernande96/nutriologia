@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $dateNow = Carbon::now();
 
-        $eventCount = Event::where('user_id',$user->id)->where('start_date',">=",$dateNow)->orWhere('end_date',">=",$dateNow)->count();
+        $eventCount = Event::where('user_id',$user->id)->where('start_date',">=",$dateNow)->orWhere('end_date',">=",$dateNow)->where('user_id',$user->id)->count();
 
     	return view('admin.dashboard', compact(['user','countPatients','patients','dateNow','eventCount']));
     }

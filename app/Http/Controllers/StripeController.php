@@ -17,7 +17,10 @@ class StripeController extends Controller
 
     	$request->validate([
     		'name_nutriologist'=>['required','string','max:255'],
-    		'email'=>['required','email','max:255','unique:users,id'],
+    		'email'=>['required','email','max:255','confirmed','unique:users,id'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'no_registry' => ['required'],
+            'identification_card' => ['required'],
     	]);
 
     	try{ DB::beginTransaction(); 

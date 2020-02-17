@@ -17,7 +17,7 @@
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="{{ asset('admin-lte/css/adminlte.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('admin-lte/css/adminlte.css') }}">
 	<!-- iCheck -->
 	<link rel="stylesheet" href="{{ asset('admin-lte/iCheck/flat/blue.css') }}">
 	<!-- Morris chart -->

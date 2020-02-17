@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('Dashboard');
+    
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+    return redirect()->route('Dashboard');
+
+})->name('home');
 
 Route::post('/charge', 'OpenPayController@store')->name('openPay.store');
 
@@ -200,6 +204,21 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/menu/delete/{id}', 'MenuController@delete')->name('menu.delete');
            
         });
+
+
+        //Rutas de configuracion de pagos de pacientes
+        Route::resource('administrar-pagos-de-pacientes','PaymentMethodController')->names([
+
+            'index'=>'index.payment.method',
+            'show'=>'show.payment.method',
+            'update'=>'update.payment.method'
+        ])->only([
+            'index',
+            'show',
+            'update',
+        ]);
+
+        
     });
 
 });
@@ -208,3 +227,5 @@ Route::post(
     'stripe/webhook',
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );
+
+Route::get('payment-guest/{code}','PaymentMethodController@paymentGuest')->name('payment.guest');

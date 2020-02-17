@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         	'slug' => Str::slug('Juan Carlos Medina', '-').Str::uuid(),
         	'picture' => 'default.png',
         	'role_id' => \App\Rol::ADMIN,
-        	'email' => 'JuanCarlosMedina2019@gmail.com',
+        	'email' => 'contodofit@gmail.com',
         	'confirmed' => 0,
         	'no_registry' => '452252220215',
         	'identification_card' => '5482125200212',
