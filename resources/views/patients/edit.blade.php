@@ -59,65 +59,66 @@ Detalles del Paciente: {{ $patient->name }}
 							<input type="text" class="form-control" id="weight" placeholder="Ingrese el peso del paciente" value="{{ $patient->weight }}" name="weight">
 						</div>--}}
 
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-2">
 							<label>Género</label>
-							@if($patient->gender == 'Masculino')
+							
 							<div class="form-check">
-								<input class="form-check-input" id="masculino" type="radio" value="Masculino" name="gender" checked>
+								<input class="form-check-input" id="masculino" type="radio" value="Masculino" name="gender" {{ $patient->gender == 'Masculino' ? "checked" : "" }}>
 								<label class="form-check-label" for="masculino">Masculino</label>
 							</div>
 							<div class="form-check">
-								<input class="form-check-input" id="femenino" type="radio" value="Femenino" name="gender">
+								<input class="form-check-input" id="femenino" type="radio" value="Femenino" name="gender" {{ $patient->gender == 'Femenino' ? "checked" : "" }}>
 								<label class="form-check-label" for="femenino">Femenino</label>
 							</div>
-							@else
-							<div class="form-check">
-								<input class="form-check-input" id="masculino" type="radio" value="Masculino" name="gender">
-								<label class="form-check-label" for="masculino">Masculino</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" id="femenino" type="radio" value="Femenino" name="gender" checked>
-								<label class="form-check-label" for="femenino">Femenino</label>
-							</div>
-							@endif
+							
 
 						</div>
 
-						@if($patient->gender == 'Masculino')
+						<div class="form-group col-md-2">
+							<label>Embarazo</label>
+							<div class="form-check">
+								<input class="form-check-input pregnancy_option" id="pregnancy_yes" type="radio" value="1" name="pregnancy" {{$patient->pregnancy == 1 ? "checked" : ""}}>
+								<label class="form-check-label" for="pregnancy_yes">Si</label>
+							</div>
+
+							<div class="form-check">
+								<input class="form-check-input pregnancy_option" id="pregnancy_no" type="radio" value="0" name="pregnancy"  {{$patient->pregnancy == 0 ? "checked" : ""}}>
+								<label class="form-check-label" for="pregnancy_no">No</label>
+							</div>
+							
+						</div>
+
+						
+						@php
+
+							$prop = "";
+
+							if($patient->gender == 'Masculino'){
+								$prop = "disabled";
+							}  
+
+							if($patient->pregnancy == false){
+								$prop = "disabled";
+							}  
+						
+						@endphp
 
 						<div class="form-group col-md-4">
 							<label for="trimester">Trimestre (Embarazo)</label>
-							<input type="text" class="form-control" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ $patient->trimester }}" name="trimester" disabled>
+							<input type="text" class="form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ $patient->trimester }}" name="trimester" {{ $prop }}>
 						</div>
 
 						<div class="form-group col-md-4">
 							<label for="sdg">SDG (Embarazo)</label>
-							<input type="text" class="form-control" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ $patient->sdg }}" name="sdg" disabled>
+							<input type="text" class="form-control pregnancy" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ $patient->sdg }}" name="sdg" {{ $prop }}>
 						</div>
 
 						<div class="form-group col-md-4">
 							<label for="semester">Semestre (Lactancia)</label>
-							<input type="text" class="form-control" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ $patient->semester }}" name="semester" disabled>
+							<input type="text" class="form-control pregnancy" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ $patient->semester }}" name="semester" {{ $prop }}>
 						</div>
 
-						@else
-
-						<div class="form-group col-md-4">
-							<label for="trimester">Trimestre (Embarazo)</label>
-							<input type="text" class="form-control" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ $patient->trimester }}" name="trimester">
-						</div>
-
-						<div class="form-group col-md-4">
-							<label for="sdg">SDG (Embarazo)</label>
-							<input type="text" class="form-control" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ $patient->sdg }}" name="sdg">
-						</div>
-
-						<div class="form-group col-md-4">
-							<label for="semester">Semestre (Lactancia)</label>
-							<input type="text" class="form-control" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ $patient->semester }}" name="semester">
-						</div>
-
-						@endif
+						
 
 
 						{{--<div class="form-group col-md-4">
@@ -247,6 +248,60 @@ Detalles del Paciente: {{ $patient->name }}
     $('.timepicker').timepicker({
     	showInputs: false
     })
-})
+});
+
+$(document).ready(function(e){
+
+	$("input[name='pregnancy']").on('click',function(e){
+		
+		pregnacy();
+
+	});
+
+
+	$("input[name='gender']").on('click',function(e){
+		
+		var input;
+
+		input = $("input[name='gender']:checked").val();
+
+		if (input == "Masculino") {
+
+			$('.pregnancy').prop('disabled',true);
+
+			$("input[name='pregnancy']").prop('disabled',true);
+
+		}else{
+
+			$("input[name='pregnancy']").prop('disabled',false);
+			
+			$("#pregnancy_yes").prop('checked',true);
+			
+		
+
+		}
+
+	});
+
+
+	function pregnacy()
+	{
+		var option;
+
+		option = $("input[name='pregnancy']:checked").val();
+
+		if (option == 1) {
+
+			$('.pregnancy').prop('disabled',false);
+
+		}else{
+
+			$('.pregnancy').prop('disabled',true);
+
+		}
+	}
+
+
+});
 </script>
 @endsection

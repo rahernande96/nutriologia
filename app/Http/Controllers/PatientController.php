@@ -121,7 +121,7 @@ class PatientController extends Controller
         $patient = Patient::where('slug', $slug)->first();
 
         $date = Carbon::parse($patient->birthdate)->format('d-m-Y');
-
+        
         return view('patients.edit', compact('user','patient', 'date'));
     }
 
@@ -172,6 +172,14 @@ class PatientController extends Controller
         $ages = Carbon::parse($birthdate_format)->age;
         $date = Carbon::parse($birthdate_format)->format('Y-m-d');
 
+        if ($request->gender == "Masculino") {
+
+            $request->trimester = "";
+            $request->semester = "";
+            $request->sdg = "";
+            $request->pregnancy = false;
+        }
+
         $patient->name = $request->name;
         $patient->address = $request->address;
         $patient->city= $request->city;
@@ -187,6 +195,7 @@ class PatientController extends Controller
         $patient->semester = $request->semester;
         //$patient->size = $request->size;
         $patient->notes = $request->notes;
+        $patient->pregnancy = $request->pregnancy;
 
         $patient->save();
 
