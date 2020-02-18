@@ -124,6 +124,10 @@ Paciente: {{ $patient->name }}
                                 <input class="form-check-input" name="Colitis" type="checkbox" id="Colitis" value="Colitis">
                                 <label class="form-check-label" for="Colitis">Colitis</label>
                             </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="Insuficiencia" type="checkbox" id="Insuficiencia" value="Insuficiencia Renal">
+                                <label class="form-check-label" for="Insuficiencia">Insuficiencia Renal</label>
+                            </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>

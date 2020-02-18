@@ -58,6 +58,74 @@ Historia Clínica Nutricional
 						<div class="col-md-12">
 							<hr>
 						</div>
+
+						<div class="col-md-12">
+							<h6><strong>Dieta específica</strong></h6>
+						</div>
+						<div class="col-md-12">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_salad" type="checkbox" id="diet_salad" {{ old('diet_salad') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_salad">Ensaladas</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_vegan" type="checkbox" id="diet_vegan" {{ old('diet_vegan') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_vegan">Vegana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_crudiverian" type="checkbox" id="diet_crudiverian" {{ old('diet_crudiverian') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_crudiverian">Crudiveriana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_ovogetarian" type="checkbox" id="diet_ovogetarian" {{ old('diet_ovogetarian') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_ovogetarian">Ovogetariana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_ovolactovegetarian" type="checkbox" id="diet_ovolactovegetarian" {{ old('diet_ovolactovegetarian') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_ovolactovegetarian">Ovolactovegetariana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_mediterranean" type="checkbox" id="diet_mediterranean" {{ old('diet_mediterranean') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_mediterranean">Meditarránea</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="other" type="checkbox" id="other" {{ old('other') ? 'checked' : null }}>
+								<label class="form-check-label" for="other">Otra</label>
+							</div>
+						</div>
+						<div class="form-group col-md-6 mt-4">
+							<label for="water">Agua durente el dia</label>
+							<input type="number" class="form-control" id="water" placeholder="Ingrese los litros de agua que consume el paciente en un dia." value="{{ old('water') }}" name="water">
+						</div>
+						<div class="col-md-6 mt-4">
+							<div class="row">
+								<div class="col-md-12">
+									<h6><strong>Uso de suplementos</strong></h6>
+								</div>
+								<div class="col-md-12">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="vitamins" type="checkbox" id="vitamins" {{ old('vitamins') ? 'checked' : null }}>
+										<label class="form-check-label" for="vitamins">Vitaminas</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="proteins" type="checkbox" id="proteins" {{ old('proteins') ? 'checked' : null }}>
+										<label class="form-check-label" for="proteins">Proteínas</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="aminoacids" type="checkbox" id="aminoacids" {{ old('aminoacids') ? 'checked' : null }}>
+										<label class="form-check-label" for="aminoacids">Aminoácidos</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" name="none" type="checkbox" id="none" v{{ old('none') ? 'checked' : null }}>
+										<label class="form-check-label" for="none">Ninguno</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<hr>
+						</div>
+
 						<div class="col-md-12">
 							<h6><strong>Seleccione los alimentos de preferencia</strong></h6>
 						</div>
@@ -133,72 +201,7 @@ Historia Clínica Nutricional
 						<div class="col-md-12">
 							<hr>
 						</div>
-						<div class="col-md-12">
-							<h6><strong>Dieta específica</strong></h6>
-						</div>
-						<div class="col-md-12">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_salad" type="checkbox" id="diet_salad" {{ old('diet_salad') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_salad">Ensaladas</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_vegan" type="checkbox" id="diet_vegan" {{ old('diet_vegan') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_vegan">Vegana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_crudiverian" type="checkbox" id="diet_crudiverian" {{ old('diet_crudiverian') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_crudiverian">Crudiveriana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_ovogetarian" type="checkbox" id="diet_ovogetarian" {{ old('diet_ovogetarian') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_ovogetarian">Ovogetariana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_ovolactovegetarian" type="checkbox" id="diet_ovolactovegetarian" {{ old('diet_ovolactovegetarian') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_ovolactovegetarian">Ovolactovegetariana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_mediterranean" type="checkbox" id="diet_mediterranean" {{ old('diet_mediterranean') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_mediterranean">Meditarránea</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="other" type="checkbox" id="other" {{ old('other') ? 'checked' : null }}>
-								<label class="form-check-label" for="other">Otra</label>
-							</div>
-						</div>
-						<div class="form-group col-md-6 mt-4">
-							<label for="water">Agua durente el dia</label>
-							<input type="number" class="form-control" id="water" placeholder="Ingrese los litros de agua que consume el paciente en un dia." value="{{ old('water') }}" name="water">
-						</div>
-						<div class="col-md-6 mt-4">
-							<div class="row">
-								<div class="col-md-12">
-									<h6><strong>Uso de suplementos</strong></h6>
-								</div>
-								<div class="col-md-12">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" name="vitamins" type="checkbox" id="vitamins" {{ old('vitamins') ? 'checked' : null }}>
-										<label class="form-check-label" for="vitamins">Vitaminas</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" name="proteins" type="checkbox" id="proteins" {{ old('proteins') ? 'checked' : null }}>
-										<label class="form-check-label" for="proteins">Proteínas</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" name="aminoacids" type="checkbox" id="aminoacids" {{ old('aminoacids') ? 'checked' : null }}>
-										<label class="form-check-label" for="aminoacids">Aminoácidos</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" name="none" type="checkbox" id="none" v{{ old('none') ? 'checked' : null }}>
-										<label class="form-check-label" for="none">Ninguno</label>
-									</div>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-md-12">
-							<hr>
-						</div>
 
 						<div class="col-md-12">
 							<h6><strong>Alergias alimentarias</strong></h6>
@@ -252,27 +255,27 @@ Historia Clínica Nutricional
 						</div>
 						<div class="form-group col-md-6">
 							<label for="max_weight">Maximo peso (KG)</label>
-							<input type="text" class="form-control" id="max_weight" placeholder="Ingrese el peso maximo del paciente." value="{{ old('max_weight') }}" name="max_weight">
+							<input type="text" class="form-control" id="max_weight" placeholder="Ingrese el peso maximo." value="{{ old('max_weight') }}" name="max_weight">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="min_weight">Minimo peso (KG)</label>
-							<input type="text" class="form-control" id="min_weight" placeholder="Ingrese el peso mínimo del paciente." value="{{ old('min_weight') }}" name="min_weight">
+							<input type="text" class="form-control" id="min_weight" placeholder="Ingrese el peso mínimo." value="{{ old('min_weight') }}" name="min_weight">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="usual_weight">Peso habitual (KG)</label>
-							<input type="text" class="form-control" id="usual_weight" placeholder="Ingrese el peso habitual del paciente." value="{{ old('usual_weight') }}" name="usual_weight">
+							<input type="text" class="form-control" id="usual_weight" placeholder="Ingrese el peso habitual." value="{{ old('usual_weight') }}" name="usual_weight">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="lastMonth">Peso del ultimo mes (KG)</label>
-							<input type="text" class="form-control" id="lastMonth" placeholder="Ingrese el peso del ultimo mes del paciente." value="{{ old('lastMonth') }}" name="lastMonth">
+							<input type="text" class="form-control" id="lastMonth" placeholder="Ingrese el peso del ultimo mes." value="{{ old('lastMonth') }}" name="lastMonth">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="lastThreeMonths">Peso de los ultimos 3 meses (KG)</label>
-							<input type="text" class="form-control" id="lastThreeMonths" placeholder="Ingrese el peso de los ultimos 3 meses del paciente." value="{{ old('lastThreeMonths') }}" name="lastThreeMonths">
+							<input type="text" class="form-control" id="lastThreeMonths" placeholder="Ingrese el peso de los ultimos 3 meses." value="{{ old('lastThreeMonths') }}" name="lastThreeMonths">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="lastSixMonths">Peso de los ultimos 6 meses (KG)</label>
-							<input type="text" class="form-control" id="lastSixMonths" placeholder="Ingrese el peso de los ultimos seis meses del paciente." value="{{ old('lastSixMonths') }}" name="lastSixMonths">
+							<input type="text" class="form-control" id="lastSixMonths" placeholder="Ingrese el peso de los ultimos seis meses." value="{{ old('lastSixMonths') }}" name="lastSixMonths">
 						</div>
 						<div class="col-md-12">
 							<hr>

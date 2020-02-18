@@ -64,7 +64,7 @@ Historia Clínica: {{ $patient->name }}
                     <div class="card col-md-3 w-25">
                         <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; height: 15vw; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">Evaluación Médica</h5>
+                            <h5 class="card-title">Evaluación Nutricional </h5>
                             <p class="card-text">Formulario con detalles la actividad física diaria, alimentación y preferencia de alimentos.</p>
                             @if($patient->LifeStyle)
                             <a href="{{ route('NutritionalClinicalHistory.edit', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Editar Datos</a>
