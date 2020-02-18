@@ -23,7 +23,8 @@ class Patient extends Model
 		'sdg', 
 		'weight', 
 		'size', 
-		'notes'
+		'notes',
+		'pregnancy'
 ];
 
 	public function user()

@@ -71,21 +71,30 @@ Paciente {{ $patient->name }}
 						@if($patient->gender == 'Femenino')
 
 							<div class="form-group col-md-4">
-								<label>Trimestre (Embarazo)</label>
-								<input type="text" class="form-control" value="{{ $patient->trimester }}" disabled>
+								<label>Embarazo</label>
+								<input type="text" class="form-control" value="{{ $patient->pregnancy == true ? "Si" : "No" }}" disabled>
 							</div>
 
-							<div class="form-group col-md-4">
-								<label>SDG (Embarazo)</label>
-								<input type="text" class="form-control" value="{{ $patient->sdg }}" disabled>
-							</div>
+							@if($patient->pregnancy == true)
 
-							<div class="form-group col-md-4">
-								<label>Semestre (Lactancia)</label>
-								<input type="text" class="form-control" value="{{ $patient->semester }}" disabled>
-							</div>
+								<div class="form-group col-md-4">
+									<label>Trimestre (Embarazo)</label>
+									<input type="text" class="form-control" value="{{ $patient->trimester }}" disabled>
+								</div>
+
+								<div class="form-group col-md-4">
+									<label>SDG (Embarazo)</label>
+									<input type="text" class="form-control" value="{{ $patient->sdg }}" disabled>
+								</div>
+
+								<div class="form-group col-md-4">
+									<label>Semestre (Lactancia)</label>
+									<input type="text" class="form-control" value="{{ $patient->semester }}" disabled>
+								</div>
 
 							@endif
+						
+						@endif
 
 
 							{{--<div class="form-group col-md-4">

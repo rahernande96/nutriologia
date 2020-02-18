@@ -32,6 +32,7 @@ class PatientRequest extends FormRequest
             'email' => 'required|unique:patients',
            // 'weight' => 'required',
             'gender' => 'required',
+            'pregnancy' => 'nullable|boolean',
             // 'size' => 'required'
         ];
     }

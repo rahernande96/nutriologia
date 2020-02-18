@@ -57,6 +57,15 @@ class PatientController extends Controller
         $ages = Carbon::parse($birthdate_format)->age;
         $date = Carbon::parse($birthdate_format)->format('Y-m-d');
 
+        if ($request->gender == "Masculino") {
+
+            $request->trimester = "";
+            $request->semester = "";
+            $request->sdg = "";
+            $request->pregnancy = false;
+        }
+
+
         Patient::create([
             'user_id' => $user->id,
             'name' => $request->name,
@@ -76,6 +85,7 @@ class PatientController extends Controller
             //'weight' => $request->weight,
             //'size' => $request->size,
             'notes' => $request->notes,
+            'pregnancy' => $request->pregnancy,
         ]);
 
         return redirect()->route('patients.index')->with('success', 'Paciente registrado correctamente');
