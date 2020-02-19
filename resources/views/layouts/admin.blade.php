@@ -32,6 +32,8 @@
 	<link rel="stylesheet" href="{{ asset('admin-lte/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
 	{{-- Datatables --}}
 	<link rel="stylesheet" href="{{ asset('admin-lte/datatables/dataTables.bootstrap4.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">

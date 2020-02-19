@@ -1,30 +1,34 @@
-<!-- Example single danger button -->
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Acciones
-    </button>
-    <div class="dropdown-menu">
-        <a href="{{ route('patients.show', $patient->slug) }}" class="dropdown-item">
-            Ver Paciente
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="dropdown-item">
-            Historia Clínica
-        </a>
+<div class="row">
+    
+    <div class="col-4">
         
-        <a href="{{ route('anthropometry.index', $patient->slug) }}" class="dropdown-item">
-            Antropometría
-        </a>
-        <a href="{{ route('dietetic.index', $patient->slug) }}" class="dropdown-item">
-            Dietética
-        </a>
+        <a href="{{ route('patients.show', $patient->slug) }}" class="btn btn-info">
+           Ver <span class="fa fa-eye"></span>
+        </a>  
+
+    </div>
+
+    <div class="col-4">
         
-        <div class="dropdown-divider"></div>
-        <a href="{{ route('patients.edit', $patient->slug) }}" class="dropdown-item">Editar Información</a>
-        <form action="{{ route('patients.destroy', $patient->slug) }}" method="POST">
+        <a href="{{ route('patients.edit', $patient->slug) }}" class="btn btn-primary">Editar <span class="fa fa-pencil-alt"></span></a>
+
+    </div>
+
+    <div class="col-4">
+        
+         <form action="{{ route('patients.destroy', $patient->slug) }}" method="POST">
             @method('DELETE')
             @csrf
-            <button onclick="deletePatient(event)" type="submit" class="dropdown-item">Eliminar</button>
+            <button onclick="deletePatient(event)" type="submit" class="btn btn-danger">Eliminar <span class="fa fa-trash"></span></button>
         </form>
     </div>
+
+
 </div>
+              
+        
+        
+
+
+       
+  

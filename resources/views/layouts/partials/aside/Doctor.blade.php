@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('Dashboard') }}" class="brand-link">
         <img src="{{ asset('admin-lte/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -12,30 +12,65 @@
         @include('layouts.partials.aside.userpanel.userpanel')
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2  ">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
                   <li class="nav-item">
-                      <a href="{{ route('patients.index') }}" class="nav-link {{ request()->is('patients') ? 'active' : '' }} ">
-                          <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                      <a href="{{ route('Dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }} ">
+                          <i class="nav-icon fa fa-dashboard" aria-hidden="true"></i>
                           <p>
-                              Pacientes
+                              Dashboard
+                          </p>
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a href="{{ route('patients.create') }}" class="nav-link {{ request()->is('patients/new-patient') ? 'active' : '' }} ">
+                          <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
+                          <p>
+                              Nuevo Paciente
                           </p>
                       </a>
                   </li>
                   <li class="nav-item">
+                      <a href="{{ route('patients.index') }}" class="nav-link {{ request()->is('patients') ? 'active' : '' }} ">
+                          <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                          <p>
+                              Mis Pacientes
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('event.index') }}?open=true" class="nav-link">
+                          <i class="nav-icon fa fa-calendar-plus" aria-hidden="true"></i>
+                          <p>
+                              Nueva cita
+                          </p>
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
                       <a href="{{ route('event.index') }}" class="nav-link {{ request()->is('appointments') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-calendar-alt" aria-hidden="true"></i>
                           <p>
-                              Citas
+                              Mi Agenda
                           </p>
                       </a>
                   </li>
 
                   <li class="nav-item">
                       <a href="{{ route('index.payment.method') }}" class="nav-link {{ request()->is('administrar-pagos-de-pacientes') ? 'active' : '' }} ">
-                          <i class="nav-icon fa fa-setings" aria-hidden="true"></i>
+                          <i class="nav-icon fa fa-money-bill" aria-hidden="true"></i>
                           <p>
-                              Configurar Pagos
+                              Recibir Pagos
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('config') }}" class="nav-link {{ request()->is('configuration') ? 'active' : '' }} ">
+                          <i class="nav-icon fa fa-pencil-alt" aria-hidden="true"></i>
+                          <p>
+                              Configurar
                           </p>
                       </a>
                   </li>

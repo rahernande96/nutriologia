@@ -8,15 +8,15 @@ Pacientes
 
 <div class="row">
 	<div class="col-md-10 px-4">
-		<h1>Pacientes</h1>
+		
 	</div>
   @if(Auth::user()->role_id == \App\Rol::DOCTOR)
-	<div class="col-md-2 mt-2 text-center">
-		<a href="{{ route('patients.create') }}" class="btn btn-primary"><i class="fa fa-user"></i> Nuevo Paciente</a>
+	<div class="col-md-2 mt-5 text-center">
+		<a href="{{ route('patients.create') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i> Nuevo Paciente</a>
 	</div>
   @endif
 	{{-- Inicia tabla de pacientes --}}
-	<div class="col-md-12">
+	<div class="col-md-12 mt-3">
 		<div class="card">
             <div class="card-header">
               <h3 class="card-title">Detalles de los pacientes</h3>
@@ -27,9 +27,9 @@ Pacientes
                 <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>Ciudad</th>
                   <th>Edad</th>
-                  <th>Correo Electrónico</th>
+                  <th>Telefono</th>
+                  <th>Acciones de consulta</th>
                   <th>Acciones</th>
                 </tr>
                 </thead>
@@ -37,9 +37,11 @@ Pacientes
                 @foreach($patients as $patient)
                 <tr class="text-center">
                   <td>{{ $patient->name }}</td>
-                  <td>{{ $patient->city }}</td>
                   <td>{{ $patient->age }}</td>
-                  <td>{{ $patient->email }}</td>
+                  <td>{{ $patient->phone_1 }}</td>
+                  <td>
+                    @include('patients.consult_actions')
+                  </td>
                   <td>
                   @include('patients.actions')
                   </td>

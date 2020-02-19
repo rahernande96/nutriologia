@@ -11,19 +11,14 @@ Historia Clínica: {{ $patient->name }}
             <div class="card-header">
                 <div class="card-title">
                     <h5 class="left">Historia Clínica de paciente - <strong>{{ $patient->name }}</strong></h5>
-                    <div class="dropdown show right">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-undo mr-2"></i>Ir a
+                    <div class="show right">
+                        
+                        <a href="{{ route('anthropometry.index', $patient->slug) }}" class="btn btn-primary">
+                            Antropometría
                         </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a href="{{ route('anthropometry.index', $patient->slug) }}" class="dropdown-item">
-                                Antropometría
-                            </a>
-                            <a href="{{ route('dietetic.index', $patient->slug) }}" class="dropdown-item">
-                                Dietética
-                            </a>
-                        </div>
+                        <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-primary">
+                            Dietética
+                        </a>
                     </div>
                 </div>
             </div>

@@ -39,7 +39,8 @@
     		<div class="row d-flex justify-content-end">
     			<div class="col-md-4 mx-2 d-flex justify-content-end">
     				<button class="btn btn-success" data-toggle="modal" data-target="#create_appoinment">Agregar Cita</button>
-    				@include('partials.modal_create_appoinment')
+                    @include('partials.modal_create_appoinment')
+    				
     			</div>
     		</div>
     	</div>
@@ -124,6 +125,31 @@
     $('.timepicker').timepicker({
     	showInputs: false
     })
-  })
+  });
+
+
+    function getSearchParameters() {
+        var prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+
+    function transformToAssocArray( prmstr ) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
+
+    var params = getSearchParameters();
+
+    if (params['open'] == "true") 
+    {
+      $('#create_appoinment').modal('show');  
+    }
+    
+
 </script>
 @endsection
