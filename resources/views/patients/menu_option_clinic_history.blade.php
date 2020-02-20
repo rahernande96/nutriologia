@@ -25,7 +25,7 @@ Historia Clínica: {{ $patient->name }}
             <div class="card-body">
                 <div class="row d-flex justify-content-around">
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/clinic_history.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/historia_clinica.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%;  object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Historia Clínica</h5>
                             <p class="card-text">Formulario con detalles del paciente como sus cirugías, registro de medicamentos etc.</p>
@@ -37,7 +37,7 @@ Historia Clínica: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/chemistry.jpg') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/analisis_bioquimicos.png') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%;  object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Análisis Bioquímicos</h5>
                             <p class="card-text">Formulario con detalles del paciente como su glucosa, examen general de orina.</p>
@@ -45,7 +45,7 @@ Historia Clínica: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/vital_signs.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 85%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/signos_vitales.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 100%;  object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Signos Vitales</h5>
                             <p class="card-text">Formulario con detalles la presión arterial, temperatura corporal etc.</p>
@@ -57,7 +57,7 @@ Historia Clínica: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3 w-25">
-                        <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/evaluacion_nutricional.png') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%;  object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Evaluación Nutricional </h5>
                             <p class="card-text">Formulario con detalles la actividad física diaria, alimentación y preferencia de alimentos.</p>

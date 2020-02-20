@@ -12,25 +12,19 @@ Paciente: {{ $patient->name }}
                 <div class="card-title">
                     <h5 class="left">Ditetica de: <strong>{{ $patient->name }}</strong></h5>
                     <div class="dropdown show right">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-undo mr-2"></i>Ir a
+                        <a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="btn btn-primary">
+                            Historia Clínica
                         </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="dropdown-item">
-                                Historia Clínica
-                            </a>
-                            <a href="{{ route('anthropometry.index', $patient->slug) }}" class="dropdown-item">
-                                Antropometría
-                            </a>
-                        </div>
+                        <a href="{{ route('anthropometry.index', $patient->slug) }}" class="btn btn-primary">
+                            Antropometría
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row d-flex justify-content-around">
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/clinic_history.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/grafica_evolucion.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Requerimiento Energético</h5>
                             <p class="card-text">Requerimiento de energía.</p>
@@ -38,7 +32,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/chemistry.jpg') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/distribucion_equivalentes.png') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Distribución de Equivalentes</h5>
                             <p class="card-text">Equivalentes de grupo de alimentos para tiempo de comida.</p>
@@ -46,7 +40,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/vital_signs.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 85%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/menu.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 100%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Menú</h5>
                             <p class="card-text">Menú.</p>
@@ -54,7 +48,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3 w-25">
-                        <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/diseño_platillos.png') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Diseño de Platillos</h5>
                             <p class="card-text">Diseño de los platillos para las dietoterapias de los pacientes.</p>

@@ -118,17 +118,17 @@ Configuración
               
               <div class="alert alert-warning">
 
-                <p>Su suscripcion no se renovara automaticamente ya que la ha cancelado</p>
+                <p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras, tu cuenta estará activa hasta el : {{$user->subscription('main')->ends_at}}</p>
 
               </div>
 
-              <a class="btn btn-success" href="{{ route('resume.subscription') }}">Renovar Suscripcion</a>
+              <a class="btn btn-success" href="{{ route('resume.subscription') }}">Renovar Suscripción</a>
 
             @elseif($user->subscription('main')->ended())
 
               <div class="alert alert-warning">
 
-                <p>No posee una suscripcion activa</p>
+                <p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras./p>
 
               </div>
 
@@ -136,7 +136,7 @@ Configuración
 
             @else
 
-              <a class="btn btn-danger" href="{{ route('cancel.subscription') }}">Cancelar Suscripcion</a>
+              <a class="btn btn-danger" href="{{ route('cancel.subscription') }}">Cancelar Suscripción</a>
 
             @endif
 

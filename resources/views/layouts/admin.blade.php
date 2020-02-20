@@ -58,9 +58,17 @@
 				<li class="nav-item d-none d-sm-inline-block">
 					<a href="{{ route('Dashboard') }}" class="nav-link">Inicio</a>
 				</li>
-				<li class="nav-item d-none d-sm-inline-block">
-					<a href="{{ route('config') }}" class="nav-link">Configurar Perfil</a>
-				</li>
+				@if(Auth::user()->rol->id == 2)
+					<li class="nav-item d-none d-sm-inline-block">
+						<a href="{{ route('patients.index') }}" class="nav-link">Mis Pacientes</a>
+					</li>
+					<li class="nav-item d-none d-sm-inline-block">
+						<a href="{{ route('patients.create') }}" class="nav-link">Nuevos Pacientes</a>
+					</li>
+					<li class="nav-item d-none d-sm-inline-block">
+						<a href="{{ route('event.index') }}" class="nav-link">Agenda</a>
+					</li>
+				@endif
 			</ul>
 
 			<!-- Logout -->

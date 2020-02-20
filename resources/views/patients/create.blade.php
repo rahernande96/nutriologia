@@ -12,20 +12,20 @@ Nuevo Paciente
 				<h3 class="card-title">Datos del nuevo paciente</h3>
 			</div>
 			<div class="card-body">
-				<form action="{{ route('patients.store') }}" method="POST">
+				<form action="{{ route('patients.store') }}" method="POST" id="form_create">
 					@csrf
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="name">Nombre completo</label>
-							<input type="text" class="form-control" id="name" placeholder="Ingrese el nombre del paciente" value="{{ old('name') }}" name="name">
+							<input type="text" class="form-control" id="name" placeholder="Ingrese el nombre del paciente" value="{{ old('name') }}" name="name" required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="address">Dirección</label>
-							<input type="text" class="form-control" id="address" placeholder="Ingrese la direción del paciente" value="{{ old('address') }}" name="address">
+							<input type="text" class="form-control" id="address" placeholder="Ingrese la direción del paciente" value="{{ old('address') }}" name="address" required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="city">Ciudad</label>
-							<input type="text" class="form-control" id="city" placeholder="Ingrese la ciudad del paciente" value="{{ old('city') }}" name="city">
+							<input type="text" class="form-control" id="city" placeholder="Ingrese la ciudad del paciente" value="{{ old('city') }}" name="city" required>
 						</div>
 
 						<div class="form-group col-md-4">
@@ -34,13 +34,13 @@ Nuevo Paciente
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 								</div>
-								<input type="text" name="birthdate" class="form-control datepicker" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+								<input type="text" name="birthdate" class="form-control datepicker" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 							</div>
 						</div>
 
 						<div class="form-group col-md-4">
 							<label for="phone_1">Telefono celuar/convencional</label>
-							<input type="text" class="form-control" id="phone_1" placeholder="Ingrese el telefono del paciente" value="{{ old('phone_1') }}" name="phone_1">
+							<input type="text" class="form-control" id="phone_1" placeholder="Ingrese el telefono del paciente" value="{{ old('phone_1') }}" name="phone_1" required>
 						</div>
 
 						<div class="form-group col-md-4">
@@ -50,7 +50,7 @@ Nuevo Paciente
 
 						<div class="form-group col-md-4">
 							<label for="email">Correo electrónico</label>
-							<input type="text" class="form-control" id="email" placeholder="Ingrese el correo electrónico" value="{{ old('email') }}" name="email">
+							<input type="text" class="form-control" id="email" placeholder="Ingrese el correo electrónico" value="{{ old('email') }}" name="email" required>
 						</div>
 
 						{{--<div class="form-group col-md-4">
@@ -61,12 +61,12 @@ Nuevo Paciente
 						<div class="form-group col-md-2">
 							<label>Género</label>
 							<div class="form-check">
-								<input class="form-check-input" id="masculino" type="radio" value="Masculino" name="gender" checked>
+								<input class="form-check-input" id="masculino" type="radio" value="Masculino" name="gender">
 								<label class="form-check-label" for="masculino">Masculino</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" id="femenino" type="radio" value="Femenino" name="gender">
+								<input class="form-check-input" id="femenino" type="radio" value="Femenino" name="gender" checked>
 								<label class="form-check-label" for="femenino">Femenino</label>
 							</div>
 							
@@ -112,7 +112,10 @@ Nuevo Paciente
 						</div>
 
 						<div class="form-group col-md-12">
-							<button type="submit" class="btn btn-success">Guardar Registro</button>
+							<button id="submit_form" type="submit" class="btn btn-success">Guardar Registro</button>
+
+							<input class="btn btn-success" type="submit" name="option2" value="Guardar Registro e Iniciar Consulta">
+
 						</div>
 					</div>
 				</form>
@@ -278,5 +281,32 @@ $(document).ready(function(e){
 
 
 });
+
+
+function insertParam(key, value)
+{
+    key = encodeURI(key); value = encodeURI(value);
+
+    var kvp = document.location.search.substr(1).split('&');
+
+    var i=kvp.length; var x; while(i--) 
+    {
+        x = kvp[i].split('=');
+
+        if (x[0]==key)
+        {
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+
+    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+
+    //this will reload the page, it's likely better to store this until finished
+    document.location.search = kvp.join('&'); 
+}
+
+
 </script>
 @endsection

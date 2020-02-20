@@ -4,6 +4,6 @@
     </div>
     <div class="info">
         <a href="{{ route('config') }}" class="d-block">{{ Auth::user()->name }}</a>
-        <span>{{ Auth::user()->rol->rol }}</span>
+        <strong>{{ Auth::user()->rol->rol == "Doctor" ? "Nutriologo" : Auth::user()->rol->rol }}</strong>
     </div>
 </div>

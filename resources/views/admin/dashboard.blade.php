@@ -8,7 +8,7 @@ Bienvenido {{ $user->name }}
 
 	@if($user->role_id == 2)
 
-	<div class="container-fluid">
+	<div class="container-fluid mt-5">
 	    
 
 	  <div class="row">
@@ -78,7 +78,20 @@ Bienvenido {{ $user->name }}
 	                        <span class="users-list-date">{{ $patient->created_at->diffForHumans($dateNow) }}</span>
 	                      </li>
 	                    @empty
+	                			</ul>
+	                			<div align="center" class="mt-3">
+	                				<p>Sin pacientes registrados</p>
+	                			</div>
+	                    		<div class="mt-3 mb-1" align="center">
+	                    			<a style="text-align: center;" href="{{ route('patients.create') }}" class="btn btn-primary">
+		                            
+			                            Nuevo Paciente
+										<i class="fa fa-user-plus" aria-hidden="true"></i>		                            
+			                        </a>
+	                    		</div>
 
+		                        <ul>
+	                    	
 	                    @endforelse
 	                      
 	                    </ul>

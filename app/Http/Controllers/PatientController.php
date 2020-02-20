@@ -66,7 +66,7 @@ class PatientController extends Controller
         }
 
 
-        Patient::create([
+        $patient = Patient::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'slug' => str_slug($request->name. '-' .Str::uuid()),
@@ -87,6 +87,11 @@ class PatientController extends Controller
             'notes' => $request->notes,
             'pregnancy' => $request->pregnancy,
         ]);
+
+        if($request->input('option2') == "Guardar Registro e Iniciar Consulta")
+        {
+            return redirect()->route('ClinicHistoryPatient', $patient->slug)->with('success', 'Paciente registrado correctamente');
+        }
 
         return redirect()->route('patients.index')->with('success', 'Paciente registrado correctamente');
     }
