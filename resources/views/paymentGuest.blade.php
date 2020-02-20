@@ -68,6 +68,8 @@
 
             <div class="content">
                 <div class="m-b-md">
+                    <img style="max-width: 200px;" src="{{ asset('$details->paymentMethod->image') }}">
+                    <br>
                     Realiza el pago en linea al nutriólogo por concepto de: {{ $details->title }}
                 </div>
 

@@ -153,7 +153,7 @@ class PaymentMethodController extends Controller
 
     public function paymentGuest($code)
     {
-        $details = PaymentMethodDetail::where('code_link',$code)->first();
+        $details = PaymentMethodDetail::with('paymentMethod')->where('code_link',$code)->first();
 
         if(!$details)
         {
