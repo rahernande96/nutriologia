@@ -67,8 +67,8 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                <div class="title m-b-md">
-                    {{ $details->title }}
+                <div class="m-b-md">
+                    Realiza el pago en linea al nutriólogo por concepto de: {{ $details->title }}
                 </div>
 
                 <div>

@@ -63,7 +63,7 @@
 						<a href="{{ route('patients.index') }}" class="nav-link">Mis Pacientes</a>
 					</li>
 					<li class="nav-item d-none d-sm-inline-block">
-						<a href="{{ route('patients.create') }}" class="nav-link">Nuevos Pacientes</a>
+						<a href="{{ route('patients.create') }}" class="nav-link">Nuevo Paciente</a>
 					</li>
 					<li class="nav-item d-none d-sm-inline-block">
 						<a href="{{ route('event.index') }}" class="nav-link">Agenda</a>
@@ -106,8 +106,7 @@
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-	<strong>Copyright &copy; 2019 <a href="#">Nutriología</a>.</strong>
-	All rights reserved.
+	<strong>Todos los derechos reservados Nutrition balance &copy; 2020</strong>
 	<div class="float-right d-none d-sm-inline-block">
 		<b>Version</b> 3.0.0
 	</div>

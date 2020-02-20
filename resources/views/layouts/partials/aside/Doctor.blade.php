@@ -21,7 +21,7 @@
                       <a href="{{ route('Dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                           <p>
-                              Dashboard
+                              Escritorio
                           </p>
                       </a>
                   </li>
