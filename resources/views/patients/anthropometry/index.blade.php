@@ -26,7 +26,7 @@ Paciente: {{ $patient->name }}
             <div class="card-body">
                 <div class="row d-flex justify-content-around">
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/medidas_basicas.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/medidas_basicas.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Medidas Básicas</h5>
                             <p class="card-text">Medidas Básicas Y Fórmulas Antropométricas</p>
@@ -34,7 +34,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/medidas_corporales.png') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/medidas_corporales.png') }}" class="card-img-top mx-auto d-block" alt="Analisis Bioquímicos" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Medidas Corporales</h5>
                             <p class="card-text">Medidas de la composición corporal del paciente.</p>
@@ -42,7 +42,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/composicion_corporal.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/composicion_corporal.png') }}" class="card-img-top mx-auto d-block" alt="Signos Vitales" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Composición Corporal</h5>
                             <p class="card-text">Composición corporal y formulas antropométricas.</p>
@@ -50,7 +50,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3 w-25">
-                        <img src="{{ asset('Iconos/con_circulo/Somatocarta.png') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/Somatocarta.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Somatocarta</h5>
                             <p class="card-text">Carta Somatográfica.</p>
@@ -59,7 +59,7 @@ Paciente: {{ $patient->name }}
                     </div>
                     <!--
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; height: 15vw; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Grafica de Evolución</h5>
                             <p class="card-text">Gafica d el aevolución del paciente en sus medidas antropometricas.</p>

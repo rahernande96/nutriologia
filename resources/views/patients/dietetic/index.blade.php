@@ -24,7 +24,7 @@ Paciente: {{ $patient->name }}
             <div class="card-body">
                 <div class="row d-flex justify-content-around">
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/grafica_evolucion.png') }}" class="card-img-top" alt="Historia Clínica" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/grafica_evolucion.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Requerimiento Energético</h5>
                             <p class="card-text">Requerimiento de energía.</p>
@@ -32,7 +32,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/distribucion_equivalentes.png') }}" class="card-img-top" alt="Analisis Bioquímicos" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/distribucion_equivalentes.png') }}" class="card-img-top mx-auto d-block" alt="Analisis Bioquímicos" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Distribución de Equivalentes</h5>
                             <p class="card-text">Equivalentes de grupo de alimentos para tiempo de comida.</p>
@@ -40,7 +40,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3">
-                        <img src="{{ asset('Iconos/con_circulo/menu.png') }}" class="card-img-top" alt="Signos Vitales" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/menu.png') }}" class="card-img-top mx-auto d-block" alt="Signos Vitales" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Menú</h5>
                             <p class="card-text">Menú.</p>
@@ -48,7 +48,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     <div class="card col-md-3 w-25">
-                        <img src="{{ asset('Iconos/con_circulo/diseño_platillos.png') }}" class="card-img-top" alt="Historia Clínica Nutricional" style="width: 100%; object-fit: cover;">
+                        <img src="{{ asset('Iconos/con_circulo/diseño_platillos.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Diseño de Platillos</h5>
                             <p class="card-text">Diseño de los platillos para las dietoterapias de los pacientes.</p>
