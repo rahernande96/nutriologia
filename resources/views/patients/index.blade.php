@@ -23,31 +23,35 @@ Pacientes
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Edad</th>
-                  <th>Telefono</th>
-                  <th>Acciones de consulta</th>
-                  <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($patients as $patient)
-                <tr class="text-center">
-                  <td>{{ $patient->name }}</td>
-                  <td>{{ $patient->age }}</td>
-                  <td>{{ $patient->phone_1 }}</td>
-                  <td>
-                    @include('patients.consult_actions')
-                  </td>
-                  <td>
-                  @include('patients.actions')
-                  </td>
-                </tr>
-                @endforeach
-              </table>
+              <div class="table-responsive">
+
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Telefono</th>
+                    <th>Acciones de consulta</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($patients as $patient)
+                  <tr class="text-center">
+                    <td>{{ $patient->name }}</td>
+                    <td>{{ $patient->age }}</td>
+                    <td>{{ $patient->phone_1 }}</td>
+                    <td>
+                      @include('patients.consult_actions')
+                    </td>
+                    <td>
+                    @include('patients.actions')
+                    </td>
+                  </tr>
+                  @endforeach
+                </table>
+
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -65,7 +69,37 @@ Pacientes
 
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#example1").DataTable({
+          "language":
+          {
+            "sProcessing":     "Procesando...",
+                          "sLengthMenu":     "Mostrar _MENU_ registros",
+                          "sZeroRecords":    "No se encontraron resultados",
+                          "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                          "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                          "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                          "sInfoPostFix":    "",
+                          "sSearch":         "Buscar:",
+                          "sUrl":            "",
+                          "sInfoThousands":  ",",
+                          "sLoadingRecords": "Cargando...",
+                          "oPaginate": {
+                              "sFirst":    "Primero",
+                              "sLast":     "Último",
+                              "sNext":     "Siguiente",
+                              "sPrevious": "Anterior"
+                          },
+                          "oAria": {
+                              "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                          },
+                          "buttons": {
+                              "copy": "Copiar",
+                              "colvis": "Visibilidad"
+                          }
+          }
+        });
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

@@ -25,19 +25,22 @@ Route::get('/home', function(){
 
 Route::post('/charge', 'OpenPayController@store')->name('openPay.store');
 
-Route::post('/charge_stripe', 'StripeController@store')->name('stripe.store');
 
 Route::get('/register/verify/{confirmation_code}', 'EmailController@verify')->name('email.verify');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/configuration', 'UserController@config')->name('config');
+    Route::get('/billing', 'BillingController@billing')->name('billing');
 
     //Change password
     Route::put('/change/password/{slug}', 'UserController@change_password')->name('change_password');
 
     //Cambiar imágen de perfil
     Route::put('user/change/picture/{slug}', 'UserController@change_picture')->name('change_picture');
+    //stripe
+    
+    Route::post('/charge_stripe', 'StripeController@store')->name('stripe.charge');
 
     Route::get('cancel-subscription','StripeController@cancelSubscription')->name('cancel.subscription');
 

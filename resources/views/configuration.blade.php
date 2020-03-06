@@ -104,43 +104,16 @@ Configuración
 
       <div class="card-header">
 
-        <h3 class="card-title">Suscripcion</h3>
-        
+        <h3 class="card-title">Administrar suscripciones</h3>
+          
       </div>
 
       <div class="card-body">
         
-        <div class="row">
+
+        <div class="card-body">
           
-          <div class="col-md-6">
-
-            @if($user->subscription('main')->onGracePeriod())
-              
-              <div class="alert alert-warning">
-
-                <p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras, tu cuenta estará activa hasta el : {{$user->subscription('main')->ends_at}}</p>
-
-              </div>
-
-              <a class="btn btn-success" href="{{ route('resume.subscription') }}">Renovar Suscripción</a>
-
-            @elseif($user->subscription('main')->ended())
-
-              <div class="alert alert-warning">
-
-                <p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras./p>
-
-              </div>
-
-              <a class="btn btn-success" href="{{ route('create.subscription') }}"> Suscribirme</a>
-
-            @else
-
-              <a class="btn btn-danger" href="{{ route('cancel.subscription') }}">Cancelar Suscripción</a>
-
-            @endif
-
-          </div>
+         <a class="btn btn-primary btn-block" href="{{ route('billing') }}">Administrar Suscripciones</a>
 
         </div>
 

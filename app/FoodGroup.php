@@ -12,7 +12,7 @@ class FoodGroup extends Model
 
     public function Food()
     {
-    	return $this->belongsToMany('App\Food');
+    	return $this->hasMany('App\Food','group_id');
     }
 
     public function FrequencyConsumption()

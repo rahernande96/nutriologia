@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-Frecuencia de Consumo
+Frecuencia de consumo
 @endsection
 
 @section('content')
 <div class="row">
 	<div class="col-md-12 d-flex justify-content-end mt-4">
-		<a href="{{ route('chart.show', $patient->slug) }}" class="btn btn-primary mx-2 text-white">Generar Gráfica de frecuencia de consumo</a>
+		<a href="{{ route('chart.show', $patient->slug) }}" class="btn btn-primary mx-2 text-white">Generar gráfica de frecuencia de consumo</a>
 	</div>
 	<div class="col-md-12">
 		<div class="card card-primary mt-4">
@@ -49,7 +49,7 @@ Frecuencia de Consumo
 				
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Editar Frecuencia de Consumo</h3>
+						<h3 class="card-title">Editar frecuencia de consumo</h3>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -59,7 +59,7 @@ Frecuencia de Consumo
 						<div class="card-body">
 							{{-- Componente Draggable --}}
 							<div id="foodsEdit">
-								<foods-edit :foods="{{ $foods }}" :patient="{{ $patient }}" :frequency="{{ $frequency }}"></foods-edit>
+								<foods-edit :foods-group="{{ $foodsGroup }}" :foods="{{ $foods }}" :patient="{{ $patient }}" :frequency="{{ $frequency }}"></foods-edit>
 							</div>
 						</div>
 					</div>

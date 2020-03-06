@@ -22,7 +22,7 @@ Paciente: {{ $patient->name }}
                     <div class="row">
                             <div class="col-md-12">
                                     {{--<a href="{{ route('reminder.change', $patient->slug) }}" id="change_reminder" class="btn btn-success right mb-6">Cambiar Recordatorio</a>--}}
-                                    <button id="change_reminder" class="btn btn-success right mb-6">Cambiar Recordatorio</button>
+                                    <button id="change_reminder" class="btn btn-success right mb-6">Cambiar recordatorio</button>
                             </div>
                         </div>
                 <div class="row">
@@ -32,7 +32,7 @@ Paciente: {{ $patient->name }}
                                 <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                     @if($reminder->type == \App\Reminder::RAPID)
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rapido</a>
+                                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rápido</a>
                                     </li>
                                     @else
                                     <li class="nav-item">
@@ -153,8 +153,8 @@ Paciente: {{ $patient->name }}
                             <input type="number" name="calcio" min="0" class="form-control" id="food_modal_calcio" placeholder="Calcio" required>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="food_modal_fosforo">Fosforo:</label>
-                            <input type="number" name="fosforo" min="0" class="form-control" id="food_modal_fosforo" placeholder="Fosforo" required>
+                            <label for="food_modal_fosforo">Fósforo:</label>
+                            <input type="number" name="fosforo" min="0" class="form-control" id="food_modal_fosforo" placeholder="Fósforo" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="food_modal_selenio">Selenio:</label>

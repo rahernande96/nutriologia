@@ -25,7 +25,7 @@ Paciente: {{ $patient->name }}
                             <div class="card-header tab-card-header">
                                 <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rapido</a>
+                                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rápido</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="profile" aria-selected="false">Detallado</a>
@@ -67,7 +67,7 @@ Paciente: {{ $patient->name }}
             </div>
             <div class="modal-body">
                 <form action="" id="form-modal-new-food">
-                    <legend>Información del Alimento</legend>
+                    <legend>Información del alimento</legend>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -87,7 +87,7 @@ Paciente: {{ $patient->name }}
                             </div>
                         </div>
                     </div>
-                    <legend>Información de Macro Nutrientes</legend>
+                    <legend>Información de macro nutrientes</legend>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
@@ -103,7 +103,7 @@ Paciente: {{ $patient->name }}
                                 <input type="number" name="carbohydrates" min="0" class="form-control" id="food_modal_carbohydrates" placeholder="Hidratos de Carbono" required>
                         </div>
                     </div>
-                    <legend>Información de Micro Nutrientes</legend>
+                    <legend>Información de micro nutrientes</legend>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -115,7 +115,7 @@ Paciente: {{ $patient->name }}
                                 <input type="number" name="fiber" min="0" class="form-control" id="food_modal_fiber" placeholder="Fibra" required>
                         </div>
                     </div>
-                    <legend>Información de Minerales</legend>
+                    <legend>Información de minerales</legend>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
@@ -139,8 +139,8 @@ Paciente: {{ $patient->name }}
                             <input type="number" name="calcio" min="0" class="form-control" id="food_modal_calcio" placeholder="Calcio" required>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="food_modal_fosforo">Fosforo:</label>
-                            <input type="number" name="fosforo" min="0" class="form-control" id="food_modal_fosforo" placeholder="Fosforo" required>
+                            <label for="food_modal_fosforo">Fósforo:</label>
+                            <input type="number" name="fosforo" min="0" class="form-control" id="food_modal_fosforo" placeholder="Fósforo" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="food_modal_selenio">Selenio:</label>
@@ -175,7 +175,7 @@ Paciente: {{ $patient->name }}
 </div>
 <div class="row">
 	<div class="col-lg-3 offset-lg-5">
-		<a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="btn btn-primary">Ir a Historia del paciente</a>
+		<a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="btn btn-primary">Ir a historia del paciente</a>
 	</div>
 </div>
 <br>

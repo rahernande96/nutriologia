@@ -73,7 +73,7 @@ Historia Clínica Nutricional
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_crudiverian" type="checkbox" id="diet_crudiverian" {{ old('diet_crudiverian') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_crudiverian">Crudiveriana</label>
+								<label class="form-check-label" for="diet_crudiverian">Cúltimorudivegana</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_ovogetarian" type="checkbox" id="diet_ovogetarian" {{ old('diet_ovogetarian') ? 'checked' : null }}>
@@ -254,11 +254,11 @@ Historia Clínica Nutricional
 							<hr>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="max_weight">Maximo peso (KG)</label>
-							<input type="text" class="form-control" id="max_weight" placeholder="Ingrese el peso maximo." value="{{ old('max_weight') }}" name="max_weight">
+							<label for="max_weight">Máximo peso (KG)</label>
+							<input type="text" class="form-control" id="max_weight" placeholder="Ingrese el peso máximo." value="{{ old('max_weight') }}" name="max_weight">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="min_weight">Minimo peso (KG)</label>
+							<label for="min_weight">Mínimo peso (KG)</label>
 							<input type="text" class="form-control" id="min_weight" placeholder="Ingrese el peso mínimo." value="{{ old('min_weight') }}" name="min_weight">
 						</div>
 						<div class="form-group col-md-6">
@@ -266,16 +266,16 @@ Historia Clínica Nutricional
 							<input type="text" class="form-control" id="usual_weight" placeholder="Ingrese el peso habitual." value="{{ old('usual_weight') }}" name="usual_weight">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastMonth">Peso del ultimo mes (KG)</label>
-							<input type="text" class="form-control" id="lastMonth" placeholder="Ingrese el peso del ultimo mes." value="{{ old('lastMonth') }}" name="lastMonth">
+							<label for="lastMonth">Peso del último mes (KG)</label>
+							<input type="text" class="form-control" id="lastMonth" placeholder="Ingrese el peso del último mes." value="{{ old('lastMonth') }}" name="lastMonth">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastThreeMonths">Peso de los ultimos 3 meses (KG)</label>
-							<input type="text" class="form-control" id="lastThreeMonths" placeholder="Ingrese el peso de los ultimos 3 meses." value="{{ old('lastThreeMonths') }}" name="lastThreeMonths">
+							<label for="lastThreeMonths">Peso de los últimos 3 meses (KG)</label>
+							<input type="text" class="form-control" id="lastThreeMonths" placeholder="Ingrese el peso de los últimos 3 meses." value="{{ old('lastThreeMonths') }}" name="lastThreeMonths">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastSixMonths">Peso de los ultimos 6 meses (KG)</label>
-							<input type="text" class="form-control" id="lastSixMonths" placeholder="Ingrese el peso de los ultimos seis meses." value="{{ old('lastSixMonths') }}" name="lastSixMonths">
+							<label for="lastSixMonths">Peso de los últimos 6 meses (KG)</label>
+							<input type="text" class="form-control" id="lastSixMonths" placeholder="Ingrese el peso de los últimos seis meses." value="{{ old('lastSixMonths') }}" name="lastSixMonths">
 						</div>
 						<div class="col-md-12">
 							<hr>

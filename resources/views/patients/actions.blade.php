@@ -1,6 +1,6 @@
 <div class="row">
     
-    <div class="col-4">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mt-1">
         
         <a href="{{ route('patients.show', $patient->slug) }}" class="btn btn-info">
            Ver <span class="fa fa-eye"></span>
@@ -8,13 +8,13 @@
 
     </div>
 
-    <div class="col-4">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mt-1">
         
         <a href="{{ route('patients.edit', $patient->slug) }}" class="btn btn-primary">Editar <span class="fa fa-pencil-alt"></span></a>
 
     </div>
 
-    <div class="col-4">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mt-1">
         
          <form action="{{ route('patients.destroy', $patient->slug) }}" method="POST">
             @method('DELETE')

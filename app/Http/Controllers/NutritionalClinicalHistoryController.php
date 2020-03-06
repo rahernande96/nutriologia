@@ -6,6 +6,7 @@ use App\ChangeWeight;
 use App\Feeding;
 use App\Food;
 use App\FoodAllergy;
+use App\FoodGroup;
 use App\FrequencyConsumption;
 use App\LifeStyle;
 use App\Patient;
@@ -190,11 +191,15 @@ class NutritionalClinicalHistoryController extends Controller
 
         $user = Auth::user();
 
-        $foods = Food::orderBy('name', 'ASC')->get();
+        $foodsGroup = FoodGroup::orderBy('name', 'ASC')
+        ->get();
 
+        $foods = Food::orderBy('name', 'ASC')
+        ->get();
+        
         $frequency = FrequencyConsumption::where('patient_id', $patient->id)->get();
 
-        return view('patients.NutritionalClinicalHistory.FrequencyConsumption.create', compact('patient', 'user', 'foods', 'frequency'));
+        return view('patients.NutritionalClinicalHistory.FrequencyConsumption.create', compact('patient', 'user', 'foodsGroup', 'foods','frequency'));
     } 
 
     public function frequencyConsumptionEdit($slug)
@@ -204,11 +209,14 @@ class NutritionalClinicalHistoryController extends Controller
         $user = Auth::user();
 
         //$foods = Food::all();
+        $foodsGroup = FoodGroup::orderBy('name', 'ASC')
+        ->get();
+
 		$foods = Food::orderBy('name', 'ASC')->get();
 
         $frequency = FrequencyConsumption::where('patient_id', $patient->id)->get();
 
-        return view('patients.NutritionalClinicalHistory.FrequencyConsumption.edit', compact('patient', 'user', 'foods', 'frequency'));
+        return view('patients.NutritionalClinicalHistory.FrequencyConsumption.edit', compact('patient', 'user', 'foods', 'foodsGroup','frequency'));
     }
 
     public function frequencyConsumptionAdd(Request $request)

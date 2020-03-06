@@ -20,9 +20,10 @@ class UsersTableSeeder extends Seeder
         	'role_id' => \App\Rol::ADMIN,
         	'email' => 'contodofit@gmail.com',
         	'confirmed' => 0,
-        	'no_registry' => '452252220215',
         	'identification_card' => '5482125200212',
         	'password' => bcrypt('ConTF2019'),
+            'sex' => true,
+            'date_birth' => Carbon\Carbon::now(),
         ]);
 
     }

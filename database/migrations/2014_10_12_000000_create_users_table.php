@@ -33,6 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('confirmation_code')->nullable();
             $table->boolean('confirmed')->default(0);
+            $table->boolean('sex')->default(0);
+            $table->time('date_birth');    
             $table->string('no_registry');
             $table->string('identification_card');
             $table->string('password');

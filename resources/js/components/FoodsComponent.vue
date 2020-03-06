@@ -9,11 +9,46 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <draggable class="list-group" :list="foodNews" group="foods" :element="'div'">
-                                    <li v-for="(food, index) in foodNews" class="list-group-item list-group-item-action" :key="food.id" :data-id="food.id">
-                                        {{ food.name }}
-                                    </li>
-                                </draggable> 
+
+                                  <div role="tablist">
+                                    
+                                    <b-card v-for="(foodGroup, index) in foodsGroups" no-body class="mb-1">
+                                        
+                                        <b-card-header header-tag="header" class="p-1" role="tab">
+                                        
+                                            <b-button block href="#" v-b-toggle="'demo'+foodGroup.id" variant="info">{{foodGroup.name}}</b-button>
+                                        
+                                        </b-card-header>
+                                      
+                                      <b-collapse v-bind:id="'demo'+foodGroup.id" visible accordion="my-accordion" role="tabpanel">
+                                        
+                                        <b-card-body>
+                                          
+                                            
+                                            <draggable class="list-group" :list="foodNews" group="foods" :element="'div'">
+
+                                                <div v-for="(food, index) in foodNews">
+                                                    
+                                                    <li v-if="food.group_id == foodGroup.id" class="list-group-item list-group-item-action" :key="food.id" :data-id="food.id">
+                                                        
+                                                        {{ food.name }}
+                                                    
+                                                    </li>
+
+                                                </div>
+
+                                               
+
+                                            </draggable> 
+                                        
+                                        </b-card-body>
+                                      
+                                      </b-collapse>
+                                    
+                                    </b-card>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -22,7 +57,7 @@
             <div class="col-md-6">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="mb-0">Frecuencia de Consumo</h3>
+                        <h3 class="mb-0">Frecuencia de consumo</h3>
                     </div>
                     <div class="card-body">
 
@@ -131,13 +166,14 @@
                                     </draggable>  
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-success">Guardar Datos</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <button class="btn btn-success">Guardar Datos</button>
         </div>
     </div>
     </form>
@@ -146,14 +182,16 @@
 <script>
     import draggable from 'vuedraggable'
     import axios from 'axios'
+  
     export default {
         components: {
             draggable,
         },
-        props:['foods', 'patient'],
+        props:['foods', 'patient','foodsGroup'],
         data(){
             return{
                 foodNews: this.foods,
+                foodsGroups: this.foodsGroup,
                 patient_id: this.patient.id,
                 patient_slug: this.patient.slug,
                 one_day: [],
@@ -166,6 +204,7 @@
                 never: []
             }
         },
+
         methods:{
             addTest(){
 

@@ -168,6 +168,8 @@ return [
 
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -230,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
-
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
     ],
 
 ];

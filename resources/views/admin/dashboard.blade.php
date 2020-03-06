@@ -3,6 +3,11 @@
 @section('title')
 Bienvenido {{ $user->name }}
 @endsection
+@section('extra-css')
+<link rel="stylesheet" href="{{ asset('css/custom_admin.css') }}">
+@endsection
+
+
 
 @section('content')
 
@@ -16,7 +21,7 @@ Bienvenido {{ $user->name }}
 	            <!-- small box -->
 	            <div class="small-box bg-info">
 	              <div class="inner">
-	                <h3>Tienes un total de {{ $countPatients }}</h3>
+	                <h3 class="title-responsive">Tienes un total de {{ $countPatients }}</h3>
 
 	                <p>pacientes registrados</p>
 	              </div>
@@ -31,7 +36,7 @@ Bienvenido {{ $user->name }}
 	            <!-- small box -->
 	            <div class="small-box bg-success">
 	              <div class="inner">
-	                <h3>Tienes un total de {{ $eventCount }}</h3>
+	                <h3 class="title-responsive">Tienes un total de {{ $eventCount }}</h3>
 
 	                <p>Citas próximas</p>
 	              </div>
@@ -54,10 +59,10 @@ Bienvenido {{ $user->name }}
 	                <!-- USERS LIST -->
 	                <div class="card">
 	                  <div class="card-header">
-	                    <h3 class="card-title">Tus ultimos pacientes</h3>
+	                    <h3 class="card-title">Tus últimos pacientes</h3>
 
-	                    <div class="card-tools">
-	                      <span class="badge badge-danger">Nuevos Pacientes</span>
+	                    <div class="card-tools hidden-xs hidden-sm">
+	                      <span class="badge badge-danger ">Nuevos Pacientes</span>
 	                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
 	                      </button>
 	                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>

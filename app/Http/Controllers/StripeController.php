@@ -16,30 +16,19 @@ class StripeController extends Controller
     	//dd($request->all());
 
     	$request->validate([
-    		'name_nutriologist'=>['required','string','max:255'],
-    		'email'=>['required','email','max:255','confirmed','unique:users,id'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'no_registry' => ['required'],
-            'identification_card' => ['required'],
+            'payment_method' => ['required'],
     	]);
 
-    	try{ DB::beginTransaction(); 
+    	try{ 
 
+            $user = Auth::user();
 
-    	//Registramos el cliente en la base de datos
-			$user = User::create([
-				'name' => $request->name_nutriologist,
-				'slug' => str_slug(Str::random(40)),
-				'picture' => 'default.png',
-				'no_registry' => $request->no_registry,
-				'identification_card' => $request->identification_card,
-				'email' => $request->input('email'),
-				'confirmation_code' => Str::random(25),
-				'password' => Hash::make($request->password),
-				'role_id' => \App\Rol::DOCTOR,
-			]);
+            if ($user->role_id == 1) {
 
-			$user->newSubscription('main', "plan_GVtuWIHiSH3obG")->create($request->input('payment_method'));
+                return redirect()->route('Dashboard');
+            }
+
+    		$user->newSubscription('main', "plan_GVtuWIHiSH3obG")->create($request->input('payment_method'));
 
 		//Mandamos el correo de confirmación de pago
 			//Mail::to($user->email)->send(new PaymentSuccess($user));
@@ -47,12 +36,10 @@ class StripeController extends Controller
 		//Logueamos al usuario despues de crearlo
 			auth()->guard('web')->login($user);
 
-			DB::commit(); 
-
 			return redirect()->route('Dashboard')->with('success', 'Pago realizado correctamente');
 
 		}catch(\Exception $e){ 
-				DB::rollback();
+				
 				if($e->getMessage() == 'The card was declined'){
 					return redirect()->route('register')->with('info', 'La tarjeta ha sido rechazada, intente nuevamente o ingrese otra tarjeta.');
 				}

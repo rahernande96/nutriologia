@@ -19,7 +19,7 @@ class Subscribed
 
             if ($request->user() && ! $request->user()->subscribed('main')) {
                 // This user is not a paying customer...
-                return redirect()->route('config');
+                return redirect()->route('billing');
             }
             
         }
