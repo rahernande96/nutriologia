@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaypalSubscriptionsTable extends Migration
+class CreateSubscriptionPaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreatePaypalSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('paypal_subscriptions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('subscription_payment_methods', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreatePaypalSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paypal_subscriptions');
+        Schema::dropIfExists('subscription_payment_methods');
     }
 }

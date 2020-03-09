@@ -18,7 +18,7 @@ Paciente: {{ $patient->name }}
                     <li class="nav-item">
                         <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">
                             @if($energy_requirement->type_get == 1)
-                                Rapido
+                                Rapido (regla del pulgar)
                             @elseif($energy_requirement->type_get == 2)
                                 Formula
                             @elseif($energy_requirement->type_get == 3)

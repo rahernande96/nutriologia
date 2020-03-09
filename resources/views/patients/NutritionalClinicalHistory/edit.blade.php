@@ -14,15 +14,15 @@ Editar - Historia Clínica Nutricional
 				<a href="{{ route('frequencyConsumption.create', $patient->slug) }}" class="btn btn-success mx-2 text-white">Ingresar Frecuencia de Consumo
 				</a>
 				@else
-				<a href="{{ route('chart.show', $patient->slug) }}" class="btn btn-primary mx-2 text-white">Generar Gráfica de frecuencia de consumo</a>
-				<a href="{{ route('frequencyConsumption.edit', $patient->slug) }}" class="btn btn-warning mx-2 text-white">Frecuencia de Consumo
+				<a href="{{ route('chart.show', $patient->slug) }}" class="btn btn-primary mx-2 text-white">Generar gráfica de frecuencia de consumo</a>
+				<a href="{{ route('frequencyConsumption.edit', $patient->slug) }}" class="btn btn-warning mx-2 text-white">Frecuencia de consumo
 				</a>
 				@endif
 			</div>
 		</div>
 		<div class="card card-primary mt-4">
 			<div class="card-header">
-				<h3 class="mb-0">Evaluación Médica Nutricional</h3>
+				<h3 class="mb-0">Evaluación médica nutricional</h3>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('NutritionalClinicalHistory.update', $patient->slug) }}" method="POST">
@@ -161,11 +161,15 @@ Editar - Historia Clínica Nutricional
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_crudiverian" type="checkbox" id="diet_crudiverian" {{ old('diet_crudiverian') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_crudiverian == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="diet_crudiverian">Crudiveriana</label>
+								<label class="form-check-label" for="diet_crudiverian">crudivegana</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_ovogetarian" type="checkbox" id="diet_ovogetarian" {{ old('diet_ovogetarian') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovogetarian == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="diet_ovogetarian">Ovogetariana</label>
+								<input class="form-check-input" name="diet_ovegetarian" type="checkbox" id="diet_ovegetarian" {{ old('diet_ovegetarian') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovegetarian == 'on' ? 'checked':'' }}>
+								<label class="form-check-label" for="diet_ovegetarian">Ovogetariana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_ovnivoro" type="checkbox" id="diet_ovnivoro" {{ old('diet_ovnivoro') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovnivoro == 'on' ? 'checked':'' }}>
+								<label class="form-check-label" for="diet_ovnivoro">Ovnivoro</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_ovolactovegetarian" type="checkbox" id="diet_ovolactovegetarian" {{ old('diet_ovolactovegetarian') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovolactovegetarian == 'on' ? 'checked':'' }}>
@@ -265,11 +269,11 @@ Editar - Historia Clínica Nutricional
 							<hr>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="max_weight">Maximo peso (KG)</label>
+							<label for="max_weight">Máximo peso (KG)</label>
 							<input type="text" class="form-control" id="max_weight" placeholder="Ingrese el peso maximo del paciente." value="{{ $patient->ChangeWeight->max_weight }}" name="max_weight">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="min_weight">Minimo peso (KG)</label>
+							<label for="min_weight">Mínimo peso (KG)</label>
 							<input type="text" class="form-control" id="min_weight" placeholder="Ingrese el peso mínimo del paciente." value="{{ $patient->ChangeWeight->min_weight }}" name="min_weight">
 						</div>
 						<div class="form-group col-md-6">

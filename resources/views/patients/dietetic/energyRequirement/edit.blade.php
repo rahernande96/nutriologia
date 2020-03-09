@@ -17,7 +17,7 @@ Paciente: {{ $patient->name }}
                 <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                     @if($energy_requirement->type_get == 1)
                     <li class="nav-item">
-                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rapido</a>
+                        <a class="nav-link active" id="rapid-tab" data-toggle="tab" href="#rapid" role="tab" aria-controls="home" aria-selected="true">Rapido (regla del pulgar)</a>
                     </li>
                     @elseif($energy_requirement->type_get == 2)
                     <li class="nav-item">

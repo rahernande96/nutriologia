@@ -81,7 +81,7 @@
             <div class="form-check form-check-inline mt-2 col-sm-8 pl-0 mr-0" id="box_stress_factor">
                 <div class="card bg-light" style="width:100%;">
                     <div class="card-header text-muted border-bottom-0">
-                        <h3 class="card-title">Factor de Estres</h3>
+                        <h3 class="card-title">Factor de metabolico</h3>
                     </div>
                     <div class="card-body pl-0 pr-0">
                        <table class="table">
@@ -468,11 +468,11 @@
             <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th>MacroNutrientes</th>
+                        <th>Macronutrientes</th>
                         <th>%</th>
-                        <th>Kcal</th>
-                        <th>Gr</th>
-                        <th>Gr/Kg</th>
+                        <th>kcal/kg/día</th>
+                        <th>gr</th>
+                        <th>gr/kg</th>
                     </tr>
                 </thead>
                 <tbody>

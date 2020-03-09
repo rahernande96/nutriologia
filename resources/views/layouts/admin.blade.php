@@ -60,10 +60,10 @@
 				</li>
 				@if(Auth::user()->rol->id == 2)
 					<li class="nav-item d-none d-sm-inline-block">
-						<a href="{{ route('patients.index') }}" class="nav-link">Mis Pacientes</a>
+						<a href="{{ route('patients.index') }}" class="nav-link">Mis pacientes</a>
 					</li>
 					<li class="nav-item d-none d-sm-inline-block">
-						<a href="{{ route('patients.create') }}" class="nav-link">Nuevo Paciente</a>
+						<a href="{{ route('patients.create') }}" class="nav-link">Nuevo paciente</a>
 					</li>
 					<li class="nav-item d-none d-sm-inline-block">
 						<a href="{{ route('event.index') }}" class="nav-link">Agenda</a>
@@ -76,7 +76,7 @@
 				@if(request()->is('configuration'))
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#updatePassword">
-					  Cambiar Contraseña
+					  Cambiar contraseña
 					</button>
 				@endif
 				<li class="nav-item">

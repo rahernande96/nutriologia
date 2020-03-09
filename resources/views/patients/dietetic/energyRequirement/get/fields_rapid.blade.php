@@ -35,9 +35,9 @@
             </div>
             <div class="col-sm-5">
                 @if(isset($total_energy_expenditure) && $total_energy_expenditure->supplement_value != null)
-                {!!Form::number('supplement_value', null, ['class' => 'form-control', 'id' => 'supplement_value', 'min' => 0, 'step' => 0.1]) !!}
+                {!!Form::number('supplement_value', null, ['class' => 'form-control', 'id' => 'supplement_value', 'min' => 0, 'step' => 0.1, 'placeholder'=>'kcal']) !!}
                 @else
-                {!!Form::number('supplement_value', null, ['class' => 'form-control', 'id' => 'supplement_value', 'disabled' => 'disabled', 'min' => 0, 'step' => 0.1]) !!}
+                {!!Form::number('supplement_value', null, ['class' => 'form-control', 'id' => 'supplement_value', 'disabled' => 'disabled', 'min' => 0, 'step' => 0.1, 'placeholder'=>'kcal']) !!}
                 @endif
             </div>
         </div>
@@ -90,11 +90,11 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>MacroNutrientes</th>
+                        <th>Macronutrientes</th>
                         <th>%</th>
-                        <th>Kcal</th>
-                        <th>Gr</th>
-                        <th>Gr/Kg</th>
+                        <th>kcal/kg/día</th>
+                        <th>gr</th>
+                        <th>gr/kg</th>
                     </tr>
                 </thead>
                 <tbody>

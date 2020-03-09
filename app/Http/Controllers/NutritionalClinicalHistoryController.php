@@ -72,6 +72,7 @@ class NutritionalClinicalHistoryController extends Controller
     		$patient->SpecificDiet->diet_ovegetarian = $request->diet_ovegetarian;
     		$patient->SpecificDiet->diet_ovolactovegetarian = $request->diet_ovolactovegetarian;
     		$patient->SpecificDiet->diet_mediterranean = $request->diet_mediterranean;
+    		$patient->SpecificDiet->diet_ovnivoro = $request->diet_ovnivoro;
     		$patient->SpecificDiet->other = $request->other;
     		$patient->SpecificDiet->vitamins = $request->vitamins;
     		$patient->SpecificDiet->proteins = $request->proteins;
@@ -149,6 +150,7 @@ class NutritionalClinicalHistoryController extends Controller
     			'diet_crudiverian' => $request->diet_crudiverian,
     			'diet_ovegetarian' => $request->diet_ovegetarian,
     			'diet_ovolactovegetarian' => $request->diet_ovolactovegetarian,
+    			'diet_ovnivoro' => $request->diet_ovnivoro,
     			'diet_mediterranean' => $request->diet_mediterranean,
     			'other' => $request->other,
     			'water' => $request->water,

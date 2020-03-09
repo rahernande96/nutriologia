@@ -90,11 +90,11 @@
                 <table class="table table-bordered table-responsive">
                     <thead>
                         <tr>
-                            <th>MacroNutrientes</th>
+                            <th>Macronutrientes</th>
                             <th>%</th>
-                            <th>Kcal</th>
-                            <th>Gr</th>
-                            <th>Gr/Kg</th>
+                            <th>kcal/kg/día</th>
+                            <th>gr</th>
+                            <th>gr/kg</th>
                         </tr>
                     </thead>
                     <tbody>

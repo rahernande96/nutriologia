@@ -30,7 +30,7 @@
                       <a href="{{ route('patients.create') }}" class="nav-link {{ request()->is('patients/new-patient') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
                           <p>
-                              Nuevo Paciente
+                              Nuevo paciente
                           </p>
                       </a>
                   </li>
@@ -38,7 +38,7 @@
                       <a href="{{ route('patients.index') }}" class="nav-link {{ request()->is('patients') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                           <p>
-                              Mis Pacientes
+                              Mis pacientes
                           </p>
                       </a>
                   </li>
@@ -55,7 +55,7 @@
                       <a href="{{ route('event.index') }}" class="nav-link {{ request()->is('appointments') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-calendar-alt" aria-hidden="true"></i>
                           <p>
-                              Mi Agenda
+                              Mi agenda
                           </p>
                       </a>
                   </li>
@@ -64,7 +64,7 @@
                       <a href="{{ route('index.payment.method') }}" class="nav-link {{ request()->is('administrar-pagos-de-pacientes') ? 'active' : '' }} ">
                           <i class="nav-icon fa fa-money-bill" aria-hidden="true"></i>
                           <p>
-                              Recibir Pagos
+                              Recibir pagos
                           </p>
                       </a>
                   </li>
@@ -79,7 +79,7 @@
                   <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Cerrar Sesión </p>
+                        <p>Cerrar sesión </p>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

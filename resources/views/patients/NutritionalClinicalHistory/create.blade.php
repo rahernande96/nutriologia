@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Historia Clínica Nutricional
+Historia clínica nutricional
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Historia Clínica Nutricional
 	<div class="col-md-12">
 		<div class="card card-primary mt-4">
 			<div class="card-header">
-				<h3 class="mb-0">Evaluación Médica</h3>
+				<h3 class="mb-0">Evaluación médica</h3>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('NutritionalClinicalHistory.store', $patient->slug) }}" method="POST">
@@ -76,8 +76,12 @@ Historia Clínica Nutricional
 								<label class="form-check-label" for="diet_crudiverian">Cúltimorudivegana</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="diet_ovogetarian" type="checkbox" id="diet_ovogetarian" {{ old('diet_ovogetarian') ? 'checked' : null }}>
-								<label class="form-check-label" for="diet_ovogetarian">Ovogetariana</label>
+								<input class="form-check-input" name="diet_ovegetarian" type="checkbox" id="diet_ovegetarian" {{ old('diet_ovegetarian') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_ovegetarian">Ovogetariana</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" name="diet_ovnivoro" type="checkbox" id="diet_ovnivoro" {{ old('diet_ovnivoro') ? 'checked' : null }}>
+								<label class="form-check-label" for="diet_ovnivoro">Ovnivoro</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_ovolactovegetarian" type="checkbox" id="diet_ovolactovegetarian" {{ old('diet_ovolactovegetarian') ? 'checked' : null }}>

@@ -27,6 +27,7 @@ class CreateSpecificDietsTable extends Migration
             $table->string('diet_ovegetarian')->nullable();
             $table->string('diet_ovolactovegetarian')->nullable();
             $table->string('diet_mediterranean')->nullable();
+            $table->string('diet_ovnivoro')->nullable();
             $table->string('other')->nullable();
             $table->string('water')->nullable();
             $table->string('vitamins')->nullable();
