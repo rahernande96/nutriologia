@@ -21,18 +21,7 @@ class CreateFeedingsTable extends Migration
             ->onDelete('cascade');
 
             $table->Increments('id');
-            $table->string('salad')->nullable();
-            $table->string('red_meat')->nullable();
-            $table->string('soup')->nullable();
-            $table->string('pasta')->nullable();
-            $table->string('vegetable')->nullable();
-            $table->string('fruit')->nullable();
-            $table->string('vegetarian')->nullable();
-            $table->string('vegan')->nullable();
-            $table->string('bird')->nullable();
-            $table->string('pork')->nullable();
-            $table->string('mexican')->nullable();
-            $table->string('shellfish')->nullable();
+            $table->longText('preferred_foods')->nullable();
             $table->string('food_not_prefer')->nullable();
             $table->string('alimentary_habits')->nullable();
             $table->string('food_belief')->nullable();

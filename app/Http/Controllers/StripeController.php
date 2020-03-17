@@ -33,8 +33,10 @@ class StripeController extends Controller
 		//Mandamos el correo de confirmación de pago
 			//Mail::to($user->email)->send(new PaymentSuccess($user));
 
-		//Logueamos al usuario despues de crearlo
-			auth()->guard('web')->login($user);
+			//actualizamos el metodo de pago elegido por el usuario 
+			$user->update([
+				'payment_method_id'=>1,
+			]);
 
 			return redirect()->route('Dashboard')->with('success', 'Pago realizado correctamente');
 

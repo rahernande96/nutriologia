@@ -73,81 +73,6 @@ Editar - Historia Clínica Nutricional
 							<hr>
 						</div>
 						<div class="col-md-12">
-							<h6><strong>Seleccione los alimentos de preferencia</strong></h6>
-						</div>
-						<div class="col-md-12">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="salad" type="checkbox" id="salad" {{ old('salad') ? 'checked' : null }} {{ $patient->Feeding->salad == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="salad">Ensalada</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="red_meat" type="checkbox" id="red_meat" {{ old('red_meat') ? 'checked' : null }} {{ $patient->Feeding->red_meat == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="red_meat">Carne roja</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="fish" type="checkbox" id="fish" {{ old('fish') ? 'checked' : null }} {{ $patient->Feeding->fish == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="fish">Pescado</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="soup" type="checkbox" id="soup" {{ old('soup') ? 'checked' : null }} {{ $patient->Feeding->soup == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="soup">Sopa</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="pasta" type="checkbox" id="pasta" {{ old('pasta') ? 'checked' : null }} {{ $patient->Feeding->pasta == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="pasta">Pasta</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="vegetable" type="checkbox" id="vegetable" {{ old('vegetable') ? 'checked' : null }} {{ $patient->Feeding->vegetable == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="vegetable">Verduras</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="fruit" type="checkbox" id="fruit" {{ old('fruit') ? 'checked' : null }} {{ $patient->Feeding->fruit == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="fruit">Frutas</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="vegetarian" type="checkbox" id="vegetarian" {{ old('vegetarian') ? 'checked' : null }} {{ $patient->Feeding->vegetarian == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="vegetarian">Vegetariana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="vegan" type="checkbox" id="vegan" {{ old('vegan') ? 'checked' : null }} {{ $patient->Feeding->vegan == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="vegan">Vegana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="bird" type="checkbox" id="bird" {{ old('bird') ? 'checked' : null }} {{ $patient->Feeding->bird == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="bird">Aves</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="pork" type="checkbox" id="pork" {{ old('pork') ? 'checked' : null }} {{ $patient->Feeding->pork == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="pork">Cerdo</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="mexican" type="checkbox" id="mexican" {{ old('mexican') ? 'checked' : null }} {{ $patient->Feeding->mexican == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="mexican">Mexicana</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" name="shellfish" type="checkbox" id="shellfish" {{ old('shellfish') ? 'checked' : null }} {{ $patient->Feeding->shellfish == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="shellfish">Mariscos</label>
-							</div>
-							<div class="col-md-12">
-								<hr>
-							</div>
-						</div>
-						<div class="form-group col-md-6 mt-2">
-							<label for="food_not_prefer">Alimentos que no son de su preferencia</label>
-							<input type="text" class="form-control" id="food_not_prefer" placeholder="Ingrese los alimentos que no le gustan al paciente." value="{{ $patient->Feeding->food_not_prefer }}" name="food_not_prefer">
-						</div>
-						<div class="form-group col-md-6 mt-2">
-							<label for="alimentary_habits">Habitos alimentarios diarios</label>
-							<input type="text" class="form-control" id="alimentary_habits" placeholder="Ingrese los habitos alimentarios diarios." value="{{ $patient->Feeding->alimentary_habits }}" name="alimentary_habits">
-						</div>
-						<div class="form-group col-md-6 mt-2">
-							<label for="food_belief">Creencia sobre algunos alimentos</label>
-							<input type="text" class="form-control" id="food_belief" placeholder="Ingrese la creencia de algunos alimentos." value="{{ $patient->Feeding->food_belief }}" name="food_belief">
-						</div>
-						<div class="col-md-12">
-							<hr>
-						</div>
-						<div class="col-md-12">
 							<h6><strong>Dieta específica</strong></h6>
 						</div>
 						<div class="col-md-12">
@@ -183,6 +108,36 @@ Editar - Historia Clínica Nutricional
 								<input class="form-check-input" name="other" type="checkbox" id="other" {{ old('other') ? 'checked' : null }} {{ $patient->SpecificDiet->other == 'on' ? 'checked':'' }}>
 								<label class="form-check-label" for="other">Otra</label>
 							</div>
+						</div>
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<div class="col-md-12">
+							<h6><strong>Seleccione los alimentos de preferencia</strong></h6>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<input class="form-control" name="preferred_foods" type="text" id="preferred_foods" value="{{ old('preferred_foods') ? old('preferred_foods') : $patient->Feeding->preferred_foods }}" placeholder="Ingrese los alimentos que le gustan al paciente.">
+								
+							</div>
+							<div class="col-md-12">
+								<hr>
+							</div>
+						</div>
+						<div class="form-group col-md-6 mt-2">
+							<label for="food_not_prefer">Alimentos que no son de su preferencia</label>
+							<input type="text" class="form-control" id="food_not_prefer" placeholder="Ingrese los alimentos que no le gustan al paciente." value="{{ $patient->Feeding->food_not_prefer }}" name="food_not_prefer">
+						</div>
+						<div class="form-group col-md-6 mt-2">
+							<label for="alimentary_habits">Habitos alimentarios diarios</label>
+							<input type="text" class="form-control" id="alimentary_habits" placeholder="Ingrese los habitos alimentarios diarios." value="{{ $patient->Feeding->alimentary_habits }}" name="alimentary_habits">
+						</div>
+						<div class="form-group col-md-6 mt-2">
+							<label for="food_belief">Creencia sobre algunos alimentos</label>
+							<input type="text" class="form-control" id="food_belief" placeholder="Ingrese la creencia de algunos alimentos." value="{{ $patient->Feeding->food_belief }}" name="food_belief">
+						</div>
+						<div class="col-md-12">
+							<hr>
 						</div>
 						<div class="form-group col-md-6 mt-4">
 							<label for="water">Agua durente el dia</label>

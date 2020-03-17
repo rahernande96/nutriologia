@@ -47,19 +47,8 @@ class NutritionalClinicalHistoryController extends Controller
     		$patient->LifeStyle->stress = $request->stress;
     		$patient->LifeStyle->save();
     		//Alimentación
-    		$patient->Feeding->salad = $request->salad;
-    		$patient->Feeding->red_meat = $request->red_meat;
-    		//$patient->Feeding->fish = $request->fish;
-    		$patient->Feeding->soup = $request->soup;
-    		$patient->Feeding->pasta = $request->pasta;
-    		$patient->Feeding->vegetable = $request->vegetable;
-    		$patient->Feeding->fruit = $request->fruit;
-    		$patient->Feeding->vegetarian = $request->vegetarian;
-    		$patient->Feeding->vegan = $request->vegan;
-    		$patient->Feeding->bird = $request->bird;
-    		$patient->Feeding->pork = $request->pork;
-    		$patient->Feeding->mexican = $request->mexican;
-    		$patient->Feeding->shellfish = $request->shellfish;
+    	
+    		$patient->Feeding->preferred_foods = $request->preferred_foods;
     		$patient->Feeding->food_not_prefer = $request->food_not_prefer;
     		$patient->Feeding->alimentary_habits = $request->alimentary_habits;
     		$patient->Feeding->food_belief = $request->food_belief;
@@ -124,19 +113,7 @@ class NutritionalClinicalHistoryController extends Controller
     		//Alimentación
     		Feeding::create([
     			'patient_id' => $patient->id,
-    			'salad' => $request->salad,
-    			'red_meat' => $request->red_meat,
-    			'red_meat' => $request->red_meat,
-    			'soup' => $request->soup,
-    			'soup' => $request->soup,
-    			'pasta' => $request->pasta,
-    			'vegetable' => $request->vegetable,
-    			'vegetarian' => $request->vegetarian,
-    			'vegan' => $request->vegan,
-    			'bird' => $request->bird,
-    			'pork' => $request->pork,
-    			'mexican' => $request->mexican,
-    			'shellfish' => $request->shellfish,
+    			'preferred_foods' => $request->preferred_foods,
     			'food_not_prefer' => $request->food_not_prefer,
     			'alimentary_habits' => $request->alimentary_habits,
     			'food_belief' => $request->food_belief,

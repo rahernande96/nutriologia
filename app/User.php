@@ -62,4 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Patient');
     }
+
+    public function paypalSubscription()
+    {
+        return $this->hasMany('App\PaypalSubscription')->latest()->first();
+    }
 }

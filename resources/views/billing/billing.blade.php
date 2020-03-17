@@ -42,7 +42,8 @@ Subscripcion
 		        <div class="row">
 		          
 					 <div class="col-md-12">
-
+              @if ($user->payment_method_id == 1)
+                  
 		            @if(!$user->subscription('main'))
 
 		            	@include('billing.credit_card')
@@ -72,7 +73,43 @@ Subscripcion
 		              <a class="btn btn-danger" href="{{ route('cancel.subscription') }}">Cancelar Suscripción</a>
 
 		            @endif
+              
+              @elseif($user->payment_method_id == 2)
+                  @php
+                   
+                   $subscription = $user->paypalSubscription();
+                   //dd($subscription);
+                   $dateNow = \Carbon\Carbon::now();   
+                  @endphp
 
+                  @if($subscription->paypal_status != "Active")
+
+                    @if(!is_null($subscription->ends_at) && $dateNow <= $subscription->ends_at)
+                      
+                    <div class="alert alert-warning">
+
+                      <p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras, tu cuenta estará activa hasta el : {{$subscription->ends_at}}</p>
+  
+                    </div>
+  
+                  <a class="btn btn-success" href="{{ route('paypal.subscription.reactivate') }}">Renovar Suscripción</a>
+                   
+                    @else
+
+                      @include('billing.credit_card')
+
+                    @endif
+                    
+                  @else
+
+                  <a class="btn btn-danger" href="{{ route('paypal.subscription.suspend') }}">Cancelar Suscripción</a>
+
+                  @endif
+              @else
+                
+                @include('billing.credit_card')
+              
+              @endif
 		          </div>		         
 
 		        </div>
@@ -92,100 +129,3 @@ Subscripcion
 
 @endsection
 
-@section('extra-js')
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    // Create a Stripe client.
-var stripe = Stripe('{{ env('STRIPE_KEY') }}');
-
-// Create an instance of Elements.
-var elements = stripe.elements();
-
-// Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
-var style = {
-  base: {
-    color: '#32325d',
-    lineHeight: '18px',
-    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#aab7c4'
-    }
-  },
-  invalid: {
-    color: '#fa755a',
-    iconColor: '#fa755a'
-  }
-};
-
-// Create an instance of the card Element.
-var card = elements.create('card', {style: style});
-
-// Add an instance of the card Element into the `card-element` <div>.
-card.mount('#card-element');
-
-// Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
-  var displayError = document.getElementById('card-errors');
-  if (event.error) {
-    displayError.textContent = event.error.message;
-  } else {
-    displayError.textContent = '';
-  }
-});
-
-
-
-var form = document.getElementById('subscription-form');
-
-form.addEventListener('submit', function(event) {
-  // We don't want to let default form submission happen here,
-  // which would refresh the page.
-  event.preventDefault();
-
-  stripe.createPaymentMethod({
-    type: 'card',
-    card: card,
-    billing_details: {
-      email: 'jenny.rosen@example.com',
-    },
-  }).then(stripePaymentMethodHandler);
-});
-
-/*
-// Handle form submission.
-var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-
-  stripe.createPaymentMethod(card).then(function(result) {
-    if (result.error) {
-      // Inform the user if there was an error.
-      var errorElement = document.getElementById('card-errors');
-      errorElement.textContent = result.error.message;
-    } else {
-      // Send the token to your server.
-      stripeTokenHandler(result.token);
-    }
-  });
-});*/
-
-// Submit the form with the token ID.
-function stripePaymentMethodHandler(result, email) {
-  // Insert the token ID into the form so it gets submitted to the server
-  var form = document.getElementById('subscription-form');
-  var hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'payment_method');
-  hiddenInput.setAttribute('value', result.paymentMethod.id);
-  form.appendChild(hiddenInput);
-
-  // Submit the form
-  form.submit();
-}
-</script>
-
-@endsection

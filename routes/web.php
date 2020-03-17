@@ -48,6 +48,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('create-subscription','StripeController@createSuscription')->name('create.subscription');
 
+    //paypal
+
+    Route::get('paypal/subscription/create', 'PaypalSubscriptionController@store')->name('create.subscription.paypal');
+    
+    Route::get('paypal/subscription/suspend','PaypalSubscriptionController@suspendSubscription')->name('paypal.subscription.suspend');
+
+    Route::get('paypal/subscription/reactivate','PaypalSubscriptionController@reactivateSubscription')->name('paypal.subscription.reactivate');
+
+    Route::any('paypal/success','PaypalSubscriptionController@success')->name('paypal.success');
+    Route::any('paypal/cancel','PaypalSubscriptionController@cancel')->name('paypal.cancel');
+
     Route::group(['middleware' => 'subscribed'], function () {
     
 
@@ -232,3 +243,8 @@ Route::post(
 );
 
 Route::get('payment-guest/{code}','PaymentMethodController@paymentGuest')->name('payment.guest');
+
+Route::get('paypal/plans', 'Paypal\PlanController@index');
+Route::get('paypal/plans/create', 'Paypal\PlanController@create');
+
+Route::get('paypal/plans/{link}/show', 'Paypal\PlanController@show');

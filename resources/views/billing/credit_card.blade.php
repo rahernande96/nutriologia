@@ -98,20 +98,115 @@
     </div>
   
   </div>
-<!--
+
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <img style="max-width: 100px;" src="{{ asset('Logos/paypal_logo.png') }}">
-        </button>
+		
+		<a class="btn btn-link" href="{{ route('create.subscription.paypal') }}">
+				
+			<img style="max-width: 100px;" src="{{ asset('Logos/paypal_logo.png') }}">
+			
+		</a>
+
       </h2>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Bonto de pago paypal
-      </div>
-    </div>
+   
   </div>
--->
+
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Create a Stripe client.
+var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    lineHeight: '18px',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+
+
+var form = document.getElementById('subscription-form');
+
+form.addEventListener('submit', function(event) {
+  // We don't want to let default form submission happen here,
+  // which would refresh the page.
+  event.preventDefault();
+
+  stripe.createPaymentMethod({
+    type: 'card',
+    card: card,
+    billing_details: {
+      email: 'jenny.rosen@example.com',
+    },
+  }).then(stripePaymentMethodHandler);
+});
+
+/*
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+
+  stripe.createPaymentMethod(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});*/
+
+// Submit the form with the token ID.
+function stripePaymentMethodHandler(result, email) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('subscription-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'payment_method');
+  hiddenInput.setAttribute('value', result.paymentMethod.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+</script>

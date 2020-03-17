@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             MetsTableSeeder::class,
             SemTableSeeder::class,
             NewDishCostTableSeeder::class,
-            PaymentMethodSeeder::class
+            PaymentMethodSeeder::class,
+            SubscriptionPaymentMethodSeeder::class
         ]);
     }
 }
