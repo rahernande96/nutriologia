@@ -162,7 +162,7 @@ class PaypalSubscriptionController extends Controller
                     ]);
                 }
 
-                return redirect()->route('dashboard')->with('success','Pago Exitoso');
+                return redirect()->route('Dashboard')->with('success','Pago Exitoso');
 
             } catch (\Exception $ex) {
                 return redirect()->route('billing')->with('error','Ha ocurrido un error');
