@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Plan;
+use PayPal\Api\Agreement;
 use App\PaypalSubscription;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
+use App\Http\Traits\PaypalWebhook;
 use Illuminate\Support\Facades\Auth;
 use PayPal\Auth\OAuthTokenCredential;
 use App\Http\Traits\GetPaypalClientCredential;
@@ -13,7 +15,7 @@ use App\Http\Traits\PaypalSubscriptionManager;
 
 class PaypalSubscriptionController extends Controller
 {
-    use PaypalSubscriptionManager;
+    use PaypalSubscriptionManager, PaypalWebhook;
 
     public $apiContext;
 
@@ -61,14 +63,15 @@ class PaypalSubscriptionController extends Controller
         //call api
         try {
             $agreement = $agreement->create($this->apiContext);
+            
         } catch (\Exception $ex) {
             echo $ex->getCode(); // Prints the Error Code
-            echo $ex->getData(); // Prints the detailed error message 
+            //echo $ex->getData(); // Prints the detailed error message 
         }
 
         // Get redirect url
         $approvalUrl = $agreement->getApprovalLink();
-
+        //dd($agreement);
         return redirect($approvalUrl);
 
         //Mandamos el correo de confirmación de pago
@@ -180,6 +183,12 @@ class PaypalSubscriptionController extends Controller
     public function cancel()
     {
         return redirect()->route('billing')->with('error','Ha ocurrido un error');
+    }
+
+    public function test()
+    {
+        $agreement = Agreement::get("I-AJX4J8PJD1RJ", $this->apiContext);
+        dd($agreement);
     }
 
 

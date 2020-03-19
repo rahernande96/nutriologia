@@ -18,14 +18,20 @@ trait PaypalSubscriptionManager
         $agreementStateDescriptor = new AgreementStateDescriptor();
         $agreementStateDescriptor->setNote("Suspending the agreement");
 
-        $createdAgreement = Agreement::get($subscription->paypal_id, $this->apiContext);
-        
-        $createdAgreement->suspend($agreementStateDescriptor, $this->apiContext);
-        $agreement = Agreement::get($createdAgreement->getId(), $this->apiContext);
+        try {
 
-        $subscription->update([
-            'paypal_status'=>$agreement->state,
-        ]);
+            $createdAgreement = Agreement::get($subscription->paypal_id, $this->apiContext);
+            
+            $createdAgreement->suspend($agreementStateDescriptor, $this->apiContext);
+            $agreement = Agreement::get($createdAgreement->getId(), $this->apiContext);
+
+            $subscription->update([
+                'paypal_status'=>$agreement->state,
+            ]);
+        
+        } catch (\Exception $ex) {
+            return back()->with('error','Ha ocurrido un error, intentalo mas tarder');
+        }
 
         return back()->with('success','Suspencion Exitosa!');
     }
@@ -41,15 +47,21 @@ trait PaypalSubscriptionManager
 
         $agreementStateDescriptor = new AgreementStateDescriptor();
         $agreementStateDescriptor->setNote("Reactivating the agreement");
-        
-        $suspendedAgreement->reActivate($agreementStateDescriptor, $this->apiContext);
+
+        try {
+            
+            $suspendedAgreement->reActivate($agreementStateDescriptor, $this->apiContext);
     
-        $agreement = Agreement::get($suspendedAgreement->getId(), $this->apiContext);
-        
-        $subscription->update([
-            'paypal_status'=>$agreement->state,
-            'ends_at'=>$agreement->agreement_details->next_billing_date
-        ]);
+            $agreement = Agreement::get($suspendedAgreement->getId(), $this->apiContext);
+            
+            $subscription->update([
+                'paypal_status'=>$agreement->state,
+                'ends_at'=>$agreement->agreement_details->next_billing_date
+            ]);
+
+        } catch (\Exception $ex) {
+            return back()->with('error','Ha ocurrido un error, intentalo mas tarder');
+        }
 
         return back()->with('success','Reactivacion Exitosa!');
     /*

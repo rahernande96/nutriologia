@@ -244,7 +244,11 @@ Route::post(
 
 Route::get('payment-guest/{code}','PaymentMethodController@paymentGuest')->name('payment.guest');
 
-Route::get('paypal/plans', 'Paypal\PlanController@index');
+//Route::get('paypal/plans', 'Paypal\PlanController@index');
 Route::get('paypal/plans/create', 'Paypal\PlanController@create');
 
-Route::get('paypal/plans/{link}/show', 'Paypal\PlanController@show');
+//Route::get('paypal/plans/{link}/show', 'Paypal\PlanController@show');
+
+Route::post('webhook/paypal', 'PaypalSubscriptionController@webhook');
+
+Route::get('paypal/test', 'PaypalSubscriptionController@test');

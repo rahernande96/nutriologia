@@ -119,7 +119,7 @@ class PlanController extends Controller
 
         }
 
-        return dd($createdPlan);
+        dd($createdPlan);
 
        
     }
@@ -140,6 +140,8 @@ class PlanController extends Controller
             'currency_code'=>$createdPlan->payment_definitions[0]->amount->currency,
             'value'=>$createdPlan->payment_definitions[0]->amount->value,
         ]);      
+
+        return true;
 
     }
 
