@@ -26,33 +26,62 @@ Paciente: {{ $patient->name }}
                     <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/grafica_evolucion.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">Requerimiento Energético</h5>
-                            <p class="card-text">Requerimiento de energía.</p>
-                                <a href="{{ route('dietetic.energyRequirement', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EnergyRequirement) Editar Datos  @else Capturar Datos @endif</a>
+                            
+                            <div class="info-menu mb-2">
+
+                                <h5 class="card-title">Requerimiento Energético</h5>
+                                <p class="card-text">Requerimiento de energía.</p>
+                                
+
+                            </div>
+
+                            <a href="{{ route('dietetic.energyRequirement', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EnergyRequirement) Editar Datos  @else Capturar Datos @endif</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/distribucion_equivalentes.png') }}" class="card-img-top mx-auto d-block" alt="Analisis Bioquímicos" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">Distribución de Equivalentes</h5>
-                            <p class="card-text">Equivalentes de grupo de alimentos para tiempo de comida.</p>
+                            
+                            <div class="info-menu mb-2">
+                            
+                                <h5 class="card-title">Distribución de Equivalentes</h5>
+                            
+                                <p class="card-text">Equivalentes de grupo de alimentos para tiempo de comida.</p>
+                                
+                            </div>
+                            
                             <a href="{{ route('dietetic.equivalentDistribution', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EquivalentDistribution) Editar Datos  @else Capturar Datos @endif</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/menu.png') }}" class="card-img-top mx-auto d-block" alt="Signos Vitales" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">Menú</h5>
-                            <p class="card-text">Menú.</p>
+                            
+                            <div class="info-menu mb-2">
+
+                                <h5 class="card-title">Menú</h5>
+                                <p class="card-text">Menú.</p>
+                                
+
+                            </div>
+
                             <a href="{{ route('dietetic.menu', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver información</a>
                         </div>
                     </div>
-                    <div class="card col-md-3 w-25">
+                    <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/diseño_platillos.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">Diseño de Platillos</h5>
-                            <p class="card-text">Diseño de los platillos para las dietoterapias de los pacientes.</p>
+                       
+                            <div class="info-menu mb-2">
+                       
+                                <h5 class="card-title">Diseño de Platillos</h5>
+                       
+                                <p class="card-text">Diseño de los platillos para las dietoterapias de los pacientes.</p>
+                           
+                            </div>
+
                             <a href="{{ route('dishes.index', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver</a>
+                       
                         </div>
                     </div>
                 </div>
@@ -64,6 +93,7 @@ Paciente: {{ $patient->name }}
 
 @section('extra-js')
 <script>
-    $('.dropdown-toggle').dropdown()
+    $('.dropdown-toggle').dropdown();
 </script>
+<script src="{{ asset('js/autoheight.js') }}"></script>
 @endsection

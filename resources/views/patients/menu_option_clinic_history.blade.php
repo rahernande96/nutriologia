@@ -27,8 +27,13 @@ Historia Clínica: {{ $patient->name }}
                     <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/historia_clinica.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica" style="width: 50%;  object-fit: cover; ">
                         <div class="card-body">
-                            <h5 class="card-title">Historia Clínica</h5>
-                            <p class="card-text">Formulario con detalles del paciente como sus cirugías, registro de medicamentos etc.</p>
+                            <div class="info-menu mb-2">
+                                
+                                <h5 class="card-title">Historia Clínica</h5>
+                                <p class="card-text parrafo">Formulario con detalles del paciente como sus cirugías, registro de medicamentos etc.</p>
+                            
+                            </div>
+                            
                             @if($patient->Brief_clinical_history)
                                 <a href="{{ route('BriefClinicalHistory.edit', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Editar Datos</a>
                             @else
@@ -36,19 +41,30 @@ Historia Clínica: {{ $patient->name }}
                         @endif
                         </div>
                     </div>
-                    <div class="card col-md-3">
+                    <div class="card col-md-3 mb-2">
                         <img src="{{ asset('Iconos/con_circulo/analisis_bioquimicos.png') }}" class="card-img-top mx-auto d-block" alt="Analisis Bioquímicos" style="width: 50%;  object-fit: cover; ">
                         <div class="card-body">
-                            <h5 class="card-title">Análisis Bioquímicos</h5>
-                            <p class="card-text">Formulario con detalles del paciente como su glucosa, examen general de orina.</p>
+
+                            <div class="info-menu mb-2">
+                                
+                                <h5 class="card-title">Análisis Bioquímicos</h5>
+                                <p class="card-text parrafo">Formulario con detalles del paciente como su glucosa, examen general de orina.</p>
+                            
+                            </div>
                             <a href="{{ route('ChemicalAnalysis.create', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Capturar Datos</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/signos_vitales.png') }}" class="card-img-top mx-auto d-block" alt="Signos Vitales" style="width: 50%;  object-fit: cover; ">
                         <div class="card-body">
-                            <h5 class="card-title">Signos Vitales</h5>
-                            <p class="card-text">Formulario con detalles la presión arterial, temperatura corporal etc.</p>
+
+                            <div class="info-menu mb-2">
+                                
+                                <h5 class="card-title">Signos Vitales</h5>
+                                <p class="card-text parrafo">Formulario con detalles la presión arterial, temperatura corporal etc.</p>
+                            
+                            </div>
+                            
                             @if($patient->VitalSign)
                             <a href="{{ route('VitalSigns.edit', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Editar Datos</a>
                             @else
@@ -56,11 +72,17 @@ Historia Clínica: {{ $patient->name }}
                             @endif
                         </div>
                     </div>
-                    <div class="card col-md-3 w-25">
+                    <div class="card col-md-3">
                         <img src="{{ asset('Iconos/con_circulo/evaluacion_nutricional.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%;  object-fit: cover; ">
                         <div class="card-body">
-                            <h5 class="card-title">Evaluación Nutricional </h5>
-                            <p class="card-text">Formulario con detalles la actividad física diaria, alimentación y preferencia de alimentos.</p>
+                            
+                            <div class="info-menu mb-2">
+                                
+                                <h5 class="card-title">Evaluación Nutricional </h5>
+                                <p class="card-text parrafo">Formulario con detalles la actividad física diaria, alimentación y preferencia de alimentos.</p>
+                            
+                            </div>
+
                             @if($patient->LifeStyle)
                             <a href="{{ route('NutritionalClinicalHistory.edit', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Editar Datos</a>
                             @else
@@ -76,6 +98,7 @@ Historia Clínica: {{ $patient->name }}
 @endsection
 @section('extra-js')
 <script>
-    $('.dropdown-toggle').dropdown()
+    $('.dropdown-toggle').dropdown();
 </script>
+<script src="{{ asset('js/autoheight.js') }}"></script>
 @endsection

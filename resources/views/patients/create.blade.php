@@ -21,11 +21,11 @@ Nuevo Paciente
 						</div>
 						<div class="form-group col-md-4">
 							<label for="address">Dirección</label>
-							<input type="text" class="form-control" id="address" placeholder="Ingrese la direción del paciente" value="{{ old('address') }}" name="address" required>
+							<input type="text" class="form-control" id="address" placeholder="Ingrese la direción" value="{{ old('address') }}" name="address" required>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="city">Ciudad</label>
-							<input type="text" class="form-control" id="city" placeholder="Ingrese la ciudad del paciente" value="{{ old('city') }}" name="city" required>
+							<input type="text" class="form-control" id="city" placeholder="Ingrese la ciudad" value="{{ old('city') }}" name="city" required>
 						</div>
 
 						<div class="form-group col-md-4">
@@ -40,7 +40,7 @@ Nuevo Paciente
 
 						<div class="form-group col-md-4">
 							<label for="phone_1">Telefono celuar/convencional</label>
-							<input type="text" class="form-control" id="phone_1" placeholder="Ingrese el telefono del paciente" value="{{ old('phone_1') }}" name="phone_1" required>
+							<input type="text" class="form-control" id="phone_1" placeholder="Ingrese el telefono" value="{{ old('phone_1') }}" name="phone_1" required>
 						</div>
 
 						<div class="form-group col-md-4">
@@ -55,7 +55,7 @@ Nuevo Paciente
 
 						{{--<div class="form-group col-md-4">
 							<label for="weight">Peso actual</label>
-							<input type="text" class="form-control" id="weight" placeholder="Ingrese el peso del paciente" value="{{ old('weight') }}" name="weight">
+							<input type="text" class="form-control" id="weight" placeholder="Ingrese el peso" value="{{ old('weight') }}" name="weight">
 						</div>--}}
 
 						<div class="form-group col-md-2">
@@ -88,27 +88,27 @@ Nuevo Paciente
 
 						<div class="form-group col-md-4">
 							<label for="trimester">Trimestre (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ old('trimester') }}" name="trimester" disabled required>
+							<input type="text" class="form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre" value="{{ old('trimester') }}" name="trimester" disabled required>
 						</div>
 
 						<div class="form-group col-md-4">
 							<label for="sdg">SDG (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ old('sdg') }}" name="sdg" disabled required>
+							<input type="text" class="form-control pregnancy" id="sdg" placeholder="Ingrese el SDG" value="{{ old('sdg') }}" name="sdg" disabled required>
 						</div>
 
 						<div class="form-group col-md-4">
 							<label for="semester">Semestre (Lactancia)</label>
-							<input type="text" class="form-control pregnancy" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ old('semester') }}" name="semester" disabled required>
+							<input type="text" class="form-control pregnancy" id="semester" placeholder="Ingrese el semestre" value="{{ old('semester') }}" name="semester" disabled required>
 						</div>
 
 						{{--<div class="form-group col-md-4">
 							<label for="size">Talla</label>
-							<input type="text" class="form-control" id="size" placeholder="Ingrese la talla del paciente" value="{{ old('size') }}" name="size">
+							<input type="text" class="form-control" id="size" placeholder="Ingrese la talla" value="{{ old('size') }}" name="size">
 						</div>--}}
 
 						<div class="form-group col-md-12">
 							<label for="notes">Notas adicionales (opcional)</label>
-							<textarea class="form-control" id="notes" rows="3" placeholder="Ingrese las notas del paciente (opcional)" name="notes"></textarea>
+							<textarea class="form-control" id="notes" rows="3" placeholder="Ingrese las notas (opcional)" name="notes"></textarea>
 						</div>
 
 						<div class="form-group col-md-12">

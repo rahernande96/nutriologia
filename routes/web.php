@@ -245,7 +245,7 @@ Route::post(
 Route::get('payment-guest/{code}','PaymentMethodController@paymentGuest')->name('payment.guest');
 
 //Route::get('paypal/plans', 'Paypal\PlanController@index');
-Route::get('paypal/plans/create', 'Paypal\PlanController@create');
+//Route::get('paypal/plans/create', 'Paypal\PlanController@create');
 
 //Route::get('paypal/plans/{link}/show', 'Paypal\PlanController@show');
 
