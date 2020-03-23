@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolsTableSeeder::class,
             UsersTableSeeder::class,
-            GroupsFoodsTableSeeder::class,
+            //GroupsFoodsTableSeeder::class,
             FoodsTableSeeder::class,
             FoodVitaminsTableSeeder::class,
             FoodMineralsTableSeeder::class,

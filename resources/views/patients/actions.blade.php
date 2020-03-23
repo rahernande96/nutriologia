@@ -1,5 +1,5 @@
 
-<div class="btn-group" role="group" aria-label="First group">
+<div class="btn-group btn-group-sm" role="group" aria-label="First group">
    
     <a href="{{ route('patients.show', $patient->slug) }}" class="btn btn-info">
        
@@ -19,7 +19,7 @@
 
         @csrf
         
-        <button onclick="deletePatient(event)" type="submit" class="btn btn-danger">Eliminar <span class="fa fa-trash"></span></button>
+        <button onclick="deletePatient(event)" type="submit" class="btn btn-danger btn-sm">Eliminar <span class="fa fa-trash"></span></button>
     
     </form>
 

@@ -1,4 +1,4 @@
-<div class="btn-group" role="group" aria-label="First group">
+<div class="btn-group btn-group-sm" role="group" aria-label="First group">
 	
 	<a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="btn btn-primary">
 
