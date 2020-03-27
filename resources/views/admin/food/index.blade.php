@@ -92,7 +92,7 @@ Alimentos
 													<div class="row">
 														<div class="col-md-12">
 															<div class="form-group">
-																<label for="food">Ingrese un nuevo gruo de alimento</label>
+																<label for="food">Ingrese un nuevo grupo de alimento</label>
 																<input type="text" class="form-control" id="food" placeholder="Ingrese un nuevo gruo de alimento" name="name" required>
 															</div>
 														</div>
