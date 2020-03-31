@@ -4,10 +4,10 @@
       Acciones
     </button>
     <div class="dropdown-menu">
-        <a href="{{ route('dishes.show', $dish->id) }}" class="dropdown-item">Detalle</a>
-        <a href="{{ route('dishes.edit', $dish->id) }}" class="dropdown-item">Editar</a>
+        <a href="{{ route('dishes.show', ['id'=>$dish->id,'history_id'=>$history->id]) }}" class="dropdown-item">Detalle</a>
+        <a href="{{ route('dishes.edit', ['id'=>$dish->id,'history_id'=>$history->id]) }}" class="dropdown-item">Editar</a>
         <div class="dropdown-divider"></div>
-        <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST">
+        <form action="{{ route('dishes.destroy', ['id'=>$dish->id,'history_id'=>$history->id]) }}" method="POST">
             @method('DELETE')
             @csrf
             <button onclick="deleteDish(event)" type="submit" class="dropdown-item">Eliminar</button>

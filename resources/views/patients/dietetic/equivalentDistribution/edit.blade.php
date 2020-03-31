@@ -342,9 +342,11 @@ Paciente: {{ $patient->name }}
         }
         var unity = $(this).val();
         var patient_id = $('input[name="patient_id"]').val();
+        var history_id = $('input[name="history_id"]').val();
         var dataJson = {};
         dataJson.unity = unity;
         dataJson.patient_id = patient_id;
+        dataJson.history_id = history_id;
         dataJson.porcent_carbohydrates = parseFloat(porcent_carbohydrates.val());
         dataJson.porcent_lipids = parseFloat(porcent_lipids.val());
         dataJson.porcent_proteins = parseFloat(porcent_proteins.val());

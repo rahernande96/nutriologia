@@ -9,6 +9,7 @@ class Dish extends Model
     protected $fillable = [
         'user_id',
         'patient_id',
+        'history_id',
         'name',
         'kcal',
         'lipids',

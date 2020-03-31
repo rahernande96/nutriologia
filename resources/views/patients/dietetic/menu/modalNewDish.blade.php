@@ -10,6 +10,7 @@
             <div class="modal-body">
                 <form id="formNewDish" action="">
                     <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                    <input type="hidden" name="history_id" value="{{ $history->id }}">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre del platillo</label>
                         <div class="alert alert-danger mb-2" id="alert-name" role="alert" style="display:none;">

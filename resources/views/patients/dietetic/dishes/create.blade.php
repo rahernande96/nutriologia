@@ -40,6 +40,9 @@ Platillos
 <!-- easycomplete -->
 <script src="{{ asset('js/easyautocomplete/js/jquery.easy-autocomplete.min.js') }}"></script>
 <script>
+
+
+
   $("#searchFood").easyAutocomplete({
                         url: function(search) {
                             return "{{route('ingredients.ajax')}}?search=" + search;

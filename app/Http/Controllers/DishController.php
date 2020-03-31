@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
+use Alert;
+use App\Sem;
+use App\Dish;
+use App\Patient;
+use App\DishCost;
+use App\DishType;
+use App\DishStyle;
+use App\DishDetail;
+use App\DietaryHistory;
+use App\DishTemperature;
 use Illuminate\Http\Request;
 use App\Http\Request\CreateDishesRequest;
-use App\Dish;
-use App\Sem;
-use App\Patient;
-use App\DishDetail;
-use App\DishCost;
-use App\DishStyle;
-use App\DishTemperature;
-use App\DishType;
-use Auth;
-use DB;
-use Alert;
 use Illuminate\Support\Facades\Validator;
 
 class DishController extends Controller
@@ -24,12 +25,15 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
+    public function index($slug,$history_id)
     {
         $patient = Patient::where('slug', '=', $slug)->first();
-        $dishes = Dish::With(['details.ingredient'])->where('user_id', '=', Auth::user()->id)->where('patient_id', '=', $patient->id)->get();
 
-        return \View('patients.dietetic.dishes.index', compact('dishes', 'patient'));
+        $history = $this->getHistoryById($history_id);
+
+        $dishes = Dish::With(['details.ingredient'])->where('history_id',$history->id)->where('user_id', '=', Auth::user()->id)->where('patient_id', '=', $patient->id)->get();
+
+        return \View('patients.dietetic.dishes.index', compact('dishes', 'patient', 'history'));
     }
 
     /**
@@ -37,15 +41,16 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($slug)
+    public function create($slug,$history_id)
     {
         $types = DishType::all();
         $temperatures = DishTemperature::all();
         $costs = DishCost::all();
         $styles = DishStyle::all();
         $patient = Patient::Where('slug', '=', $slug)->first();
+        $history = $this->getHistoryById($history_id);
 
-        return \View('patients.dietetic.dishes.create', compact('patient', 'types', 'costs', 'temperatures', 'styles'));
+        return \View('patients.dietetic.dishes.create', compact('patient', 'history','types', 'costs', 'temperatures', 'styles'));
     }
 
     /**
@@ -64,11 +69,13 @@ class DishController extends Controller
             $note = $request->dataJson['note'];
             $grs = $request->dataJson['grs'];
             $patient_id = $request->dataJson['patient_id'];
+            $history_id = $request->dataJson['history_id'];
 
             $dish = new Dish;
 
             $dish->name = $name;
             $dish->patient_id = $patient_id;
+            $dish->history_id = $history_id;
             $dish->user_id = Auth::user()->id;
 
             $kcal = 0;
@@ -83,7 +90,7 @@ class DishController extends Controller
      
             if($dish->save())
             {
-                $dish_id = Dish::all()->last()->id;
+                $dish_id = $dish->id;//Dish::all()->last()->id;
 
                 for ($i=0; $i < count($request->dataJson['foods']); $i++) 
                 { 
@@ -111,7 +118,9 @@ class DishController extends Controller
             'style_id'          => 'required',
             'temperature_id'    => 'required',
             'cost_id'           => 'required',
-            'type_id'           => 'required'
+            'type_id'           => 'required',
+            'patient_id'        => ['required','numeric','exists:patients,id'],
+            'history_id'        => ['required','numeric','exists:dietary_histories,id'],
         ];
 
         $messages = [
@@ -134,10 +143,11 @@ class DishController extends Controller
         }
 
         $patient = Patient::findOrfail($request->patient_id);
-
+        $history = $this->getHistoryById($request->history_id);
         $dish = new Dish;
 
         $dish->patient_id = $request->patient_id;
+        $dish->history_id = $request->history_id;
         $dish->name = $request->name;
         $dish->user_id = Auth::user()->id;
         $dish->cost_id = $request->cost_id;
@@ -178,7 +188,7 @@ class DishController extends Controller
 
         if($dish->save())
             {
-                $dish_id = Dish::all()->last()->id;
+                $dish_id =  $dish->id; //Dish::all()->last()->id;
 
                 for ($i=0; $i < count($request->food_id); $i++) { 
                     
@@ -191,11 +201,11 @@ class DishController extends Controller
                         ]);
                 }
 
-                return redirect()->route('dishes.index', $patient->slug)->with('success', 'Platillo Creado satisfactoriamente');
+                return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Platillo Creado satisfactoriamente');
         }
             else
             {
-                return redirect()->route('dishes.index', $patient->slug)->with('error', 'Platillo no pudo ser creado');
+                return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('error', 'Platillo no pudo ser creado');
             }
 
         
@@ -207,10 +217,12 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$history_id)
     {
+        $history = $this->getHistoryById($history_id);
         
-        $dish = Dish::With(['details.ingredient'])->findOrfail($id);
+        $dish = Dish::with(['details.ingredient'])->where('history_id',$history->id)->findOrfail($id);
+        
         $patient = Patient::findOrfail($dish->patient_id);
 
         $kcal = 0;
@@ -236,7 +248,7 @@ class DishController extends Controller
         $porcent_carbohydrate = round(($kcal_carbohydrates*100)/($kcal_proteins + $kcal_lipids + $kcal_carbohydrates));
        
        
-        return \View('patients.dietetic.dishes.show', compact('dish', 'patient', 'kcal', 'lipid', 'protein', 'carbohydrate', 'porcent_lipid', 'porcent_protein', 'porcent_carbohydrate', 'kcal_proteins', 'kcal_lipids', 'kcal_carbohydrates'));
+        return \View('patients.dietetic.dishes.show', compact('dish', 'patient', 'history','kcal', 'lipid', 'protein', 'carbohydrate', 'porcent_lipid', 'porcent_protein', 'porcent_carbohydrate', 'kcal_proteins', 'kcal_lipids', 'kcal_carbohydrates'));
     }
 
     /**
@@ -245,16 +257,23 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$history_id)
     {
-        $dish = Dish::findOrfail($id);
+        $history = $this->getHistoryById($history_id);
+
+        $dish = Dish::where('history_id',$history->id)->findOrfail($id);
+        
         $types = DishType::all();
+        
         $temperatures = DishTemperature::all();
+        
         $costs = DishCost::all();
+        
         $styles = DishStyle::all();
+        
         $patient = Patient::findOrfail($dish->patient_id);
 
-        return \View('patients.dietetic.dishes.edit', compact('dish', 'patient', 'types', 'costs', 'temperatures', 'styles'));
+        return \View('patients.dietetic.dishes.edit', compact('dish', 'patient', 'history','types', 'costs', 'temperatures', 'styles'));
     }
 
     /**
@@ -268,9 +287,11 @@ class DishController extends Controller
     {
        
         $rules = [
-            'name'      => 'required',
-            'food_id'    => 'required',
-            'note'       => 'required'
+            'name'              => 'required',
+            'food_id'           => 'required',
+            'note'              => 'required',
+            'patient_id'        => ['required','numeric','exists:patients,id'],
+            'history_id'        => ['required','numeric','exists:dietary_histories,id'],
         ];
 
         $messages = [
@@ -289,8 +310,9 @@ class DishController extends Controller
         }
 
         $patient = Patient::findOrfail($request->patient_id);
+        $history = $this->getHistoryById($request->history_id);
 
-        $dish = Dish::findOrfail($id);
+        $dish = Dish::where('history_id',$history->id)->findOrfail($id);
 
         $dish->patient_id = $request->patient_id;
         $dish->name = $request->name;
@@ -352,11 +374,11 @@ class DishController extends Controller
             }
             
 
-            return redirect()->route('dishes.index', $patient->slug)->with('success', 'Platillo Editado satisfactoriamente');
+            return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Platillo Editado satisfactoriamente');
         }
         else
         {
-            return redirect()->route('dishes.index', $patient->slug)->with('error', 'Platillo no pudo ser Editado');
+            return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('error', 'Platillo no pudo ser Editado');
         }
     }
 
@@ -366,10 +388,14 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$history_id)
     {
-        $dish = Dish::findOrfail($id);
+        $history = $this->getHistoryById($history_id);
+
+        $dish = Dish::where('history_id',$history->id)->findOrfail($id);
+
         $patient = Patient::findOrfail($dish->patient_id);
+        
         $image = $dish->image;
 
         if($dish->delete())
@@ -382,21 +408,30 @@ class DishController extends Controller
                 $detail->delete();
             }
 
-            return redirect()->route('dishes.index', $patient->slug)->with('success', 'Platillo Eliminado satisfactoriamente');
+            return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Platillo Eliminado satisfactoriamente');
         }
         else
         {
-            return redirect()->route('dishes.index', $patient->slug)->with('error', 'Platillo no pudo ser Eliminado');
+            return redirect()->route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('error', 'Platillo no pudo ser Eliminado');
         }
     }
 
     public function searchDishAjax(Request $request)
     {
         $search = $request->search;
-        $dishes = Dish::where('name', 'LIKE', '%'.$request->search.'%')
+
+        $history = $this->getHistoryById($request->history);
+        
+        $dishes = Dish::where('history_id',$history->id)->where('name', 'LIKE', '%'.$request->search.'%')
         ->orWhereHas('details.ingredient', function ($query) use ($search) {
             $query->where('food', 'LIKE', '%'.$search.'%');
         })->get();
+        
         return \response()->json($dishes);
+    }
+
+    public function getHistoryById($id)
+    {
+        return DietaryHistory::where('user_id',\Auth::user()->id)->find($id);
     }
 }

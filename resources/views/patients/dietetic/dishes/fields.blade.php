@@ -1,6 +1,7 @@
 <div class="col-md-8 offset-md-2">
         
                 <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                <input type="hidden" name="history_id" value="{{ $history->id }}">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre del platillo</label>
                     <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Ingrese nombre">
@@ -73,7 +74,7 @@
                     </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-info">Guardar</button>
-                    <a class="btn btn-danger" href="{{ route('dishes.index', $patient->slug) }}">Cancelar</a>
+                    <a class="btn btn-danger" href="{{ route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Cancelar</a>
                 </div>
             
 </div>

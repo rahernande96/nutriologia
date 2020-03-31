@@ -17,7 +17,7 @@ Paciente: {{ $patient->name }}
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="s01">
-                            <form method="GET" action="{{ route('menu.search', $patient->slug) }}">
+                            <form method="GET" action="{{ route('menu.search', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">
                                 <div class="inner-form">
                                     <div class="input-field first-wrap">
                                         <input id="search" name="search" type="text" value="@if(isset($search)) {{$search}} @endif" placeholder="Buscar alimento">
@@ -74,7 +74,7 @@ Paciente: {{ $patient->name }}
                                                             <div class="card-desc">
                                                                 <h3>{{ $dish['name'] }}</h3>
                                                                 <p>{{ $dish->notes }}</p>
-                                                                    <a href="{{ route('dishes.show', $dish->id) }}" target="_blank" class="btn-card">Detalle</a>   
+                                                                    <a href="{{ route('dishes.show', ['id'=>$dish->id,'history_id'=>$history->id]) }}" target="_blank" class="btn-card">Detalle</a>   
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,7 +103,7 @@ Paciente: {{ $patient->name }}
         </div>
     </div>
     <div class="col-md-6 offset-md-4">
-        <a class="btn btn-info" href="{{ route('dietetic.index', $patient->slug) }}">Ir a dietetica</a>
+        <a class="btn btn-info" href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Ir a dietetica</a>
     </div>
 </div>
 @endsection

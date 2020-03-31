@@ -29,6 +29,7 @@ Paciente: {{ $patient->name }}
                             {!! Form::open(['route'=>'dietetic.energyRequirementStore','method'=>'POST','class'=>'form'])!!}
                                 @include('patients.dietetic.energyRequirement.fields')
                             {!! Form::close() !!}
+                            
                             @endif
                         </div>
                     </div>

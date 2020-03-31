@@ -1,6 +1,6 @@
 <div class="row mt-4 mb-5">
     <div class="col-md-12">
-            <a href="{{ route('dietetic.energyRequirementEdit', $patient->slug) }}" class="btn btn-success right mb-6">Cambiar Requerimiento</a>
+            <a href="{{ route('dietetic.energyRequirementEdit', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-success right mb-6">Cambiar Requerimiento</a>
     </div>
 </div>
 <div class="row">
@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <input type="text" readonly class="form-control-plaintext" id="patient" value="{{ $patient->name }}">
                     <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                    <input type="hidden" name="history_id" value="{{ $history->id }}">
                     <input type="hidden" name="energy_requirement_id" value="{{ $energy_requirement->id }}">
                 </div>
             </div>
@@ -166,6 +167,6 @@
 </div>
 <div class="col-md-6 offset-md-4">
     <button class="btn btn-primary" type="submit">Generar</button>
-    <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-danger">Cancelar</a>
+    <a href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-danger">Cancelar</a>
 </div>
 </div>

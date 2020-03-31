@@ -12,7 +12,7 @@
 	
 	</a>
 
-	<a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-primary">
+	<a href="{{ route('dietetic.history.index', $patient->slug) }}" class="btn btn-primary">
 
 		Dietética
 	

@@ -35,7 +35,7 @@ Paciente: {{ $patient->name }}
 
                             </div>
 
-                            <a href="{{ route('dietetic.energyRequirement', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EnergyRequirement) Editar Datos  @else Capturar Datos @endif</a>
+                            <a href="{{ route('dietetic.energyRequirement', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EnergyRequirement) Editar Datos  @else Capturar Datos @endif</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
@@ -50,7 +50,7 @@ Paciente: {{ $patient->name }}
                                 
                             </div>
                             
-                            <a href="{{ route('dietetic.equivalentDistribution', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EquivalentDistribution) Editar Datos  @else Capturar Datos @endif</a>
+                            <a href="{{ route('dietetic.equivalentDistribution', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->EquivalentDistribution) Editar Datos  @else Capturar Datos @endif</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
@@ -65,7 +65,7 @@ Paciente: {{ $patient->name }}
 
                             </div>
 
-                            <a href="{{ route('dietetic.menu', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver información</a>
+                            <a href="{{ route('dietetic.menu', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver información</a>
                         </div>
                     </div>
                     <div class="card col-md-3">
@@ -80,7 +80,7 @@ Paciente: {{ $patient->name }}
                            
                             </div>
 
-                            <a href="{{ route('dishes.index', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver</a>
+                            <a href="{{ route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">Ver</a>
                        
                         </div>
                     </div>

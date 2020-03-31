@@ -52,6 +52,7 @@
             <h6>Tiempos de comida</h6>
             <div class="content-food-times">
                     <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                    <input type="hidden" name="history_id" value="{{ $history->id }}">
                     @foreach($food_times as $food_time)
                         <div class="custom-control custom-checkbox pb-2">
                             <input type="checkbox" class="custom-control-input food-check" name="food_time[]" value="{{ $food_time->id }}" id="{{ $food_time->id }}-rapid" data-id="{{ $food_time->id }}" data-name="{{ $food_time->name }}">
@@ -85,6 +86,6 @@
         </div>
         <div class="col-md-12 text-center"id="group-button-fields" style="display:none;">
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <a class="btn btn-danger" href="{{ route('dietetic.index', $patient->slug) }}">Cancelar</a>
+            <a class="btn btn-danger" href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Cancelar</a>
         </div>
     </div>

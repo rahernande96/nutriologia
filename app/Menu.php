@@ -8,6 +8,7 @@ class Menu extends Model
 {
     protected $fillable = [
         'patient_id',
+        'history_id',
         'name',
         'days',
         'food_times'

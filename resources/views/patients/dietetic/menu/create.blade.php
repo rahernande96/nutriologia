@@ -23,7 +23,7 @@ Paciente: {{ $patient->name }}
             </div>
             <div class="card-footer">
                 <div class="col-md-6 offset-md-5">
-                    <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-primary">Ir a Dietetica</a>
+                    <a href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary">Ir a Dietetica</a>
                 </div>
             </div>
         </div>
@@ -42,262 +42,100 @@ Paciente: {{ $patient->name }}
 <!-- easycomplete -->
 <script src="{{ asset('js/easyautocomplete/js/jquery.easy-autocomplete.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2@8.js') }}"></script>
+<script src="{{ asset('js/create-menu.js') }}"></script>
 <script>
-    //seleccionar dias de la dietoterapia
-    $('.check-day').click(function(){
-        var day = $(this).val();
-        var name = '';
-        var tbody = $('#content-days tbody:first');
 
-        switch(day) {
-            case '1':
-                name = 'Lunes';
-                break;
-            case '2':
-                name = 'Martes';
-                break
-            case '3':
-                name = 'Miercoles';
-                break;
-            case '4':
-                name = 'Jueves';
-                break;
-            case '5':
-                name = 'Viernes';
-                break;
-            case '6':
-                name = 'Sábado';
-                break;
-            case '7':
-                name = 'Domingo';
-                break;
-        }
-        var item = '<tr class="content_'+day+'">\
-                        <td colspan="1">\
-                            <div class="card card-day mt-3" data-id="'+day+'">\
-                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#'+day+'" area-expanded="true">'+name+'</button>\
-                                    <div id="'+day+'" class="collapse pt-4 pb-4 pr-2 pl-4 collapse show">\
-                                        <div class="card">\
-                                            <div class="card-header d-flex p-0">\
-                                                <h5 class="card-title p-3">Tiempos de Comida</h5>\
-                                                <ul class="nav nav-pills ml-auto p-2">\
-                                                </ul>\
-                                            </div><!-- /.card-header -->\
-                                            <div class="card-body">\
-                                                <div class="tab-content">\
-                                                </div><!-- /.tab-content -->\
-                                            </div><!-- /.card-body -->\
-                                        </div>\
-                                    </div>\
-                            </div>\
-                        </td>\
-                    </tr>';
-        
-        if( $(this).is(':checked') )
-        {
-            tbody.append(item);
-            add_food_times();
-        }
-        else
-        {
-            $('tr.content_'+day).remove();
+//funcion para agregar tiempos de comidas ya seleccionados a dias
+function add_food_times(){
+    $('input[name="food_time[]"]:checked').each(function(){
+        var name = $(this).data('name');
+            var id = $(this).val();
             
-            if($('.card-day').length == 0)
-            {
-                $('input[name="food_time[]"]:checked').each(function(){
-                    $(this).removeAttr('checked');
-                });
-            }
-        }
-    });
+            $('.card-day:last').each(function(){
+                var day = $(this).data('id');
 
-    $('#btn-new-time-food').click(function(){
-        var content = '<form id="form-new-food-time-rapid">\
-                            <div class="form-row pb-2">\
-                                <div class="col 12">\
-                                    <input type="text" name="name" class="form-control input-sm" placeholder="Nuevo tiempo de comida">\
-                                </div>\
-                            </div>\
-                            <div class="statusMsg"></div>\
-                            <div class="form-row mx-auto">\
-                                <buttom class="btn btn-success" id="btn-submit-new-time-food-rapid" onclick="submitNewFoodTime()" style="margin-right:5px;">Crear</buttom>\
-                                <buttom id="btn-cancel-new-time-food" class="btn btn-danger">Cancelar</buttom>\
-                            </div>\
-                        </form>';
-        if($('.new-time-food').is(':empty'))
-        {
-            $('.new-time-food').append(content);
-        }
-    });
+                var header = '<li class="nav-item" id="item_'+day+'_'+id+'"><a class="nav-link" href="#day_'+day+'_food_time_'+id+'" data-toggle="tab">'+name+'</a></li>';
+                var tab_panel = '<div class="tab-pane" id="day_'+day+'_food_time_'+id+'">\
+                                                    <div class="row">\
+                                                        <div class="col-md-11" data-day="'+day+'" data-foodtime="'+id+'">\
+                                                                <input class="form-control search_ingredient" type="text" placeholder="Busque ingrediente o receta">\
+                                                        </div>\
+                                                        <div class="col-md-12 mt-4">\
+                                                            <table class="table table-bordered">\
+                                                                <thead>\
+                                                                    <tr>\
+                                                                        <th class="text-center">Imagen</th>\
+                                                                        <th class="text-center">Nombre</th>\
+                                                                        <th class="text-center">Kcal</th>\
+                                                                        <th class="text-center">Acción</th>\
+                                                                    </tr>\
+                                                                </thead>\
+                                                                <tbody class="item-content">\
+                                                                </tbody>\
+                                                            </table>\
+                                                        </div>\
+                                                    </div><!-- /. row -->\
+                                                <div><!-- /.tab-pane -->';
+                $(this).find('.card-header ul').append(header);
+                $(this).find('.card-body .tab-content').append(tab_panel);
+            });
 
-    $('body').on('click', '#btn-cancel-new-time-food', function(){
-        $('.new-time-food').html('');
-    });
+            $(".search_ingredient").each(function(){
+                var $self = $(this);
+                $self.easyAutocomplete({
+                    url: function(search) {
+                        return "{{route('dishes.ajax')}}?search=" + search;
+                    },
+                    
+                    placeholder: "Busque un platillo",
 
-    /*-----------------------------------------
-    FUNCION PARA NUEVO TIEMPO DE COMIDA 
-    ------------------------------------------*/
-    function submitNewFoodTime(){
-        var form = $('#form-new-food-time-rapid');
-        var valido = true;
+                    getValue: "name",
 
-        form.find(':input').each(function(){
-            if($(this).val() == "")
-            {
-                alert('todos los campos son requeridos');
-                $(this).focus();
-                valido = false;
-                return valido;
-            }
-        });
+                    template: {
+                                    type: "custom",
+                                    method: function(value, item) {
+                                        return "<div class='item_producto_complete'><img src/><span>"+ value +"</span></div>";
+                                    }
+                                },
 
-        if(valido)
-        {
-            var dataJson = form.serialize();
-            $('#btn-cancel-new-time-food-rapid').attr("disabled","disabled");
-            $('#btn-submit-new-time-food-rapid').attr("disabled","disabled");
-            form.css('opacity', '.5');
-
-            $.ajax({
-                            
-                            url: siteUrl + "food-times",
-                            method: 'POST',
-                            data: {dataJson: dataJson},
-                            success: function(returnedData) {
-                                        
-                                if(returnedData.status == 1)
-                                {
-                                    form.find(':input').each(function(){
-                                        $(this).val('');
-                                    });
-        
-                                    Swal.fire({
-                                        type: 'success',
-                                        title: 'El nuevo tiempo de comida se ha creado satisfactoriamente',
-                                        showConfirmButton: false,
-                                        timer: 2500
-                                    });
-
-                                    var food_time = '<div class="custom-control custom-checkbox pb-2">\
-                                                        <input type="checkbox" class="custom-control-input food-check" name="food_time_'+returnedData.foodTime.id+'" value="'+returnedData.foodTime.id+'" id="food_time_'+returnedData.foodTime.id+'">\
-                                                        <label class="custom-control-label label-food-time" for="food_time_'+returnedData.foodTime.id+'">'+returnedData.foodTime.name+'</label>\
-                                                        <div class="content-fields"></div>\
-                                                    </div>';
-                                    $('.content-food-times').append(food_time);
-
-                                    $('#btn-cancel-new-time-food').removeAttr("disabled");
-                                    $('#btn-submit-new-time-food-rapid').removeAttr("disabled");
-                                    form.css('opacity', '');
-                                }
-                                else
-                                {
-                                    $('.statusMsg').html('<span style="color:red;"><b>'+returnedData.message+'</b></span>');
-                                    $('#btn-cancel-new-time-food').removeAttr("disabled");
-                                    $('#btn-submit-new-time-food-rapid').removeAttr("disabled");
-                                    form.css('opacity', '');
-                                }
-                                	                            
-                            },
-                            error: function() {
-                                alert("No hay conexion con el servidor");
-                                $('#btn-cancel-new-time-food-rapid').removeAttr("disabled");
-                                $('#btn-submit-new-time-food-rapid').removeAttr("disabled");
-                                form.css('opacity', '');
+                    list: {
+                        onClickEvent: function() {
+                            var name = $self.getSelectedItemData().name;
+                            var id = $self.getSelectedItemData().id;
+                            var kcal = $self.getSelectedItemData().kcal;
+                            //var image = $self.getSelectedItemData().image;
+                            var image;
+                            if($self.getSelectedItemData().image == null)
+                            {
+                                image = siteUrl+'images/platillo.png';
                             }
-                        });//fin Ajax
-        }
-    }
+                            else{
+                                image = siteUrl+'storage/dishes/'+$self.getSelectedItemData().image;
+                            }
+                            var day = $self.parent().parent().data('day');
+                            var foodtime = $self.parent().parent().data('foodtime');
+                            var contenedor = $self.parent().parent().siblings('div').children('table').children('tbody');
 
-    //funcion para agregar tiempos de comidas ya seleccionados a dias
-    function add_food_times(){
-        $('input[name="food_time[]"]:checked').each(function(){
-            var name = $(this).data('name');
-                var id = $(this).val();
-                
-                $('.card-day:last').each(function(){
-                    var day = $(this).data('id');
-
-                    var header = '<li class="nav-item" id="item_'+day+'_'+id+'"><a class="nav-link" href="#day_'+day+'_food_time_'+id+'" data-toggle="tab">'+name+'</a></li>';
-                    var tab_panel = '<div class="tab-pane" id="day_'+day+'_food_time_'+id+'">\
-                                                        <div class="row">\
-                                                            <div class="col-md-11" data-day="'+day+'" data-foodtime="'+id+'">\
-                                                                    <input class="form-control search_ingredient" type="text" placeholder="Busque ingrediente o receta">\
-                                                            </div>\
-                                                            <div class="col-md-12 mt-4">\
-                                                                <table class="table table-bordered">\
-                                                                    <thead>\
-                                                                        <tr>\
-                                                                            <th class="text-center">Imagen</th>\
-                                                                            <th class="text-center">Nombre</th>\
-                                                                            <th class="text-center">Kcal</th>\
-                                                                            <th class="text-center">Acción</th>\
-                                                                        </tr>\
-                                                                    </thead>\
-                                                                    <tbody class="item-content">\
-                                                                    </tbody>\
-                                                                </table>\
-                                                            </div>\
-                                                        </div><!-- /. row -->\
-                                                    <div><!-- /.tab-pane -->';
-                    $(this).find('.card-header ul').append(header);
-                    $(this).find('.card-body .tab-content').append(tab_panel);
+                            var item_complete = '<tr>\
+                                                    <input type="hidden" name="dishes['+day+']['+foodtime+']["dish"][]" value="'+id+'"/>\
+                                                    <td class="text-center"><img width="40px" src="'+image+'"\></td>\
+                                                    <td class="text-center">'+name+'</td>\
+                                                    <td class="text-center">'+kcal+'</td>\
+                                                    <td class="text-center">\
+                                                        <button type="button" class="btn btn-sm btn-danger btn-delete-item"><i class="fa fa-trash"></i></button>\
+                                                    </td>\
+                                                </tr>';  
+                            
+                                contenedor.append(item_complete);
+                                $self.val('');
+                        }    
+                    }
                 });
 
-                $(".search_ingredient").each(function(){
-                    var $self = $(this);
-                    $self.easyAutocomplete({
-                        url: function(search) {
-                            return "{{route('dishes.ajax')}}?search=" + search;
-                        },
-                        
-                        placeholder: "Busque un platillo",
-
-                        getValue: "name",
-
-                        template: {
-                                        type: "custom",
-                                        method: function(value, item) {
-                                            return "<div class='item_producto_complete'><img src/><span>"+ value +"</span></div>";
-                                        }
-                                    },
-
-                        list: {
-                            onClickEvent: function() {
-                                var name = $self.getSelectedItemData().name;
-                                var id = $self.getSelectedItemData().id;
-                                var kcal = $self.getSelectedItemData().kcal;
-                                //var image = $self.getSelectedItemData().image;
-                                var image;
-                                if($self.getSelectedItemData().image == null)
-                                {
-                                    image = siteUrl+'images/platillo.png';
-                                }
-                                else{
-                                    image = siteUrl+'storage/dishes/'+$self.getSelectedItemData().image;
-                                }
-                                var day = $self.parent().parent().data('day');
-                                var foodtime = $self.parent().parent().data('foodtime');
-                                var contenedor = $self.parent().parent().siblings('div').children('table').children('tbody');
-
-                                var item_complete = '<tr>\
-                                                        <input type="hidden" name="dishes['+day+']['+foodtime+']["dish"][]" value="'+id+'"/>\
-                                                        <td class="text-center"><img width="40px" src="'+image+'"\></td>\
-                                                        <td class="text-center">'+name+'</td>\
-                                                        <td class="text-center">'+kcal+'</td>\
-                                                        <td class="text-center">\
-                                                            <button type="button" class="btn btn-sm btn-danger btn-delete-item"><i class="fa fa-trash"></i></button>\
-                                                        </td>\
-                                                    </tr>';  
-                                
-                                    contenedor.append(item_complete);
-                                    $self.val('');
-                            }    
-                        }
-                    });
-
-                });
-        });
-    }
+            });
+    });
+}
+    
     $('input[name="food_time[]"]').click(function(e){
         if($('input[name="days[]"]:checked').length > 0)
         {
@@ -340,7 +178,7 @@ Paciente: {{ $patient->name }}
                     var $self = $(this);
                     $self.easyAutocomplete({
                         url: function(search) {
-                            return "{{route('dishes.ajax')}}?search=" + search;
+                            return "{{route('dishes.ajax')}}?history={{ $history->id }}&search=" + search;
                         },
                         
                         placeholder: "Busque un platillo",
@@ -463,6 +301,7 @@ Paciente: {{ $patient->name }}
         var name = $('input[name="dish_name"]').val();
         var note = $('textarea[name="note"]').val();
         var patient_id = $('input[name="patient_id"]').val();
+        var history_id = $('input[name="history_id"]').val();
         
         var foods = new Array(); 
         var grs = new Array();
@@ -506,6 +345,7 @@ Paciente: {{ $patient->name }}
 
         dataJson.name = name;
         dataJson.patient_id = patient_id;
+        dataJson.history_id = history_id;
         dataJson.foods = foods;
         dataJson.note = note;
         dataJson.grs = grs;

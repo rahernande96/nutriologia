@@ -179,19 +179,19 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/{slug}/antropometria/somatocarta', 'AnthropometryController@Somatocard')->name('anthropometry.somatocard');
 
             //Ruta de dietetica
-            Route::get('/{slug}/dietetica', 'DieteticController@index')->name('dietetic.index');
-            Route::get('/{slug}/dietetica/requerimiento-energetico', 'DieteticController@energyRequirement')->name('dietetic.energyRequirement');
-            Route::get('/{slug}/dietetica/requerimiento-energetico/edit', 'DieteticController@energyRequirementEdit')->name('dietetic.energyRequirementEdit');
+            Route::get('/{slug}/dietetica/{history_id}', 'DieteticController@index')->name('dietetic.index');
+            Route::get('/{slug}/dietetica/requerimiento-energetico/{history_id}', 'DieteticController@energyRequirement')->name('dietetic.energyRequirement');
+            Route::get('/{slug}/dietetica/requerimiento-energetico/{history_id}/edit', 'DieteticController@energyRequirementEdit')->name('dietetic.energyRequirementEdit');
             Route::put('/dietetica/requerimiento-energetico/{id}', 'DieteticController@energyRequirementUpdate')->name('dietetic.energyRequirementUpdate');
             Route::post('/dietetica/requerimiento-energetico', 'DieteticController@energyRequirementPost')->name('dietetic.energyRequirementStore');
-            Route::get('/{slug}/dietetica/distribucion-equivalentes', 'DieteticController@equivalentDistribution')->name('dietetic.equivalentDistribution');
+            Route::get('/{slug}/dietetica/distribucion-equivalentes/{history_id}', 'DieteticController@equivalentDistribution')->name('dietetic.equivalentDistribution');
             Route::post('/dietetica/distribucion-equivalentes', 'DieteticController@equivalentDistributionStore')->name('dietetic.equivalentDistributionStore');
             Route::post('/dietetica/distribucion-equivalentes/{id}', 'DieteticController@equivalentDistributionUpdate')->name('dietetic.equivalentDistributionUpdate');
             Route::post('/dietetica/distribucion-equivalentes-ajax', 'DieteticController@equivalentDistributionAjax')->name('dietetic.equivalentDistributionAjax');
             Route::post('/dietetica/distribucion-equivalentes-unidad-ajax', 'DieteticController@unityAjax')->name('dietetic.unityAjax');
-            Route::get('/{slug}/dietetica/menu', 'MenuController@index')->name('dietetic.menu');
+            Route::get('/{slug}/dietetica/menu/{history_id}', 'MenuController@index')->name('dietetic.menu');
             //Ruta de GET en dietetica
-            Route::get('/{slug}/dietetica/get', 'DieteticController@get')->name('dietetic.get');
+            Route::get('/{slug}/dietetica/{history_id}/get', 'DieteticController@get')->name('dietetic.get');
             Route::post('/dietetica/get', 'DieteticController@getStore')->name('dietetic.getStore');
             Route::put('/dietetica/get/{id}', 'DieteticController@getUpdate')->name('dietetic.getUpdate');
             //Ruta Ajax de MET's
@@ -201,21 +201,25 @@ Route::group(['middleware' => 'auth'], function () {
             //Ruta Ajax de Ingredientes
             Route::get('ingredients-ajax', 'MenuController@searchSemAjax')->name('ingredients.ajax');
             //Rutas de platillos
-            Route::get('/{slug}/platillos', 'DishController@index')->name('dishes.index');
-            Route::get('/{slug}/platillos/create', 'DishController@create')->name('dishes.create');
-            Route::get('/platillos/edit/{id}', 'DishController@edit')->name('dishes.edit');
-            Route::delete('/platillos/delete/{id}', 'DishController@destroy')->name('dishes.destroy');
+            Route::get('/{slug}/platillos/{history_id}', 'DishController@index')->name('dishes.index');
+            Route::get('/{slug}/platillos/{history_id}/create', 'DishController@create')->name('dishes.create');
+            Route::get('/platillos/{id}/edit/{history_id}', 'DishController@edit')->name('dishes.edit');
+            Route::delete('/platillos/{id}/delete/{history_id}', 'DishController@destroy')->name('dishes.destroy');
             Route::post('/platillos', 'DishController@store')->name('dishes.store');
-            Route::get('/platillos/show/{id}', 'DishController@show')->name('dishes.show');
+            Route::get('/platillos/{id}/show/{history_id}', 'DishController@show')->name('dishes.show');
             Route::put('/platillos/{id}', 'DishController@update')->name('dishes.update');
             //Ruta de busqueda de platillo
-            Route::get('/{slug}/platillos/search', 'MenuController@search')->name('menu.search');
+            Route::get('/{slug}/platillos/search/{history_id}', 'MenuController@search')->name('menu.search');
             //Rutas de Menu
             Route::post('/menu', 'MenuController@store')->name('menu.store');
             Route::put('/menu/{id}', 'MenuController@update')->name('menu.update');
-            Route::get('/menu/{id}', 'MenuController@show')->name('menu.show');
+            Route::get('/menu/{id}/show/history_id', 'MenuController@show')->name('menu.show');
             Route::post('/menu/copy', 'MenuController@copy')->name('menu.copy');
-            Route::get('/menu/delete/{id}', 'MenuController@delete')->name('menu.delete');
+            Route::get('/menu/{id}/delete/{history_id}', 'MenuController@delete')->name('menu.delete');
+            // Rutas de historial de dietetica
+
+            Route::get('/{slug}/historial/dietetica','DieteticHistoryController@index')->name('dietetic.history.index');
+            Route::get('/{slug}/historial/create/dietetica','DieteticHistoryController@create')->name('dietetic.history.create');
            
         });
 

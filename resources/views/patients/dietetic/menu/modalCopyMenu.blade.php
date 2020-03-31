@@ -3,6 +3,7 @@
                 <form action="{{ route('menu.copy') }}" method="post">
                     @csrf
                     <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                    <input type="hidden" name="history_id" value="{{ $history->id }}">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Copiar Menú</h5>
@@ -33,7 +34,7 @@
                                                 <td class="text-center" style="vertical-align:middle;">{{ $menu->patient->name }}</td>
                                                 <td class="text-center"></td>
                                                 <td class="text-center"></td>
-                                                <td class="text-center"><a target="_blank" href="{{ route('dietetic.menu', $menu->patient->slug) }}" class="btn btn-primary">Ver dietoterapia</a></td>
+                                                <td class="text-center"><a target="_blank" href="{{ route('dietetic.menu', ['slug'=>$menu->patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary">Ver dietoterapia</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>

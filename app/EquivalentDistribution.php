@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class EquivalentDistribution extends Model
 {
-    protected $fillable = ['patient_id',
-    'days',
-    'food_groups',
-    'food_times',
-    'start_date',
-    'end_date'];
+    protected $fillable = [
+        'patient_id',
+        'history_id',
+        'days',
+        'food_groups',
+        'food_times',
+        'start_date',
+        'end_date'
+    ];
 
     public function details()
     {

@@ -35,6 +35,7 @@
         <h6>Tiempos de comida</h6>
         <div class="content-food-times">
             <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+            <input type="hidden" name="history_id" value="{{ $history->id }}">
             @foreach($food_times as $food_time)
                 <div class="custom-control custom-checkbox pb-2">
                     <input type="checkbox" class="custom-control-input food-check" name="food_time[]" value="{{ $food_time->id }}" id="{{ $food_time->id }}-rapid" data-id="{{ $food_time->id }}" data-name="{{ $food_time->name }}" @if(in_array($food_time->id, $menu->food_times)) checked @endif>
@@ -61,13 +62,13 @@
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn btn-md btn-info" data-toggle="modal" data-target="#newDishModal" rel="tooltip" title="nuevo platillo"><i class="fas fa-utensils"></i></button>
-                                        <a href="{{ route('menu.search', $patient->slug) }}" class="btn btn-md btn-info" title="buscar platillo"><i class="fas fa-search" style="color:#FFF"></i></a>
+                                        <a href="{{ route('menu.search', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-md btn-info" title="buscar platillo"><i class="fas fa-search" style="color:#FFF"></i></a>
                                         <div class="btn-group">
                                                 <button type="button" class="btn btn-info btn-md btn-outline-primary dropdown-toggle dropdown-toggle-ellipsis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a href="{{  url('/patient/menu/delete', [$menu->id]) }}" data-confirm="Desea eliminar el menu?" class="btn drodpdown-item" data-method="delete">Eliminar</a>
+                                                    <a href="{{  route('menu.delete', ['id'=>$menu->id,'history_id'=>$history->id]) }}" data-confirm="Desea eliminar el menu?" class="btn drodpdown-item" data-method="delete">Eliminar</a>
                                                 </div>
                                               </div>
                                     </div>
@@ -177,7 +178,7 @@
             <div class="btn-group">
                     {{--<button type="button" class="btn btn-primary mr-1">Copiar Dietoterapia</button>--}}
                     <button type="submit" class="btn btn-primary mr-3">Guardar Dietoterapia</button>
-                    <a class="btn btn-danger" href="{{ route('dietetic.index', $patient->slug) }}">Cancelar</a>
+                    <a class="btn btn-danger" href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Cancelar</a>
             </div>
         </div>
     </div>

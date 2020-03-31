@@ -1,51 +1,69 @@
 @extends('layouts.admin')
 
 @section('title')
-Platillos
+Historial
 @endsection
 
 @section('content')
 
 <div class="row">
 	<div class="col-md-10 px-4">
-		<h2 class="mt-5 mb-4">Diseño de Platillos de {{ $patient->name }}</h2>
+		
 	</div>
   @if(Auth::user()->role_id == \App\Rol::DOCTOR)
 	<div class="col-md-2 mt-5 text-center">
-		<a href="{{ route('dishes.create', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary"><i class="fas fa-utensils mr-2"></i>Nuevo Platillo</a>
+		<a href="{{ route('dietetic.history.create',$patient->slug) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i> Nuevo Registro</a>
 	</div>
   @endif
-	{{-- Inicia tabla de platillos --}}
-	<div class="col-md-12">
+	{{-- Inicia tabla de pacientes --}}
+	<div class="col-md-12 mt-3">
 		<div class="card">
             <div class="card-header">
-              <h3 class="card-title">Todos los Platillos</h3>
+              <h3 class="card-title">Historial de dietetica</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              @include('patients.dietetic.dishes.table')
+              <div class="table-responsive">
+
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Fecha de creacion</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($records as $history)
+                  <tr class="text-center">
+                    <td>{{ $history->id }}</td>
+                    <td>{{ $history->created_at }}</td>
+                    <td>
+                    <a class="btn btn-primary" href="{{ route('dietetic.index',['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Ir</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                </table>
+
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-  </div>
-  <div class="col-md-3 offset-md-5 mb-4">
-    <a href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary">Ir a dietetica</a>
-  </div>
+	</div>
 </div>
-@endsection
 
-@section('extra-js')
 <script>
-  function deleteDish(e) {
-      if (!confirm("Eliminar Platillo?")){
+    function deletePatient(e) {
+      if (!confirm("Eliminar Paciente?")){
         e.preventDefault();
       }
     }
 </script>
+
 <script>
-    $(function () {
-      $("#example1").DataTable({
+  $(function () {
+    $("#example1").DataTable({
           "language":
           {
             "sProcessing":     "Procesando...",
@@ -76,18 +94,17 @@ Platillos
                           }
           }
         });
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-      });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
     });
+  });
 
-    $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-  </script>
+  $('.dropdown-toggle').dropdown();
+</script>
+
 @endsection

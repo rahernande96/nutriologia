@@ -117,7 +117,7 @@ Platillos
                             </div>
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
-                                <a class="btn btn-primary" href="{{ route('dishes.index', $patient->slug) }}">Atras</a>
+                                <a class="btn btn-primary" href="{{ route('dishes.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}">Atras</a>
                             </div>
                         </div>
                     </div>

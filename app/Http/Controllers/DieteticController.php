@@ -8,51 +8,65 @@ use App\Patient;
 use App\FoodTime;
 use App\FoodGroup;
 use Carbon\Carbon;
-use App\FoodGroupEquivalent;
-use App\EquivalentDistribution;
-use App\EquivalentDistributionDetail;
-use App\EnergyRequirement;
+use App\DietaryHistory;
 use Illuminate\Support\Str;
-use App\TotalEnergyExpenditure;
 use Illuminate\Http\Request;
+use App\EnergyRequirement;//i
+use App\TotalEnergyExpenditure;
+use App\FoodGroupEquivalent;
+use App\EquivalentDistribution;//i ok
+use App\EquivalentDistributionDetail;
 use Illuminate\Support\Facades\Validator;
 
 class DieteticController extends Controller
 {
-    public function index($slug)
+    public function index($slug, $history_id)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
 
-        return View('patients.dietetic.index', compact('patient'));
+        $history = $this->getHistoryById($history_id);
+        
+        return View('patients.dietetic.index', compact('patient','history'));
     }
 
-    public function energyRequirement($slug)
+    public function energyRequirement($slug,$history_id)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
 
-        $energy_requirement = EnergyRequirement::Where('patient_id', '=', $patient->id)->first();
+        $history = $this->getHistoryById($history_id);
+       
+        $energy_requirement = EnergyRequirement::where('patient_id', '=', $patient->id)
+                                            ->where('history_id', $history->id)
+                                            ->first();
 
         //return redirect()->route('dietetic.get', $slug);
         if($energy_requirement)
         {
-            return redirect()->route('dietetic.get', $slug);
+            return redirect()->route('dietetic.get', [
+                'slug'=>$patient->slug,
+                'history_id'=>$history->id
+            ]);
         }
         else {
-            return View('patients.dietetic.energyRequirement.index', compact('patient'));
+            return View('patients.dietetic.energyRequirement.index', compact('patient','history'));
         }
     }
 
-    public function energyRequirementEdit($slug)
+    public function energyRequirementEdit($slug,$history_id)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
-        $energy_requirement = EnergyRequirement::Where('patient_id', '=', $patient->id)->first(); 
-        return View('patients.dietetic.energyRequirement.index', compact('patient', 'energy_requirement'));
+        
+        $history = $this->getHistoryById($history_id);
+
+        $energy_requirement = EnergyRequirement::where('history_id',$history->id)->where('patient_id', '=', $patient->id)->first(); 
+        return View('patients.dietetic.energyRequirement.index', compact('patient', 'history', 'energy_requirement'));
     }
 
     public function energyRequirementUpdate(Request $request, $id)
     {
         $messages = [
             'patient_id'    => 'El paciente es requerido',
+            'history_id'    => 'El paciente es requerido',
             'type_get'      => 'El tipo de calculo de GET es necesario',
             'trimstry'      => 'El trimestre es requerido',
             'semestry'      => 'El semestre es requerido'
@@ -64,6 +78,7 @@ class DieteticController extends Controller
             {
                 $rules = [
                     'patient_id'    => 'required',
+                    'history_id'    => 'required',
                     'type_get'      => 'required',
                     'semestry'      => 'required'
                 ];
@@ -72,6 +87,7 @@ class DieteticController extends Controller
             {
                 $rules = [
                     'patient_id'    => 'required',
+                    'history_id'    => 'required',
                     'type_get'      => 'required',
                     'trimestry'      => 'required'
                 ];
@@ -81,6 +97,7 @@ class DieteticController extends Controller
         {
             $rules = [
                 'patient_id'    => 'required',
+                'history_id'    => 'required',
                 'type_get'      => 'required'
             ];
         }
@@ -96,8 +113,13 @@ class DieteticController extends Controller
         }
 
         $input = $request->all();
-        $energy_requirement = EnergyRequirement::findOrfail($id);
+
+        $history = $this->getHistoryById($request->input('history_id'));
+        
+        $energy_requirement = EnergyRequirement::where('history_id',$history->id)->findOrfail($id);
+        
         $patient = Patient::findOrfail($energy_requirement->patient_id);
+        
         
         if($energy_requirement->update($input))
         {   
@@ -108,7 +130,10 @@ class DieteticController extends Controller
                 $t->delete();
             }
 
-            return redirect()->route('dietetic.get', $patient->slug);
+            return redirect()->route('dietetic.get', [
+                'slug'=>$patient->slug,
+                'history_id'=>$history->id
+            ]);
         }
         else 
         {
@@ -121,6 +146,7 @@ class DieteticController extends Controller
 
         $messages = [
             'patient_id'    => 'El paciente es requerido',
+            'history_id'    => 'El paciente es requerido',
             'type_get'      => 'El tipo de calculo de GET es necesario',
             'trimstry'      => 'El trimestre es requerido',
             'semestry'      => 'El semestre es requerido'
@@ -132,6 +158,7 @@ class DieteticController extends Controller
             {
                 $rules = [
                     'patient_id'    => 'required',
+                    'history_id'    => 'required',
                     'type_get'      => 'required',
                     'semestry'      => 'required'
                 ];
@@ -140,6 +167,7 @@ class DieteticController extends Controller
             {
                 $rules = [
                     'patient_id'    => 'required',
+                    'history_id'    => 'required',
                     'type_get'      => 'required',
                     'trimestry'      => 'required'
                 ];
@@ -148,7 +176,8 @@ class DieteticController extends Controller
         else
         {
             $rules = [
-                'patient_id'    => 'required',
+                'patient_id'    => ['required','numeric','exists:patients,id'],
+                'history_id'    => ['required','numeric','exists:dietary_histories,id'],
                 'type_get'      => 'required'
             ];
         }
@@ -165,13 +194,22 @@ class DieteticController extends Controller
 
         $input = $request->all();
         $patient = Patient::findOrfail($request->patient_id);
+        $history = $this->getHistoryById($request->history_id);
+
+        if(!$history OR !$patient)
+        {
+            return back()->with('error','Ocurrio un error vuelvelo a intentar.');
+        }
 
         if(EnergyRequirement::create($input))
         {
             $energy_requirement = EnergyRequirement::all()->last();
             
-            //return redirect()->route('dietetic.get', $patient->slug)->with('success', 'Datos guardados correctamente.');
-            return redirect()->route('dietetic.get', $patient->slug);
+            //return redirect()->route('dietetic.get', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Datos guardados correctamente.');
+            return redirect()->route('dietetic.get', [
+                'slug'=>$patient->slug,
+                'history_id'=>$history->id
+            ]);
         }
         else 
         {
@@ -179,11 +217,12 @@ class DieteticController extends Controller
         }
     }
 
-    public function get($slug)
+    public function get($slug,$history_id)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
+        $history = $this->getHistoryById($history_id);
   
-        $energy_requirement = EnergyRequirement::Where('patient_id', '=', $patient->id)->first();
+        $energy_requirement = EnergyRequirement::where('history_id',$history->id)->where('patient_id', '=', $patient->id)->first();
        
         $total_energy_expenditure = TotalEnergyExpenditure::Where('energy_requirement_id', '=', $energy_requirement->id)->first();
 
@@ -218,18 +257,28 @@ class DieteticController extends Controller
             array_push($macro_chart, ['Lipidos', $lipids]);
             array_push($macro_chart, ['Proteinas', $protein]);
             //return $total_energy_expenditure;
-            return view('patients.dietetic.energyRequirement.edit', compact('patient', 'energy_requirement', 'total_energy_expenditure', 'carboHidrates', 'lipids', 'protein', 'carboHidrates_gr', 'lipids_gr', 'protein_gr'))->with('macro_chart', json_encode($macro_chart, JSON_UNESCAPED_UNICODE));
+            return view('patients.dietetic.energyRequirement.edit', compact('patient', 'history', 'energy_requirement', 'total_energy_expenditure', 'carboHidrates', 'lipids', 'protein', 'carboHidrates_gr', 'lipids_gr', 'protein_gr'))->with('macro_chart', json_encode($macro_chart, JSON_UNESCAPED_UNICODE));
         }
         else
         {
-            return view('patients.dietetic.energyRequirement.create', compact('patient', 'energy_requirement'));
+            return view('patients.dietetic.energyRequirement.create', compact('patient', 'history', 'energy_requirement'));
         }
     }
 
     public function getStore(Request $request)
     {
-        $energy_requirement = EnergyRequirement::findOrfail($request->energy_requirement_id);
+        $request->validate([
+            'patient_id'            => ['required','numeric','exists:patients,id'],
+            'history_id'            => ['required','numeric','exists:dietary_histories,id'],
+            'energy_requirement_id' => ['required','numeric','exists:energy_requirements,id'],
+        ]);
+
+        $history = $this->getHistoryById($request->history_id);
+
+        $energy_requirement = EnergyRequirement::where('history_id',$history->id)->findOrfail($request->energy_requirement_id);
+        
         $input = $request->all();
+        
         $patient = Patient::findOrfail($request->patient_id);
 
         if($energy_requirement->type_get == 1) //si el get es rapido
@@ -247,8 +296,7 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'kcal'                  => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
@@ -259,8 +307,7 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'kcal'                  => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
@@ -271,8 +318,7 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'kcal'                  => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -313,6 +359,7 @@ class DieteticController extends Controller
             }    
             else 
             {
+
                 
                 if($request->has('supplement_value'))
                 {
@@ -406,8 +453,7 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -417,8 +463,7 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -428,8 +473,7 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
                     'percentage_protein'        => 'required'  
@@ -809,9 +853,8 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -821,9 +864,8 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -833,9 +875,8 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
                     'percentage_protein'        => 'required'  
@@ -926,22 +967,31 @@ class DieteticController extends Controller
             
             if(TotalEnergyExpenditure::create($input))
             {
-                return redirect()->route('dietetic.get', $patient->slug)->with('success', 'Datos guardados correctamente.');
+                return redirect()->route('dietetic.get', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Datos guardados correctamente.');
             }
             else
             {
                 return redirect()->back()->with('error', 'Los datos no fueron guardados.');
             }
         }
-
     }
 
     public function getUpdate(Request $request, $id)
     {
-        $energy_requirement = EnergyRequirement::findOrfail($request->energy_requirement_id);
-       
+        $request->validate([
+            'patient_id'            => ['required','numeric','exists:patients,id'],
+            'history_id'            => ['required','numeric','exists:dietary_histories,id'],
+            'energy_requirement_id' => ['required','numeric','exists:energy_requirements,id'],
+        ]);
+
+        $history = $this->getHistoryById($request->history_id);
+
+        $patient = Patient::findOrfail($request->patient_id);
+
+        $energy_requirement = EnergyRequirement::where('history_id',$history->id)->findOrfail($request->energy_requirement_id);
+        
         $total_energy_expenditure = TotalEnergyExpenditure::findOrfail($id);
-  //return $request->all();      
+      
         if($energy_requirement->type_get == 1)
         {
             $messages = [
@@ -959,8 +1009,7 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'                => 'required',
-                    'energy_requirement_id'     => 'required',
+                    
                     'kcal'                      => 'required',
                     'supplement_value'          => 'required',
                     'method_water_requirement'  => 'required',
@@ -972,8 +1021,7 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'kcal'                  => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
@@ -984,8 +1032,7 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'kcal'                  => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -1008,8 +1055,6 @@ class DieteticController extends Controller
                 alert()->error('La suma de los porcentajes de ser igual a 100', 'Error en porcentaje')->persistent('Close');
                 return back();
             }
-            
-            $patient = Patient::findOrfail($request->patient_id);
     
             $input = $request->all();
 
@@ -1100,7 +1145,7 @@ class DieteticController extends Controller
                 
             if($total_energy_expenditure->update($input))
             {
-                return redirect()->route('dietetic.get', $patient->slug)->with('success', 'Datos guardados correctamente.');
+                return redirect()->route('dietetic.get', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Datos guardados correctamente.');
             }
             else
             {
@@ -1125,8 +1170,7 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -1136,8 +1180,7 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -1147,8 +1190,7 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
-                    'energy_requirement_id' => 'required',
+    
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
                     'percentage_protein'        => 'required'  
@@ -1164,8 +1206,6 @@ class DieteticController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             }
-
-            $patient = Patient::findOrfail($request->patient_id);
     
             if(!$patient->BasicMeasure)
             {
@@ -1501,7 +1541,7 @@ class DieteticController extends Controller
 
             if($total_energy_expenditure->update($input))
             {
-                return redirect()->route('dietetic.get', $patient->slug)->with('success', 'Datos guardados correctamente.');
+                return redirect()->route('dietetic.get', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Datos guardados correctamente.');
             }
             else
             {
@@ -1527,9 +1567,8 @@ class DieteticController extends Controller
             if($request->has('supplement') && $request->has('method_water_requirement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -1539,9 +1578,8 @@ class DieteticController extends Controller
             elseif($request->has('supplement'))
             {
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'supplement_value'      => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
@@ -1551,9 +1589,8 @@ class DieteticController extends Controller
             else {
                 
                 $rules = [
-                    'patient_id'            => 'required',
+    
                     'get'                   => 'required',
-                    'energy_requirement_id' => 'required',
                     'percentage_carbohydrates'  => 'required',    
                     'percentage_lipids'         => 'required',  
                     'percentage_protein'        => 'required'  
@@ -1569,8 +1606,6 @@ class DieteticController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             }
-
-            $patient = Patient::findOrfail($request->patient_id);
 
             if(!$patient->BasicMeasure)
             {
@@ -1638,7 +1673,7 @@ class DieteticController extends Controller
             $total_energy_expenditure = TotalEnergyExpenditure::findOrfail($id);
             if($total_energy_expenditure->update($input))
             {
-                return redirect()->route('dietetic.get', $patient->slug)->with('success', 'Datos guardados correctamente.');
+                return redirect()->route('dietetic.get', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Datos guardados correctamente.');
             }
             else
             {
@@ -1647,14 +1682,16 @@ class DieteticController extends Controller
         }
     }
 
-    public function equivalentDistribution($slug)
+    public function equivalentDistribution($slug,$history_id)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
+
+        $history = $this->getHistoryById($history_id);
 
         $food_groups = FoodGroup::all();
         $food_times = FoodTime::all();
 
-        $equivalentDistribution = equivalentDistribution::Where('patient_id', '=', $patient->id)->first();
+        $equivalentDistribution = EquivalentDistribution::where('history_id',$history->id)->where('patient_id', '=', $patient->id)->first();
         
         if($equivalentDistribution)
         {
@@ -1773,19 +1810,20 @@ class DieteticController extends Controller
             }
            
             return View('patients.dietetic.equivalentDistribution.edit')
-                                                                        ->with('patient', $patient)
-                                                                        ->with('food_groups', $food_groups)
-                                                                        ->with('food_times', $food_times)
-                                                                        ->with('contado_proteins', $contado_proteins)
-                                                                        ->with('contado_lipids', $contado_lipids)
-                                                                        ->with('contado_carbohydrates', $contado_carbohydrates)
-                                                                        ->with('equivalentDistribution', $equivalentDistribution)
-                                                                        ->with('details', $details)
-                                                                        ->with('equivalent_macro', json_encode($equivalent_macro, JSON_UNESCAPED_UNICODE));
+                    ->with('patient', $patient)
+                    ->with('food_groups', $food_groups)
+                    ->with('food_times', $food_times)
+                    ->with('contado_proteins', $contado_proteins)
+                    ->with('contado_lipids', $contado_lipids)
+                    ->with('contado_carbohydrates', $contado_carbohydrates)
+                    ->with('equivalentDistribution', $equivalentDistribution)
+                    ->with('details', $details)
+                    ->with('history', $history)
+                    ->with('equivalent_macro', json_encode($equivalent_macro, JSON_UNESCAPED_UNICODE));
         }
         else
         {
-            return View('patients.dietetic.equivalentDistribution.create', compact('patient','food_groups', 'food_times'));
+            return View('patients.dietetic.equivalentDistribution.create', compact('patient', 'history','food_groups', 'food_times'));
         }
 
         
@@ -1837,12 +1875,13 @@ class DieteticController extends Controller
             $unity = $dataJson->unity;
 
             $patient = Patient::findOrfail($patient_id);
+            $history = $this->getHistoryById($dataJson->history_id);
 
             $food_groups = FoodGroup::all();
             $food_times = FoodTime::all();
 
 
-            $equivalentDistribution = equivalentDistribution::Where('patient_id', '=', $patient->id)->first();
+            $equivalentDistribution = EquivalentDistribution::where('history_id',$history->id)->where('patient_id', '=', $patient->id)->first();
             
             if($equivalentDistribution)
             {
@@ -2036,15 +2075,22 @@ class DieteticController extends Controller
 
     public function equivalentDistributionStore(Request $request)
     {
+        $request->validate([
+            'patient_id'            => ['required','numeric','exists:patients,id'],
+            'history_id'            => ['required','numeric','exists:dietary_histories,id'],
+        ]);
+
         $patient = Patient::where('id', '=', $request->patient_id)->first();
-        $eq_distribution = new EquivalentDistribution;
+
+        $history = $this->getHistoryById($request->history_id);
 
         //formato de fecha de inicio y de fin
         $start_date = Carbon::parse(Str::replaceArray('/', ['-', '-'], $request->start_date))->format('Y-m-d');
         $end_date = Carbon::parse(Str::replaceArray('/', ['-', '-'], $request->end_date))->format('Y-m-d');
 
-        $eq_distribution->create([
+        $eq_distribution = EquivalentDistribution::create([
             'patient_id'    => $request->patient_id,
+            'history_id'    => $request->history_id,
             'food_groups'   => json_encode($request->food_group),
             'food_times'    => json_encode($request->food_time),
             'days'          => json_encode($request->days),
@@ -2053,7 +2099,7 @@ class DieteticController extends Controller
         ]);
 
         //obtenemos el id del equivalent_distribution
-       $eq_distribution_id = EquivalentDistribution::all()->last()->id;
+       $eq_distribution_id =  $eq_distribution->id;
 
         for($i = 0; $i < count($request->food_group); $i++)
         {
@@ -2067,15 +2113,21 @@ class DieteticController extends Controller
             ]);
         }
         
-        return redirect()->route('dietetic.equivalentDistribution', $patient->slug)->with('success', 'Distribucion Guardada');
+        return redirect()->route('dietetic.equivalentDistribution', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Distribucion Guardada');
     }
 
     public function equivalentDistributionUpdate(Request $request, $id)
     {
+        $request->validate([
+            'patient_id'            => ['required','numeric','exists:patients,id'],
+            'history_id'            => ['required','numeric','exists:dietary_histories,id'],
+        ]);
         //formato de fecha de inicio y de fin
+        $history = $this->getHistoryById($request->history_id);
+
         $start_date = Carbon::parse(Str::replaceArray('/', ['-', '-'], $request->start_date))->format('Y-m-d');
         $end_date = Carbon::parse(Str::replaceArray('/', ['-', '-'], $request->end_date))->format('Y-m-d');
-        $eq_distribution = EquivalentDistribution::findOrfail($id);
+        $eq_distribution = EquivalentDistribution::where('history_id',$history->id)->findOrfail($id);
         $eq_distribution->update([
             'food_groups'   => json_encode($request->food_group),
             'food_times'    => json_encode($request->food_time),
@@ -2103,12 +2155,17 @@ class DieteticController extends Controller
                 'fields'                => $fields
             ]);
         }
-        return redirect()->route('dietetic.equivalentDistribution', $patient->slug)->with('success', 'Distribucion Guardada');
+        return redirect()->route('dietetic.equivalentDistribution', ['slug'=>$patient->slug,'history_id'=>$history->id])->with('success', 'Distribucion Guardada');
     }
 
     public function searchMetAjax(Request $request)
     {
         $mets = Met::where('actividad', 'LIKE', '%'.$request->search.'%')->orWhere('categoria', 'LIKE', '%'.$request->search.'%')->get();
         return \response()->json($mets);
+    }
+
+    public function getHistoryById($id)
+    {
+        return DietaryHistory::where('user_id',\Auth::user()->id)->find($id);
     }
 }

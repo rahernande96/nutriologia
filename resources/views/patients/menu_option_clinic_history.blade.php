@@ -16,7 +16,7 @@ Historia Clínica: {{ $patient->name }}
                         <a href="{{ route('anthropometry.index', $patient->slug) }}" class="btn btn-primary">
                             Antropometría
                         </a>
-                        <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-primary">
+                        <a href="{{ route('dietetic.history.index', $patient->slug) }}" class="btn btn-primary">
                             Dietética
                         </a>
                     </div>

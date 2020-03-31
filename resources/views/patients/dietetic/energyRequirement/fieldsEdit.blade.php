@@ -3,6 +3,7 @@
     <div class="col-sm-6">
         <input type="text" readonly class="form-control-plaintext" id="patient" value="{{ $patient->name }}">
         <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+        <input type="hidden" name="history_id" value="{{ $history->id }}">
     </div>
 </div>
 
@@ -54,6 +55,6 @@
 <div class="form-group row">
     <div class="col-sm-6 offset-md-4">
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-danger">Cancelar</a>
+        <a href="{{ route('dietetic.index', ["slug"=>$patient->slug,"history_id"=>$history->id]) }}" class="btn btn-danger">Cancelar</a>
     </div>
 </div>

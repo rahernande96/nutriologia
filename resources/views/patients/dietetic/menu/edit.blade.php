@@ -24,7 +24,7 @@ Paciente: {{ $patient->name }}
             </div>
             <div class="card-footer">
                 <div class="col-md-6 offset-md-5">
-                    <a href="{{ route('dietetic.index', $patient->slug) }}" class="btn btn-primary">Ir a Dietetica</a>
+                    <a href="{{ route('dietetic.index', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-primary">Ir a Dietetica</a>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@ Paciente: {{ $patient->name }}
                     var $self = $(this);
                     $self.easyAutocomplete({
                         url: function(search) {
-                            return "{{route('dishes.ajax')}}?search=" + search;
+                            return "{{route('dishes.ajax')}}?history={{ $history->id }}&search=" + search;
                         },
                         
                         placeholder: "Busque un platillo",

@@ -35,6 +35,7 @@
         <h6>Tiempos de comida</h6>
         <div class="content-food-times">
             <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+            <input type="hidden" name="history_id" value="{{ $history->id }}">
             @foreach($food_times as $food_time)
                 <div class="custom-control custom-checkbox pb-2">
                     <input type="checkbox" class="custom-control-input food-check" name="food_time[]" value="{{ $food_time->id }}" id="{{ $food_time->id }}-rapid" data-id="{{ $food_time->id }}" data-name="{{ $food_time->name }}">
@@ -61,7 +62,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" class="btn btn-md btn-info" data-toggle="modal" data-target="#newDishModal" rel="tooltip" title="nuevo platillo"><i class="fas fa-utensils"></i></button>
-                                        <a href="{{ route('menu.search', $patient->slug) }}" class="btn btn-md btn-info" title="buscar platillo"><i class="fas fa-search" style="color:#FFF"></i></a>
+                                        <a href="{{ route('menu.search', ['slug'=>$patient->slug,'history_id'=>$history->id]) }}" class="btn btn-md btn-info" title="buscar platillo"><i class="fas fa-search" style="color:#FFF"></i></a>
                                     </div>
                             </div>
                         </th>
