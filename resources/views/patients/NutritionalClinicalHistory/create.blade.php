@@ -10,6 +10,8 @@ Historia clínica nutricional
 		<div class="card card-primary mt-4">
 			<div class="card-header">
 				<h3 class="mb-0">Evaluación médica</h3>
+				<br>
+				<p>Llena los campos para conocer las actividades y comidas que realiza tu paciente a lo largo del día. Así como previos cambios de peso.</p>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('NutritionalClinicalHistory.store', $patient->slug) }}" method="POST">

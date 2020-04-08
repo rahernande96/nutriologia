@@ -13,6 +13,8 @@ Frecuencia de consumo
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Frecuencia de consumo</h3>
+						<br>
+						<p>INSTRUCCIONES: Arrastra cada alimento a la frecuencia de consumo de tu paciente. Después, haz click en “Generar gráfica de frecuencia de consumo”</p>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">

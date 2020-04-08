@@ -132,8 +132,5 @@ Subscripcion
 
 @endif
 
-
-	
-
 @endsection
 

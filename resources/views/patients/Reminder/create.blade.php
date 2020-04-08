@@ -41,6 +41,8 @@ Paciente: {{ $patient->name }}
                                     </form>
                                 </div>
                                 <div class="tab-pane fade p-4" id="detail" role="tabpanel" aria-labelledby="profile-tab">
+                                    <p>INSTRUCCIONES: Selecciona los tiempos de comida, luego detalla la hora, el lugar y quién prepara los alimentos de tu paciente. Puedes agregar más tiempos de comida. Encuentra los alimentos en el buscador o haciendo click directamente en la celdas de la tabla, luego determina la cantidad en gramos o equivalentes.</p>
+                                    <br>
                                     <form action="{{ route('reminder.store') }}" method="POST">
                                         @csrf 
                                         @include('patients.Reminder.fields_detail')
