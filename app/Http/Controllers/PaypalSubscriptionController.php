@@ -48,9 +48,12 @@ class PaypalSubscriptionController extends Controller
             return redirect()->route('Dashboard');
         }
 
-        if($subscription->paypal_status == "Active" || $subscription->paypal_status == "Pending")
+        if(isset($subscription->paypal_status))
         {
-            return back()->with('Tienes una subscripcion activa o pendiente, no puedes realizar esta accion.');
+            if($subscription->paypal_status == "Active" || $subscription->paypal_status == "Pending")
+            {
+                return back()->with('error','Tienes una subscripcion activa o pendiente, no puedes realizar esta accion.');
+            }
         }
         
         $plan = Plan::whereHas('SubscriptionPaymentMethod',function($query){
