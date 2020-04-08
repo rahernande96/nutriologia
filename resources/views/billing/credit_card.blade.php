@@ -68,9 +68,9 @@
               
                 <div class="form-row">
                   
-                  <div class="col-md-12 mt-3 mb-3 border-card-element">
+                  <div class="col-md-12 mt-3 mb-3" style="border-bottom: 2px solid #43B8BD;">
                   
-                    <div id="card-element"></div>
+                    <div id="card-element" class="mb-3"></div>
 
                     <div id="card-errors" role="alert"></div>
                 
