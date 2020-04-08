@@ -103,11 +103,13 @@
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
 		
-		<a class="btn btn-link" href="{{ route('create.subscription.paypal') }}">
-				
-			<img style="max-width: 100px;" src="{{ asset('Logos/paypal_logo.png') }}">
-			
-		</a>
+      <a class="btn btn-link" href="#">
+          
+        <img style="max-width: 100px;" src="{{ asset('Logos/paypal_logo.png') }}">
+        
+      </a>
+      
+      <a class="btn btn-primary ml-auto" href="{{ route('create.subscription.paypal') }}">Pagar con PayPal</a>
 
       </h2>
     </div>

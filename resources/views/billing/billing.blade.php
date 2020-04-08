@@ -41,8 +41,8 @@ Subscripcion
 		        
 		        <div class="row">
 		          
-					 <div class="col-md-12">
-              @if ($user->payment_method_id == 1)
+					<div class="col-md-12">
+                @if ($user->payment_method_id == 1)
                   
 		            @if(!$user->subscription('main'))
 
@@ -74,50 +74,52 @@ Subscripcion
 
 		            @endif
               
-              @elseif($user->payment_method_id == 2)
-                  @php
-                   
-                   $subscription = $user->paypalSubscription();
-                   //dd($subscription);
-                   $dateNow = \Carbon\Carbon::now();   
-                  @endphp
-
-                  @if($subscription->paypal_status != "Active")
-
-                    @if($subscription->paypal_status == "Pending")
-                      
-						<div class="alert alert-warning">
-							<p>Su pago esta siendo procesando, esto suele tardar solo unos minutos.</p>
-						</div>
-	
+                @elseif($user->payment_method_id == 2)
 					
-					@elseif(!is_null($subscription->ends_at) && $dateNow <= $subscription->ends_at)
+					@php
 					
-						<div class="alert alert-warning">
+					$subscription = $user->paypalSubscription();
+					//dd($subscription);
+					$dateNow = \Carbon\Carbon::now();   
+					@endphp
 
-							<p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras, tu cuenta estará activa hasta el : {{$subscription->ends_at}}</p>
-	
-						</div>
+					@if($subscription->paypal_status != "Active")
 
-						<a class="btn btn-success" href="{{ route('paypal.subscription.reactivate') }}">Renovar Suscripción</a>
-                   
+						@if($subscription->paypal_status == "Pending")
+						
+							<div class="alert alert-warning">
+								<p>Su pago esta siendo procesando, esto suele tardar solo unos minutos.</p>
+							</div>
+		
+						
+						@elseif(!is_null($subscription->ends_at) && $dateNow <= $subscription->ends_at)
+						
+							<div class="alert alert-warning">
 
-                    @else
+								<p>¡Lamentamos que hayas cancelado tu suscripción!, puedes volver cuando quieras, tu cuenta estará activa hasta el : {{$subscription->ends_at}}</p>
+		
+							</div>
 
-                      @include('billing.credit_card')
+							<a class="btn btn-success" href="{{ route('paypal.subscription.reactivate') }}">Renovar Suscripción</a>
+					
 
-                    @endif
-                    
-                  @else
+						@else
 
-                  <a class="btn btn-danger" href="{{ route('paypal.subscription.suspend') }}">Cancelar Suscripción</a>
+							@include('billing.credit_card')
 
-                  @endif
-              @else
+						@endif
+						
+					@else
+
+					<a class="btn btn-danger" href="{{ route('paypal.subscription.suspend') }}">Cancelar Suscripción</a>
+
+					@endif
+
+              	@else
                 
-                @include('billing.credit_card')
+                	@include('billing.credit_card')
               
-              @endif
+              	@endif
 		          </div>		         
 
 		        </div>

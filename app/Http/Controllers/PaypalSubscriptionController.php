@@ -41,9 +41,16 @@ class PaypalSubscriptionController extends Controller
         
         $user = Auth::user();
 
+        $subscription = $user->paypalSubscription();
+
         if ($user->role_id == 1) {
 
             return redirect()->route('Dashboard');
+        }
+
+        if($subscription->paypal_status == "Active" || $subscription->paypal_status == "Pending")
+        {
+            return back()->with('Tienes una subscripcion activa o pendiente, no puedes realizar esta accion.');
         }
         
         $plan = Plan::whereHas('SubscriptionPaymentMethod',function($query){
