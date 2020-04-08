@@ -30,7 +30,8 @@ trait PaypalSubscriptionManager
             ]);
         
         } catch (\Exception $ex) {
-            return back()->with('error','Ha ocurrido un error, intentalo mas tarder');
+            alert()->error('Ha ocurrido un error, intentalo mas tarder', 'Error')->persistent('Close');
+            return back();
         }
 
         return back()->with('success','Suspencion Exitosa!');
@@ -60,7 +61,9 @@ trait PaypalSubscriptionManager
             ]);
 
         } catch (\Exception $ex) {
-            return back()->with('error','Ha ocurrido un error, intentalo mas tarder');
+            alert()->error('Ha ocurrido un error, intentalo mas tarder', 'Error')->persistent('Close');
+            
+            return back();
         }
 
         return back()->with('success','Reactivacion Exitosa!');

@@ -52,7 +52,8 @@ class PaypalSubscriptionController extends Controller
         {
             if($subscription->paypal_status == "Active" || $subscription->paypal_status == "Pending")
             {
-                return back()->with('error','Tienes una subscripcion activa o pendiente, no puedes realizar esta accion.');
+                alert()->error('Tienes una subscripcion activa o pendiente, no puedes realizar esta accion.', 'Error')->persistent('Close');
+                return back();
             }
         }
         
