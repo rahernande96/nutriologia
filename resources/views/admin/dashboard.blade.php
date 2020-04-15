@@ -75,7 +75,7 @@ Bienvenido {{ $user->name }}
 
 	                    @forelse($patients as $patient)
 	                      <li>
-	                        <img src="{{ Storage::disk('public')->url($patient->picture) }}" alt="User Image"><br>
+	                        <img style="max-width:150px;" src="{{ $patient->picture == "default.png" ? asset('default.png') : Storage::disk('public')->url($patient->picture) }}" alt="User Image"><br>
 	                        <a class="users-list-name" href="#"><b>{{$patient->name}}</b></a>
 	                        @php
 	                        	$patient->created_at = Carbon\Carbon::parse($patient->created_at);
