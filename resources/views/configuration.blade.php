@@ -52,7 +52,7 @@ Configuración
           <div class="col-md-12">
             <div class="row d-flex justify-content-center">
               <div class="col-md-3">
-                <img src="{{ $user->picture == "default.png" ? Storage::url($user->picture) : asset('default.png') }}" alt="User Image" class="img-fluid">
+                <img src="{{ $user->picture == "default.png" ? asset('default.png') : Storage::url($user->picture) }}" alt="User Image" class="img-fluid">
               </div>
             </div>
           </div>
