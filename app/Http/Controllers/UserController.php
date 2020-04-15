@@ -39,30 +39,18 @@ class UserController extends Controller
 
     public function change_picture(PictureRequest $request, $slug){
 
+        $request->validate([
+            'picture' => 'required|image',
+        ]);
+
     	$user = User::where('slug', $slug)->first();
 
-        if($request->file('picture'))
-        {
-
-            if($user->picture == 'default.png')
-            {
-                $path = $request->file('picture')->store('public/images/pictures');
-                $user->picture = $path;
-                $user->save();
-                return back()->with('success', 'Imágen actualizada correctamente');
-            }else
-            {
-                $path = asset($user->picture);
-                 if (File::exists($path)); 
-                {
-                    unlink($user->picture);
-                    $path = $request->file('picture')->store('public/images/pictures');
-                    $user->picture = $path;
-                    $user->save();
-                    return back()->with('success', 'Imágen actualizada correctamente');
-                }   
-            }
-        }
+        $path = $request->file('picture')->store('public/images/pictures');
+        $user->picture = $path;
+        $user->save();
+        return back()->with('success', 'Imágen actualizada correctamente');
+        
+       
     }
 
     public function change_password(UpdatePasswordRequest $request, $slug)
