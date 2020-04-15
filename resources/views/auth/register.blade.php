@@ -56,6 +56,10 @@ Registro
 									<option value="1">Masculino</option>
 								</select>
 							</div>
+						</div>
+						<p class="text-center mt-2 mb-2"> -- Dirección de facturación --</p>
+						<div class="row">
+							
 							<div class="form-group col-md-6">
 								<label for="city">Ciudad</label>
 								<input id="city" class="form-control" type="text" placeholder="Ciudad" name="city" value="{{ old('city') }}" required>
