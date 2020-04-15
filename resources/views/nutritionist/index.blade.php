@@ -54,7 +54,7 @@ Nutriologos
                                 <div class="col-md-12">
                                   <div class="row d-flex justify-content-center">
                                     <div class="col-md-4">
-                                      <img src="{{ asset($nutriologist->picture) }}" alt="User Image" class="img-fluid">
+                                      <img src="{{ $nutriologist->picture == "default.png" ? asset('default.png') : Storage::url($nutriologist->picture) }}" alt="User Image" class="img-fluid">
                                     </div>
                                   </div>
                                 </div>
