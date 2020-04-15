@@ -60,6 +60,10 @@ class RegisterController extends Controller
             'identification_card' => ['required'],
             'birthdate' => ['required','date'],
             'sex' => ['required','boolean'],
+            'city' => ['required','string','max:255'],
+            'country' => ['required','string','max:2'],
+            'state' => ['required','string','max:255'],
+            'line1' => ['required','string','max:255'],
         ]);
     }
 
@@ -79,6 +83,10 @@ class RegisterController extends Controller
             'date_birth' => $data['birthdate'],
             'identification_card' => $data['identification_card'],
             'email' => $data['email'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'state' => $data['state'],
+            'line1' => $data['line1'],
             'confirmation_code' => Str::random(25),
             'password' => Hash::make($data['password']),
             'role_id' => \App\Rol::DOCTOR,

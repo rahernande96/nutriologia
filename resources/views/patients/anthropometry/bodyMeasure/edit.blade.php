@@ -10,9 +10,26 @@ Paciente: {{ $patient->name }}
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-primary mt-4">
+        <div class="card mt-4">
             <div class="card-header">
-                <div class="card-title">Medidas Corporales de {{ $patient->name }}</div>
+                <div class="card-title">Medidas Corporales de {{ $patient->name }}
+                    
+                    <div class="dropdown show right">
+
+                        <a href="{{ route('anthropometry.index', $patient->slug) }}" class="btn btn-primary">
+                            Antropometría
+                        </a>
+                    
+                        <a href="{{ route('ClinicHistoryPatient', $patient->slug) }}" class="btn btn-primary">
+                            Historia Clínica
+                        </a>
+                        <a href="{{ route('dietetic.history.index', $patient->slug) }}" class="btn btn-primary">
+                            Dietética
+                        </a>
+    
+                    </div>
+
+                </div>
                 {{--<h3 class="mb-0">Medidas básicas</h3>--}}
             </div>
             

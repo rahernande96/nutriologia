@@ -34,10 +34,14 @@ Subscripcion
 		      <div class="card-header">
 
 		        <h3 class="card-title">Administrar suscripciones</h3>
-		        
+				
 		      </div>
 
 		      <div class="card-body">
+
+				<p>Producto (Anualidad) - Paga con tarjeta de crédito o débito, vigencia 1 año.
+					Paga con uno de los siguientes métodos 
+					</p>
 		        
 		        <div class="row">
 		          

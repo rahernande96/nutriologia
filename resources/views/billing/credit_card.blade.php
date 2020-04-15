@@ -125,6 +125,9 @@ var stripe = Stripe('{{ env('STRIPE_KEY') }}');
 
 // Create an instance of Elements.
 var elements = stripe.elements();
+elements = stripe.elements({
+  'locale':'es'
+});
 
 // Custom styling can be passed to options when creating an Element.
 // (Note that this demo uses a wider set of styles than the guide below.)
@@ -174,7 +177,16 @@ form.addEventListener('submit', function(event) {
     type: 'card',
     card: card,
     billing_details: {
+      "address": {
+        "city": '{{ Auth::user()->city }}',
+        "country": '{{ Auth::user()->country }}',
+        "line1": '{{ Auth::user()->line1 }}',
+        "line2": null,
+        "postal_code": null,
+        "state": '{{ Auth::user()->state }}'
+      },
       email: '{{ Auth::user()->email }}',
+      name: '{{ Auth::user()->name }}',
     },
   }).then(stripePaymentMethodHandler);
 });

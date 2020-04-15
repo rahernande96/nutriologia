@@ -57,6 +57,24 @@ Registro
 								</select>
 							</div>
 							<div class="form-group col-md-6">
+								<label for="city">Ciudad</label>
+								<input id="city" class="form-control" type="text" placeholder="Ciudad" name="city" value="{{ old('city') }}" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="country">País</label>
+								<select id="country" class="form-control" name="country" required>
+									@include('auth.countries')
+								</select>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="line1">Direccion</label>
+								<input id="line1" class="form-control" type="text" placeholder="Direccion" name="line1" value="{{ old('line1') }}" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="state">Provincia o Estado</label>
+								<input id="state" class="form-control" type="text" placeholder="Provincia o Estado" name="state" value="{{ old('state') }}" required>
+							</div>
+							<div class="form-group col-md-6">
 								<label>&nbsp;</label>
 								<input type="submit" class="text-white btn btn-primary btn-block" id="pay-button" value="Registrarme">
 							</div>

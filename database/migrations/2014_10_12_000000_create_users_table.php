@@ -38,6 +38,10 @@ class CreateUsersTable extends Migration
             $table->string('no_registry');
             $table->string('identification_card');
             $table->string('password');
+            $table->string('city');
+            $table->string('country');
+            $table->string('state');
+            $table->string('line1');
             $table->rememberToken();
             $table->timestamps();
         });

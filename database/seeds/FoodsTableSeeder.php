@@ -1,6 +1,7 @@
 <?php
 
 use App\Food;
+use App\Imports\FoodImport;
 use Illuminate\Database\Seeder;
 
 class FoodsTableSeeder extends Seeder
@@ -1043,7 +1044,8 @@ Food::create([
             'carbohydrates' => 6.2,
             'fiber' => 0
         ]);
-
+        
+        Excel::import(new FoodImport, 'database/seeds/foods.csv');
 
     }
 }
