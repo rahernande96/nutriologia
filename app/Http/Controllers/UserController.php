@@ -46,7 +46,7 @@ class UserController extends Controller
 
             if($user->picture == 'default.png')
             {
-                $path = Storage::disk('public')->put('images/pictures', $request->file('picture'));
+                $path = $request->file('picture')->store('images/pictures');
                 $user->picture = $path;
                 $user->save();
                 return back()->with('success', 'Imágen actualizada correctamente');
@@ -56,7 +56,7 @@ class UserController extends Controller
                  if (File::exists($path)); 
                 {
                     unlink($user->picture);
-                    $path = Storage::disk('public')->put('images/pictures', $request->file('picture'));
+                    $path = $request->file('picture')->store('images/pictures');
                     $user->picture = $path;
                     $user->save();
                     return back()->with('success', 'Imágen actualizada correctamente');
