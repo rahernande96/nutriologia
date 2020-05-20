@@ -51,7 +51,7 @@ Paciente: {{ $patient->name }}
         data.addRows([
           @forelse ($records as $item)
 
-          [new Date({{ Carbon\Carbon::parse($item->updated_at)->format('Y,m,d') }}), {{ $item->weight }},{{ $item->size }},{{ $item->imc }}],
+          [new Date({{ Carbon\Carbon::parse($item->created_at)->format('Y,m,d,G,i') }}), {{ $item->weight }},{{ $item->size }},{{ $item->imc }}],
               
           @empty
               
