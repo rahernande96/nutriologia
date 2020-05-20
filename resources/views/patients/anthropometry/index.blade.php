@@ -83,7 +83,7 @@ Paciente: {{ $patient->name }}
                         </div>
                     </div>
                     
-                    {{-- <div class="card col-md-3">
+                    <div class="card col-md-3">
                         <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; height: 15vw; object-fit: cover;">
                         <div class="card-body">
 
@@ -95,7 +95,7 @@ Paciente: {{ $patient->name }}
                             </div>
                             <a href="{{ route('anthropometry.evolutionCard', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->Medition_corporate) Editar Datos  @else Capturar Datos @endif</a>
                         </div>
-                    </div> --}}
+                    </div>
                     
                 </div>
             </div>

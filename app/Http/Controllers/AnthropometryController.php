@@ -724,6 +724,8 @@ class AnthropometryController extends Controller
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
 
-        return \View('patients.anthropometry.evolutionCard.index', compact('patient'));
+        $records = BasicMeasure::where('patient_id', '=', $patient->id)->get();
+        
+        return \View('patients.anthropometry.evolutionCard.index', compact('patient','records'));
     }
 }

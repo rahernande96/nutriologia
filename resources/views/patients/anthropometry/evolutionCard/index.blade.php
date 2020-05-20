@@ -17,10 +17,9 @@ Paciente: {{ $patient->name }}
             <div class="card-body">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                             
-                        </div><!-- ./col -->
-                        <div class="col-md-7">
+                            <div id='chart_div' style='width: 900px; height: 500px;'></div>
                             
                         </div><!-- ./col -->
                         <!-- regesar a antopometria -->  
@@ -36,5 +35,38 @@ Paciente: {{ $patient->name }}
 @endsection
 
 @section('extra-js')
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript'>
+      google.charts.load('current', {'packages':['annotationchart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Peso');
+        data.addColumn('number', 'Talla');
+        data.addColumn('number', 'IMC');
+        
+        data.addRows([
+          @forelse ($records as $item)
+
+          [new Date({{ Carbon\Carbon::parse($item->updated_at)->format('Y,m,d') }}), {{ $item->weight }},{{ $item->size }},{{ $item->imc }}],
+              
+          @empty
+              
+          @endforelse
+
+        ]);
+
+        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+
+        var options = {
+          displayAnnotations: true
+        };
+
+        chart.draw(data, options);
+      }
+    </script>
 
 @endsection
