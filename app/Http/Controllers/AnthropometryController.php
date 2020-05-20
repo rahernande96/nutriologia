@@ -22,10 +22,18 @@ class AnthropometryController extends Controller
         return View('patients.anthropometry.index', compact('patient'));
     }
 
+    public function basicMeasureIndex($slug)
+    {
+        $patient = Patient::Where('slug', '=', $slug)->first();
+        $records = BasicMeasure::where('patient_id', '=', $patient->id)->latest()->get();
+
+        return view('patients.anthropometry.basicMeasure.history', compact('patient', 'records'));
+    }
+
     public function basicMeasure($slug)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
-        $basicMeasure = BasicMeasure::where('patient_id', '=', $patient->id)->first();
+        $basicMeasure = BasicMeasure::where('patient_id', '=', $patient->id)->latest()->first();
 
         if($basicMeasure)
         {
@@ -35,6 +43,24 @@ class AnthropometryController extends Controller
         {
             return view('patients.anthropometry.basicMeasure.create', compact('patient'));
         }
+    }
+
+    public function basicMeasureCreate($slug)
+    {
+        $patient = Patient::Where('slug', '=', $slug)->first();
+        
+        return view('patients.anthropometry.basicMeasure.create', compact('patient'));
+        
+    }
+
+    public function basicMeasureEdit($slug,$id)
+    {
+        $patient = Patient::Where('slug', '=', $slug)->first();
+
+        $basicMeasure = BasicMeasure::where('patient_id', '=', $patient->id)->where('id', $id)->first();
+        
+        return view('patients.anthropometry.basicMeasure.edit', compact('patient', 'basicMeasure'));
+        
     }
 
     public function basicMeasurePost(Request $request)
@@ -96,7 +122,7 @@ class AnthropometryController extends Controller
         
             if(basicMeasure::create($input))
             {
-                return back()->with('success', 'Datos guardados correctamente.');
+                return redirect()->route('anthropometry.history')->with('success', 'Datos guardados correctamente.');
             }
             else
             {
@@ -225,7 +251,7 @@ class AnthropometryController extends Controller
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
 
-        $basicMeasure = BasicMeasure::Where('patient_id', '=', $patient->id)->first();
+        $basicMeasure = BasicMeasure::Where('patient_id', '=', $patient->id)->latest()->first();
 
         if(!$basicMeasure)
         {

@@ -159,6 +159,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('reminder', 'ReminderController', ['names' => ['index' => 'reminder.index', 'create' => 'reminder.create', 'store' => 'reminder.store', 'show' => 'reminder.show', 'update' => 'reminder.update', 'destroy' => 'reminder.destroy', 'edit' => 'reminder.edit']]);
 
             //Rutas de Antropometria
+            Route::get('/{slug}/antropometria/historial', 'AnthropometryController@basicMeasureIndex')->name('anthropometry.history');
+            Route::get('/{slug}/antropometria/create', 'AnthropometryController@basicMeasureCreate')->name('anthropometry.create');
+            Route::get('/{slug}/antropometria/{id}/edit', 'AnthropometryController@basicMeasureEdit')->name('anthropometry.edit');
             Route::get('/{slug}/antropometria', 'AnthropometryController@index')->name('anthropometry.index');
             Route::get('/{slug}/antropometria/medidas-basicas', 'AnthropometryController@basicMeasure')->name('anthropometry.basicMeasure');
             Route::post('/antropometria/medidas-basicas', 'AnthropometryController@basicMeasurePost')->name('anthropometry.basicMeasurePost');

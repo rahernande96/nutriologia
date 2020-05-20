@@ -36,7 +36,7 @@ Paciente: {{ $patient->name }}
                             
                             </div>
                             
-                            <a href="{{ route('anthropometry.basicMeasure', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->BasicMeasure) Editar Datos  @else Capturar Datos @endif</a>
+                            <a href="{{ route('anthropometry.history', $patient->slug) }}" class="btn btn-primary text-white ml-1" type="button" class="btn btn-info">@if($patient->BasicMeasure) Editar Datos  @else Capturar Datos @endif</a>
                         
                         </div>
                     </div>

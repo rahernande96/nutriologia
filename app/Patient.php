@@ -114,7 +114,7 @@ class Patient extends Model
 		}
 	public function BasicMeasure()
 	{
-	    return $this->hasOne('App\BasicMeasure', 'patient_id', 'id');
+	    return $this->hasOne('App\BasicMeasure', 'patient_id', 'id')->latest();
 	}
 
 	public function BodyMeasure()
