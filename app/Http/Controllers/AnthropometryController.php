@@ -122,7 +122,7 @@ class AnthropometryController extends Controller
         
             if(basicMeasure::create($input))
             {
-                return redirect()->route('anthropometry.history')->with('success', 'Datos guardados correctamente.');
+                return back()->with('success', 'Datos guardados correctamente.');
             }
             else
             {
@@ -643,7 +643,7 @@ class AnthropometryController extends Controller
     //Somatocarta
     public function Somatocard($slug){
         $patient = Patient::With(['BasicMeasure', 'BodyMeasure.Perimeter'])->where('slug', '=', $slug)->first();
-
+        
         if(!$patient->BasicMeasure)
         {
             Alert::error('Debe tomar las medidas basicas del paciente.', 'Error en Medidas Básicas')->autoclose(3500);
