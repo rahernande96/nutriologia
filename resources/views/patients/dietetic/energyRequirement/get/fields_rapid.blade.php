@@ -102,7 +102,8 @@
                     <tr>
                         <td>Carbohidratos</td>
                         <td>
-                            {!! Form::number('percentage_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            <input class="form-control percentage_rapid" name="percentage_carbohydrates" type="number" step="0.1" required >
+                            
                         </td>
                         <td>
                             @if(isset($carboHidrates))
@@ -115,13 +116,18 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                            @if(isset($carboHidrates_gr))
+                                {{ $carboHidrates_gr/$patient->basicMeasure->weight }}
+                            @endif
+                            {{--
+                                {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                            --}}
                         </td>
                     </tr>
                     <tr>
                         <td>Lipidos</td>
                         <td>
-                            {!! Form::number('percentage_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            <input class="form-control percentage_rapid" name="percentage_lipids" type="number" step="0.1" required >
                         </td>
                         <td>
                             @if(isset($lipids))
@@ -134,13 +140,18 @@
                             @endif
                         </td>
                         <td>
+                            {{--
                             {!! Form::number('gr_kg_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                            --}}
+                            @if(isset($lipids_gr))
+                                {{ $lipids_gr/$patient->basicMeasure->weight }}
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>Proteinas</td>
                         <td>
-                            {!! Form::number('percentage_protein', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            <input class="form-control percentage_rapid" name="percentage_protein"  type="number" step="0.1" required >
                         </td>
                         <td>
                             @if(isset($protein))

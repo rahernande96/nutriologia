@@ -418,5 +418,98 @@ Paciente: {{ $patient->name }}
         requirement_h_manual.css('display', 'none');
     }
  });
+
+
+ @if($energy_requirement->type_get == 1)
+    
+    {{-- $('[name="percentage_carbohydrates"]').val({{ $total_energy_expenditure->percentage_carbohydrates }});
+    $('[name="percentage_protein"]').val({{ $total_energy_expenditure->percentage_protein }});
+    $('[name="percentage_lipids"]').val({{ $total_energy_expenditure->percentage_lipids }}); --}}
+
+    $('.percentage_rapid').bind('keyup mouseup wheel', function (e) {
+
+        var event_control = true;
+
+        if(e.type == "keyup"){
+            if( e.which != 9 ) {
+                event_control = false;
+            }
+        }
+        
+
+        if(event_control){
+
+            var count = 0;
+            var elements = [];
+            var element_empty;
+            elements.push($('[name="percentage_carbohydrates"]'));
+
+            if(elements[0].val() == ""){
+
+                element_empty = $('[name="percentage_carbohydrates"]');
+
+                count++;
+
+            }
+
+            elements.push($('[name="percentage_protein"]'));
+
+            if(elements[1].val() == ""){
+
+                element_empty = $('[name="percentage_protein"]');
+
+                count++;
+
+            }
+
+            elements.push($('[name="percentage_lipids"]'));
+
+            if(elements[2].val() == ""){
+
+                element_empty = $('[name="percentage_lipids"]');
+
+                count++;
+
+            }
+
+            var value = 0;
+            var percentage = 100;
+            
+            if(count==1 && e.target.name == element_empty.attr('name')){
+                
+                for(var i=0; i < elements.length; i++ ){
+
+                    if(elements[i].attr('name') != element_empty.attr('name')){
+                        console.log(elements[i].val());
+                        value = value + parseFloat(elements[i].val());
+                    }
+
+                }
+                console.log(value);
+                if(value <= percentage){
+
+                }
+                    element_empty.val(percentage-value);
+
+            }
+                
+
+        }
+
+        
+
+
+         
+    });
+    
+        
+    @endif
+
+
+
+
+
+
+
 </script>
 @endsection

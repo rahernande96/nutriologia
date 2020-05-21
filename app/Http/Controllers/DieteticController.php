@@ -374,7 +374,12 @@ class DieteticController extends Controller
             {
                 if($request->method_water_requirement == 1)
                 {
-                    if($patient->age >= 16 && $patient->age < 20)
+                    if($patient->age < 16)
+                    {
+                        alert()->error('El paciente es menor de 16 años, no se puede calcular el requerimiento hidrico.', 'Error en el Edad')->persistent('Close');
+                        return back();
+                    }
+                    elseif($patient->age >= 16 && $patient->age < 20)
                     {
                         $const_water = 40;
                     }
@@ -925,7 +930,12 @@ class DieteticController extends Controller
             {
                 if($request->method_water_requirement == 1)
                 {
-                    if($patient->age >= 16 && $patient->age < 20)
+                    if($patient->age < 16)
+                    {
+                        alert()->error('El paciente es menor de 16 años, no se puede calcular el requerimiento hidrico.', 'Error en el Edad')->persistent('Close');
+                        return back();
+                    }
+                    elseif($patient->age >= 16 && $patient->age < 20)
                     {
                         $const_water = 40;
                     }
@@ -1093,7 +1103,12 @@ class DieteticController extends Controller
             {
                 if($request->method_water_requirement == 1)
                 {
-                    if($patient->age >= 16 && $patient->age < 20)
+                    if($patient->age < 16)
+                    {
+                        alert()->error('El paciente es menor de 16 años, no se puede calcular el requerimiento hidrico.', 'Error en el Edad')->persistent('Close');
+                        return back();
+                    }
+                    elseif($patient->age >= 16 && $patient->age < 20)
                     {
                         $const_water = 40;
                     }
@@ -1506,7 +1521,12 @@ class DieteticController extends Controller
              {
                  if($request->method_water_requirement == 1)
                  {
-                     if($patient->age >= 16 && $patient->age < 20)
+                    if($patient->age < 16)
+                    {
+                        alert()->error('El paciente es menor de 16 años, no se puede calcular el requerimiento hidrico.', 'Error en el Edad')->persistent('Close');
+                        return back();
+                    }
+                     elseif($patient->age >= 16 && $patient->age < 20)
                      {
                          $const_water = 40;
                      }
@@ -1618,7 +1638,12 @@ class DieteticController extends Controller
              {
                  if($request->method_water_requirement == 1)
                  {
-                     if($patient->age >= 16 && $patient->age < 20)
+                    if($patient->age < 16)
+                    {
+                        alert()->error('El paciente es menor de 16 años, no se puede calcular el requerimiento hidrico.', 'Error en el Edad')->persistent('Close');
+                        return back();
+                    }
+                     elseif($patient->age >= 16 && $patient->age < 20)
                      {
                          $const_water = 40;
                      }
