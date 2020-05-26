@@ -84,7 +84,7 @@ Paciente: {{ $patient->name }}
                     </div>
                     
                     <div class="card col-md-3">
-                        <img src="{{ asset('images/clinic_history_nutritional.jpg') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; height: 15vw; object-fit: cover;">
+                        <img src="{{ asset('images/evolution.png') }}" class="card-img-top mx-auto d-block" alt="Historia Clínica Nutricional" style="width: 50%; height: 15vw; object-fit: cover;">
                         <div class="card-body">
 
                             <div class="info-menu mb-2">
