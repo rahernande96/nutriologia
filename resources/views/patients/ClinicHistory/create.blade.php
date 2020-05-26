@@ -138,14 +138,14 @@ Paciente: {{ $patient->name }}
                             <div class="col-md-6 mt-4">
                                 <label>Embarazo </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="pregnancy_option_checkbox" id="option1" checked>
+                                    <input class="form-check-input" type="radio" name="pregnancy_option_checkbox" id="option1">
                                     <label class="form-check-label" for="option1">
                                         Si
                                     </label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="pregnancy_option_checkbox" id="option2">
+                                    <input class="form-check-input" type="radio" name="pregnancy_option_checkbox" id="option2" checked>
                                     <label class="form-check-label" for="option2">
                                         No
                                     </label>
@@ -167,14 +167,14 @@ Paciente: {{ $patient->name }}
                             <div class="col-md-6 mt-4">
                                 <label>Uso de anticonceptivos </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="contraceptive_option_checkbox" id="anticonceptivos_option1" name="contraceptive_option_checkbox" checked>
+                                    <input class="form-check-input" type="radio" name="contraceptive_option_checkbox" id="anticonceptivos_option1" name="contraceptive_option_checkbox">
                                     <label class="form-check-label" for="anticonceptivos_option1">
                                         Si
                                     </label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="contraceptive_option_checkbox" id="anticonceptivos_option2" name="contraceptive_option_checkbox">
+                                    <input class="form-check-input" type="radio" name="contraceptive_option_checkbox" id="anticonceptivos_option2" name="contraceptive_option_checkbox" checked>
                                     <label class="form-check-label" for="anticonceptivos_option2">
                                         No
                                     </label>
@@ -192,14 +192,14 @@ Paciente: {{ $patient->name }}
                             <div class="col-md-6 mt-4">
                                 <label>Cirugías </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="surgery_option_checkbox" id="cirugia_option1" checked>
+                                    <input class="form-check-input" type="radio" name="surgery_option_checkbox" id="cirugia_option1">
                                     <label class="form-check-label" for="cirugia_option1">
                                         Si
                                     </label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="surgery_option_checkbox" id="cirugia_option2">
+                                    <input class="form-check-input" type="radio" name="surgery_option_checkbox" id="cirugia_option2" checked>
                                     <label class="form-check-label" for="cirugia_option2">
                                         No
                                     </label>
@@ -210,14 +210,14 @@ Paciente: {{ $patient->name }}
                             <div class="col-md-6 mt-4">
                                 <label>Alergias </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="allergy_option_checkbox" id="allergy_option1" checked>
+                                    <input class="form-check-input" type="radio" name="allergy_option_checkbox" id="allergy_option1">
                                     <label class="form-check-label" for="allergy_option1">
                                         Si
                                     </label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="allergy_option_checkbox" id="allergy_option2">
+                                    <input class="form-check-input" type="radio" name="allergy_option_checkbox" id="allergy_option2" checked>
                                     <label class="form-check-label" for="allergy_option2">
                                         No
                                     </label>
@@ -296,7 +296,7 @@ Paciente: {{ $patient->name }}
                             </div>
                             
                             <div class="col-md-3">
-                                <a href="{{ route('ClinicHistoryPatient',$patient->slug) }}" class="btn btn-primary btn-block"> Ir a Historia Clínica</a>
+                                <button type="submit" name="clinic" value="on" class="btn btn-primary btn-block">Guardar e ir a Historia Clínica</button>
                             </div>
                     </div>
                 </form>

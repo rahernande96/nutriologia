@@ -17,7 +17,7 @@
         <div class="new-time-food-detail"></div>
     </div>
     <div class="col-md-5 border-l-light">
-        <div class="content-food-details">
+        <div style="height: 600px;overflow: auto;" class="content-food-details">
                 <div class="form-row pl-1 mt-2">
                     <div class="col-sm-12">
                         <input type="text" id="search-food-detail" class="form-control search-food-detail" placeholder="Busque un alimento">
@@ -45,7 +45,9 @@
         <button type="button" id="btn-new-food" class="btn btn-link" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus-square"></i> Agregar alimento</button>
     </div>
     <div class="col-md-4">
-
+        <div class="content-chart-reminder pt-1 pb-2 hidden">
+            <div id="chart_reminder_macro" style="width:100%;"></div>
+    </div>
     </div>
     <div class="col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Guardar</button>

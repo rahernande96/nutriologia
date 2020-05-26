@@ -38,7 +38,7 @@
         <button type="button" id="btn-new-time-food-rapid" class="btn btn-link"><i class="fas fa-plus-square"></i> Agregar comida</button>
         <div class="new-time-food-rapid"></div>
     </div>
-    <div class="col-md-4 border-l-light">
+    <div style="height: 600px;overflow: auto;" class="col-md-4 border-l-light">
          @foreach($food_group as $fg)
             <input type="hidden" name="group_id[]" value="{{ $fg->id }}">
         @endforeach

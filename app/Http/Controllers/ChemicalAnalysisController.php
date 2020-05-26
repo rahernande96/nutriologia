@@ -32,6 +32,7 @@ class ChemicalAnalysisController extends Controller
         BloodChemistry::create([
             'patient_id' => $patient->id,
             'glucose' => $request->glucose,
+            'glucose_pp' => $request->glucose_pp,
             'proteins' => $request->proteins,
             'albumin' => $request->albumin,
             'transferrin' => $request->transferrin,
@@ -61,6 +62,7 @@ class ChemicalAnalysisController extends Controller
         BloodChemistry::where('patient_id', $patient->id)->update([
             'patient_id' => $patient->id,
             'glucose' => $request->glucose,
+            'glucose_pp' => $request->glucose_pp,
             'proteins' => $request->proteins,
             'albumin' => $request->albumin,
             'transferrin' => $request->transferrin,

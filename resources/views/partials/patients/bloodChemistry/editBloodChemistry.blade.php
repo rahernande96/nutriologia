@@ -25,6 +25,11 @@
                                     data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
                             </div>
                             <div class="form-group col-md-4">
+                                <label for="glucose_pp">Glucosa en ayuno a 2h PP</label>
+                                <input type="number" class="form-control" id="glucose_pp" placeholder="Glucosa en ayuno Glucosa a 2 h PP" value="{{ $patient->BloodChemistry->glucose_pp }}" name="glucose_pp" data-trigger="focus" data-toggle="tooltip" data-container="body"
+                                    data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="proteins">Proteinas Totales</label>
                                 <input type="number" id="proteins" class="form-control" placeholder="Proteinas Totales" value="{{ $patient->BloodChemistry->proteins }}" name="proteins" data-trigger="focus" data-toggle="tooltip" data-container="body"
                                     data-placement="top" data-title="6.4 a 8.3 mg/dl">

@@ -86,20 +86,24 @@ Nuevo Paciente
 							
 						</div>
 
-						<div class="form-group col-md-4">
-							<label for="trimester">Trimestre (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre" value="{{ old('trimester') }}" name="trimester" disabled required>
-						</div>
+						
 
-						<div class="form-group col-md-4">
-							<label for="sdg">SDG (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="sdg" placeholder="Ingrese el SDG" value="{{ old('sdg') }}" name="sdg" disabled required>
-						</div>
+							<div class="form-group col-md-4">
+								<label class="pregnancy_details" for="trimester">Trimestre (Embarazo)</label>
+								<input type="text" class="pregnancy_details form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre" value="{{ old('trimester') }}" name="trimester" disabled required>
+							</div>
 
-						<div class="form-group col-md-4">
-							<label for="semester">Semestre (Lactancia)</label>
-							<input type="text" class="form-control pregnancy" id="semester" placeholder="Ingrese el semestre" value="{{ old('semester') }}" name="semester" disabled required>
-						</div>
+							<div class="form-group col-md-4">
+								<label class="pregnancy_details" for="sdg">SDG (Embarazo)</label>
+								<input type="text" class="pregnancy_details form-control pregnancy" id="sdg" placeholder="Ingrese el SDG" value="{{ old('sdg') }}" name="sdg" disabled required>
+							</div>
+
+							<div class="form-group col-md-4">
+								<label class="pregnancy_details" for="semester">Semestre (Lactancia)</label>
+								<input type="text" class="pregnancy_details form-control pregnancy" id="semester" placeholder="Ingrese el semestre" value="{{ old('semester') }}" name="semester" disabled required>
+							</div>
+
+						
 
 						{{--<div class="form-group col-md-4">
 							<label for="size">Talla</label>
@@ -230,6 +234,8 @@ Nuevo Paciente
 
 $(document).ready(function(e){
 
+	pregnacy();
+
 	$("input[name='pregnancy']").on('click',function(e){
 		
 		pregnacy();
@@ -253,7 +259,7 @@ $(document).ready(function(e){
 
 			$("input[name='pregnancy']").prop('disabled',false);
 			
-			$("#pregnancy_yes").prop('checked',true);
+			
 			
 		
 
@@ -272,9 +278,12 @@ $(document).ready(function(e){
 
 			$('.pregnancy').prop('disabled',false);
 
+			$('.pregnancy_details').css('display','block');
+
 		}else{
 
 			$('.pregnancy').prop('disabled',true);
+			$('.pregnancy_details').css('display','none');
 
 		}
 	}

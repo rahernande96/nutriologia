@@ -48,7 +48,7 @@ class ClinicHistoryController extends Controller
      */
     public function BriefClinicHistoryStore(Request $request, $slug)
     {
-
+        
         $patient = Patient::where('slug', $slug)->first();
 
         DB::beginTransaction();
@@ -103,6 +103,11 @@ class ClinicHistoryController extends Controller
             DB::commit();
 
             //return redirect()->route('ClinicHistoryPatient',$patient->slug)->with('success', 'Datos guardados correctamente');
+            if(isset($request->clinic)){
+                return redirect()->route('ClinicHistoryPatient',$patient->slug)->with('success', 'Datos guardados correctamente');
+            }
+            
+
             return redirect()->route('BriefClinicalHistory.edit', $patient->slug)->with('success', 'Datos guardados correctamente');
         }catch(\Exception $exception){
             $fail = $exception->getMessage();

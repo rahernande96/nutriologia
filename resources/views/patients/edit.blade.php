@@ -104,18 +104,18 @@ Detalles del Paciente: {{ $patient->name }}
 						@endphp
 
 						<div class="form-group col-md-4">
-							<label for="trimester">Trimestre (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ $patient->trimester }}" name="trimester" {{ $prop }}>
+							<label class="pregnancy_details" for="trimester">Trimestre (Embarazo)</label>
+							<input type="text" class="pregnancy_details form-control pregnancy" id="trimester" placeholder="Ingrese el trimestre del paciente" value="{{ $patient->trimester }}" name="trimester" {{ $prop }}>
 						</div>
 
 						<div class="form-group col-md-4">
-							<label for="sdg">SDG (Embarazo)</label>
-							<input type="text" class="form-control pregnancy" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ $patient->sdg }}" name="sdg" {{ $prop }}>
+							<label class="pregnancy_details" for="sdg">SDG (Embarazo)</label>
+							<input type="text" class="pregnancy_details form-control pregnancy" id="sdg" placeholder="Ingrese el SDG del paciente" value="{{ $patient->sdg }}" name="sdg" {{ $prop }}>
 						</div>
 
 						<div class="form-group col-md-4">
-							<label for="semester">Semestre (Lactancia)</label>
-							<input type="text" class="form-control pregnancy" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ $patient->semester }}" name="semester" {{ $prop }}>
+							<label class="pregnancy_details" for="semester">Semestre (Lactancia)</label>
+							<input type="text" class="pregnancy_details form-control pregnancy" id="semester" placeholder="Ingrese el semestre del paciente" value="{{ $patient->semester }}" name="semester" {{ $prop }}>
 						</div>
 
 						
@@ -294,9 +294,12 @@ $(document).ready(function(e){
 
 			$('.pregnancy').prop('disabled',false);
 
+			$('.pregnancy_details').css('display','block');
+
 		}else{
 
 			$('.pregnancy').prop('disabled',true);
+			$('.pregnancy_details').css('display','none');
 
 		}
 	}

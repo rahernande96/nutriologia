@@ -94,7 +94,7 @@ Editar - Historia Clínica Nutricional
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_ovnivoro" type="checkbox" id="diet_ovnivoro" {{ old('diet_ovnivoro') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovnivoro == 'on' ? 'checked':'' }}>
-								<label class="form-check-label" for="diet_ovnivoro">Ovnivoro</label>
+								<label class="form-check-label" for="diet_ovnivoro">Omnívoro</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" name="diet_ovolactovegetarian" type="checkbox" id="diet_ovolactovegetarian" {{ old('diet_ovolactovegetarian') ? 'checked' : null }} {{ $patient->SpecificDiet->diet_ovolactovegetarian == 'on' ? 'checked':'' }}>
@@ -175,34 +175,48 @@ Editar - Historia Clínica Nutricional
 
 						<div class="col-md-12">
 							<h6><strong>Alergias alimentarias</strong></h6>
+
+
+							<div class="form-group">
+								<div class="form-check">
+									<input class="form-check-input allegry_option" id="allegry_yes" type="radio" value="1" name="allegry">
+									<label class="form-check-label" for="allegry_yes">Si</label>
+								</div>
+	
+								<div class="form-check">
+									<input class="form-check-input allegry_option" id="allegry_no" type="radio" value="0" name="allegry" checked>
+									<label class="form-check-label" for="pregnancy_no">No</label>
+								</div>
+								
+							</div>
 						</div>
 
 						<div class="col-md-2 d-flex align-items-center justify-content-center">
-							<label for="oilseed_allergy" class="mb-3">Oleaginosas</label>	
+							<label for="oilseed_allergy" class="mb-3 allegry">Oleaginosas</label>	
 						</div>
 						<div class="form-group col-md-10">
-							<input type="text" class="form-control" id="oilseed_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->oilseed_allergy }}" name="oilseed_allergy">
+							<input type="text" class="form-control allegry" id="oilseed_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->oilseed_allergy }}" name="oilseed_allergy">
 						</div>
 
 						<div class="col-md-2 d-flex align-items-center justify-content-center">
-							<label for="fruit_allergy" class="mb-3">Frutas</label>	
+							<label for="fruit_allergy" class="mb-3 allegry">Frutas</label>	
 						</div>
 						<div class="form-group col-md-10">
-							<input type="text" class="form-control" id="fruit_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->fruit_allergy }}" name="fruit_allergy">
+							<input type="text" class="form-control allegry" id="fruit_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->fruit_allergy }}" name="fruit_allergy">
 						</div>
 
 						<div class="col-md-2 d-flex align-items-center justify-content-center">
-							<label for="vegetable_allergy" class="mb-3">Vegetales</label>	
+							<label for="vegetable_allergy" class="mb-3 allegry">Vegetales</label>	
 						</div>
 						<div class="form-group col-md-10">
-							<input type="text" class="form-control" id="vegetable_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->vegetable_allergy }}" name="vegetable_allergy">
+							<input type="text" class="form-control allegry" id="vegetable_allergy" placeholder="Detalles de la alergia." value="{{ $patient->FoodAllergy->vegetable_allergy }}" name="vegetable_allergy">
 						</div>
 
 						<div class="col-md-2 d-flex align-items-center justify-content-center">
-							<label for="AOA_allergy" class="mb-3">AOA</label>	
+							<label for="AOA_allergy" class="mb-3 allegry">AOA</label>	
 						</div>
 						<div class="form-group col-md-10">
-							<input type="text" class="form-control" id="AOA_allergy" placeholder="Detalles de la alergia." value="{{$patient->FoodAllergy->AOA_allergy }}" name="AOA_allergy">
+							<input type="text" class="form-control allegry" id="AOA_allergy" placeholder="Detalles de la alergia." value="{{$patient->FoodAllergy->AOA_allergy }}" name="AOA_allergy">
 						</div>
 
 						<div class="col-md-12">
@@ -265,4 +279,42 @@ Editar - Historia Clínica Nutricional
 	</div>
 </div>
 <br>
+@endsection
+
+@section('extra-js')
+
+<script type="text/javascript">
+
+	
+
+$(document).ready(function(e){
+
+
+	$(".allegry").css('display','none');
+
+	$("input[name='allegry']").on('click',function(e){
+		
+		var input;
+
+		input = $("input[name='allegry']:checked").val();
+
+		if (input == "1") {
+
+			$(".allegry").css('display','block');
+
+		}else{
+
+			$(".allegry").css('display','none');
+			
+
+		}
+
+	});
+
+
+	
+});
+
+
+</script>
 @endsection

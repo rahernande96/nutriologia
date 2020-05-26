@@ -171,9 +171,9 @@ class ReminderController extends Controller
 
                 foreach($reminder_item->reminderFood as $rF)
                 {
-                    $suma_protein = $suma_protein + ($rF->quantity * $rF->foodGroup['equivalency']['protein']);
-                    $suma_lipids = $suma_lipids + ($rF->quantity * $rF->foodGroup['equivalency']['lipids']);
-                    $suma_carbohydrates = $suma_carbohydrates + ($rF->quantity * $rF->foodGroup['equivalency']['carbohydrates']);
+                    $suma_protein = $suma_protein + ($rF->quantity * isset($rF->foodGroup['equivalency']['protein']) ? $rF->foodGroup['equivalency']['protein'] : 0);
+                    $suma_lipids = $suma_lipids + ($rF->quantity * isset($rF->foodGroup['equivalency']['lipids']) ? $rF->foodGroup['equivalency']['lipids'] : 0);
+                    $suma_carbohydrates = $suma_carbohydrates + ($rF->quantity * isset($rF->foodGroup['equivalency']['carbohydrates']) ? $rF->foodGroup['equivalency']['carbohydrates'] : 0);
 
                 }
 

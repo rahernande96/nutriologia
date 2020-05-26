@@ -41,7 +41,12 @@ Analisis Químicos
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="glucose">Glucosa en ayuno</label>
-                                        <input type="number" min="0" step="0.1" min="0" step="0.1" class="form-control" id="glucose" placeholder="Glucosa en ayuno Glucosa a 2 h PP" value="{{ old('glucose') }}" name="glucose" data-trigger="focus" data-toggle="tooltip" data-container="body"
+                                        <input type="number" min="0" step="0.1" min="0" step="0.1" class="form-control" id="glucose" placeholder="Glucosa en ayuno Glucosa" value="{{ old('glucose') }}" name="glucose" data-trigger="focus" data-toggle="tooltip" data-container="body"
+                                            data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="glucose_pp">Glucosa en ayuno a 2h PP</label>
+                                        <input type="number" min="0" step="0.1" min="0" step="0.1" class="form-control" id="glucose_pp" placeholder="Glucosa en ayuno Glucosa a 2 h PP" value="{{ old('glucose_pp') }}" name="glucose_pp" data-trigger="focus" data-toggle="tooltip" data-container="body"
                                             data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
                                     </div>
                                     <div class="form-group col-md-4">
@@ -124,11 +129,12 @@ Analisis Químicos
                                         <input type="number" min="0" step="0.1" class="form-control" id="CO2" placeholder="Dioxido de Carbono" value="{{ old('CO2') }}" name="CO2" data-trigger="focus" data-toggle="tooltip" data-container="body" data-placement="top"
                                             data-title="23 a 30 meq/L">
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <button type="submit" class="btn btn-success btn-block">
-                                            Guardar Datos
-                                        </button>
-                                    </div>
+                                    
+                                </div>
+                                <div class="form-group col-md-3 ml-auto">
+                                    <button type="submit" class="btn btn-success btn-block">
+                                        Guardar Datos
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -150,11 +156,11 @@ Analisis Químicos
                                 {{--<button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="collapse" title="Collapse">
                                     <i class="fa"></i></button>--}}
                                     <button class="btn btn-link text-white btn-block" type="button" data-toggle="collapse" data-target="#HematicBiometry" aria-expanded="true" aria-controls="HematicBiometry">
-                                        <i class="fa fa-minus fa-md"></i>
+                                        <i class="fa fa-plus fa-md"></i>
                                     </button>
                             </div>
                         </div>
-                        <div id="HematicBiometry" class="collapse show" aria-labelledby="HematicBiometry" data-parent="#HematicBiometry">
+                        <div id="HematicBiometry" class="collapse " aria-labelledby="HematicBiometry" data-parent="#HematicBiometry">
                             <div class="card-body">
                                 <form action="{{ route('hematicBiometry.store', $patient->slug) }}" method="post">
                                     @csrf
@@ -257,7 +263,7 @@ Analisis Químicos
                                     </button>
                                 </div>
                             </div>
-                            <div id="VitaminMineral" class="collapse show" aria-labelledby="VitaminMineral" data-parent="#VitaminMineral">
+                            <div id="VitaminMineral" class="collapse" aria-labelledby="VitaminMineral" data-parent="#VitaminMineral">
                                 <div class="card-body">
                                     <form action="{{ route('vitaminMineral.store', $patient->slug) }}" method="post">
                                         @csrf
@@ -361,7 +367,7 @@ Analisis Químicos
                                         </button>
                                     </div>
                                 </div>
-                                <div id="LipidProfile" class="collapse show" aria-labelledby="LipidProfile" data-parent="#LipidProfile">
+                                <div id="LipidProfile" class="collapse" aria-labelledby="LipidProfile" data-parent="#LipidProfile">
                                     <div class="card-body">
                                         <form action="{{ route('lipidProfile.store', $patient->slug) }}" method="post">
                                             @csrf
@@ -419,7 +425,7 @@ Analisis Químicos
                                             </button>
                                         </div>
                                     </div>
-                                    <div id="ThyroidProfile" class="collapse show" aria-labelledby="ThyroidProfile" data-parent="#ThyroidProfile">
+                                    <div id="ThyroidProfile" class="collapse" aria-labelledby="ThyroidProfile" data-parent="#ThyroidProfile">
                                         <div class="card-body">
                                             <form action="{{ route('thyroidProfile.store', $patient->slug) }}" method="post">
                                                 @csrf
@@ -477,7 +483,7 @@ Analisis Químicos
                                                 </button>
                                             </div>
                                         </div>
-                                        <div id="Urine" class="collapse show" aria-labelledby="Urine" data-parent="#Urine">
+                                        <div id="Urine" class="collapse" aria-labelledby="Urine" data-parent="#Urine">
                                             <div class="card-body">
                                                 <form action="{{ route('urine.store', $patient->slug) }}" method="post">
                                                     @csrf
@@ -546,7 +552,7 @@ Analisis Químicos
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div id="UrineTest" class="collapse show" aria-labelledby="UrineTest" data-parent="#UrineTest">
+                                            <div id="UrineTest" class="collapse" aria-labelledby="UrineTest" data-parent="#UrineTest">
                                                 <div class="card-body">
                                                     <form action="{{ route('urineTest.store', $patient->slug) }}" method="post">
                                                         @csrf

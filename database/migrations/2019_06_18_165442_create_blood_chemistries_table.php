@@ -22,6 +22,7 @@ class CreateBloodChemistriesTable extends Migration
 
             $table->Increments('id');
             $table->integer('glucose')->nullable();
+            $table->integer('glucose_pp')->nullable();
             $table->integer('proteins')->nullable();
             $table->integer('albumin')->nullable();
             $table->integer('transferrin')->nullable();
