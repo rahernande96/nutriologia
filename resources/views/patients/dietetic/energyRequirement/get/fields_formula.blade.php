@@ -480,7 +480,7 @@
                     <tr>
                         <td>Carbohidratos</td>
                         <td>
-                            {!! Form::number('percentage_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            {!! Form::number('percentage_carbohydrates', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
                         </td>
                         <td>
                             @if(isset($carboHidrates))
@@ -493,13 +493,13 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                            {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false, 'disabled'    => true]) !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Proteinas</td>
                         <td>
-                            {!! Form::number('percentage_protein', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            {!! Form::number('percentage_protein', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
                         </td>
                         <td>
                             @if(isset($protein))
@@ -512,13 +512,13 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'  => true]) !!}
+                            {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'  => true, 'disabled'    => true]) !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Lipidos</td>
                         <td>
-                            {!! Form::number('percentage_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                            {!! Form::number('percentage_lipids', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
                         </td>
                         <td>
                             @if(isset($lipids))

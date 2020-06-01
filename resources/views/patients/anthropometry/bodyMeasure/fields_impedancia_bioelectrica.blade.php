@@ -119,13 +119,13 @@
         {!!Form::number('body_water_l',null,['class'=>'form-control', 'step' => '0.01', 'min' => 0, 'placeholder' => 'Agua Corporal'])!!}
     </div>
     <div class="col-sm-1">
-        Kgrs
+        L
     </div>
     <div class="col-sm-2">
         {!!Form::number('body_water_porcent',null,['class'=>'form-control', 'step' => '0.01', 'min' => 0, 'placeholder' => 'Agua Corporal'])!!}
     </div>
     <div class="col-sm-1">
-        L
+        %
     </div>
 </div>
 <div class="form-group row">

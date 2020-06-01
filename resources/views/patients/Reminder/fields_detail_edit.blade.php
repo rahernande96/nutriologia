@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-12">
         <h6>Por tiempo de comida (detallado)</h6>
         <div class="content-food-times-detail"> 
             <input type="hidden" name="type" value="{{ \App\Reminder::DETAIL }}">
@@ -39,7 +39,7 @@
         <button type="button" id="btn-new-time-food-detail" class="btn btn-link"><i class="fas fa-plus-square"></i> Agregar comida</button>
         <div class="new-time-food-detail"></div>
     </div>
-    <div  class="col-md-5 border-l-light">
+    <div  class="col-md-12 border-l-light">
         <div style="height: 600px;overflow: auto;" class="content-food-details">
                 <div class="form-row pl-1 mt-2">
                     <div class="col-sm-12">
@@ -53,8 +53,11 @@
                         <div class="col-5">
                             <label class="form-label mb-0 pt-1 white" for=""><b>Alimento</b></label>
                         </div>
-                        <div class="col-7">
+                        <div class="col-6">
                             <label class="form-label mb-0 pt-1 white" for=""><b>Cantidad</b></label>
+                        </div>
+                        <div class="col-1">
+                            <input type="checkbox" value="{{ $rI->food_time_id }}" class="form-check-input content-food-checkbox">
                         </div>
                     </div>
                     <div class="border-light-blue ml-1 food-list" style="width:100%">
@@ -68,7 +71,7 @@
                                         <input name="field[{{ $rI->food_time_id }}][food][]" type="hidden" value="{{ $rF->food_id }}">
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" min="0" class="form-control" name="field[{{ $rI->food_time_id }}][cantidad][]" placeholder="Cantidad" value="{{ $rF->quantity }}" required="required">
+                                        <input type="number" step="0.5" min="0" class="form-control" name="field[{{ $rI->food_time_id }}][cantidad][]" placeholder="Cantidad" value="{{ $rF->quantity }}" required="required">
                                     </div>
                                     <div class="col-3">
                                         <div class="form-check-inline mt-2">
@@ -96,7 +99,7 @@
         </div>
         <button type="button" id="btn-new-food" class="btn btn-link" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-plus-square"></i> Agregar alimento</button>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="content-chart-reminder pt-1 pb-2 hidden">
                 <div id="chart_reminder_macro" style="width:100%;"></div>
         </div>

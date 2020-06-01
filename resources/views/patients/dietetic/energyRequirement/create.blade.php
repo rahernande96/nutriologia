@@ -420,7 +420,7 @@ Paciente: {{ $patient->name }}
  });
 
 
- @if($energy_requirement->type_get == 1)
+ @if($energy_requirement->type_get == 1 || $energy_requirement->type_get == 2)
     
     {{-- $('[name="percentage_carbohydrates"]').val({{ $total_energy_expenditure->percentage_carbohydrates }});
     $('[name="percentage_protein"]').val({{ $total_energy_expenditure->percentage_protein }});

@@ -218,8 +218,11 @@ Paciente: {{ $patient->name }}
                                                 <div class="col-5">\
                                                     <label class="form-label mb-0 pt-1 white" for=""><b>Alimento</b></label>\
                                                 </div>\
-                                                <div class="col-7">\
+                                                <div class="col-6">\
                                                     <label class="form-label mb-0 pt-1 white" for=""><b>Cantidad</b></label>\
+                                                </div>\
+                                                <div class="col-1">\
+                                                    <input type="checkbox" value="'+data_id+'" class="form-check-input content-food-checkbox">\
                                                 </div>\
                                             </div>\
                                             <div class="border-light-blue ml-1 food-list" style="width:100%"></div>\
@@ -243,6 +246,15 @@ Paciente: {{ $patient->name }}
                     $(this).remove();
                 }
             });          
+        }
+    });
+
+    //checkbox de cotenedores de comidad
+    $("body").on('click', '.content-food-checkbox', function() {
+        
+        if ($(this).is(":checked")) {
+            $("body .content-food-checkbox").prop('checked',false);
+            $(this).prop('checked',true);
         }
     });
 
@@ -414,6 +426,18 @@ Paciente: {{ $patient->name }}
                  var id = $("#search-food-detail").getSelectedItemData().id;
                  var contenedor = $('.content-food:last .food-list:last');
                  var content_id = $('.content-food:last').data('id');
+                 
+                 
+                 
+                 $('.content-food-checkbox').each(function() {
+                    if ($(this).is(":checked")) {
+                        
+                        contenedor = $(".content-food[data-id='" + $(this).val() + "'] .food-list:last");
+                        
+                        content_id = $(this).val();
+                        
+                    }
+                 });
 
                  var item = '<div class="form-row" style="margin-bottom:10px">\
                                                     <div class="col-4">\
@@ -423,7 +447,7 @@ Paciente: {{ $patient->name }}
                                                         <input name="field['+content_id+'][food][]" type="hidden" value="'+id+'">\
                                                     </div>\
                                                     <div class="col-3">\
-                                                        <input type="number" min="0" class="form-control" name="field['+content_id+'][cantidad][]" placeholder="Cantidad" value="" required="required">\
+                                                        <input type="number" step="0.5" min="0" class="form-control" name="field['+content_id+'][cantidad][]" placeholder="Cantidad" value="" required="required">\
                                                     </div>\
                                                     <div class="col-3">\
                                                         <div class="form-check-inline mt-2">\

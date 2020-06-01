@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-12">
         <h6>Por tiempo de comida (rápido)</h6>
         <div class="content-food-times-rapid"> 
             <input type="hidden" name="type" value="{{ \App\Reminder::RAPID }}">
@@ -38,7 +38,7 @@
         <button type="button" id="btn-new-time-food-rapid" class="btn btn-link"><i class="fas fa-plus-square"></i> Agregar comida</button>
         <div class="new-time-food-rapid"></div>
     </div>
-    <div style="height: 600px;overflow: auto;" class="col-md-4 border-l-light">
+    <div style="height: 600px;overflow: auto;" class="col-md-12 border-l-light">
          @foreach($food_group as $fg)
             <input type="hidden" name="group_id[]" value="{{ $fg->id }}">
         @endforeach
@@ -77,7 +77,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-12">
         @if(isset($reminder))
         <div class="content-chart">
             <div class="col-12">
