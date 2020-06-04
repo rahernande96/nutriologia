@@ -486,9 +486,6 @@ Paciente: {{ $patient->name }}
                                 @endif
                             </div>
                             
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-success btn-block">Guardar</button>
-                            </div>
                             <div class="col-md-3">
                                 <a href="{{ route('ClinicHistoryPatient',$patient->slug) }}" class="btn btn-primary btn-block"> Ir a Historia Clínica</a>
                             </div>
