@@ -291,12 +291,9 @@ Paciente: {{ $patient->name }}
                                 <input type="text" class="form-control" id="coffe_frequency" placeholder="Ingrese la frecuencia en que consume café el paciente" value="{{ old('coffe_frequency') }}" name="coffe_frequency" disabled>
                             </div>
                             
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-success btn-block">Guardar</button>
-                            </div>
                             
                             <div class="col-md-3">
-                                <button type="submit" name="clinic" value="on" class="btn btn-primary btn-block">Guardar e ir a Historia Clínica</button>
+                                <button type="submit" name="clinic" value="on" class="btn btn-primary btn-block">ir a Historia Clínica</button>
                             </div>
                     </div>
                 </form>

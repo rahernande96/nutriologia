@@ -9,7 +9,7 @@
         @foreach($food_groups as $fg)
             <div class="form-row pl-1 mt-2">
                 <div class="col-sm-4">
-                    <input type="number" step="0.5" min="0" name="field[{{ $food_time->id }}][{{ $fg->id }}][quantity][]" class="form-control">
+                    <input type="number" step="0.5" min="0" name="field[{{ $food_time->id }}][{{ $fg->id }}][quantity][]" value="0" class="form-control" required>
                 </div>
                 <label for="inputEmail3" class="col-sm-5 control-label pt-2">
                     {{ $fg->name }}
