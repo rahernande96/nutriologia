@@ -487,7 +487,7 @@ Paciente: {{ $patient->name }}
                             </div>
                             
                             <div class="col-md-3">
-                                <a href="{{ route('ClinicHistoryPatient',$patient->slug) }}" class="btn btn-primary btn-block"> Ir a Historia Clínica</a>
+                                <a href="{{ route('ClinicHistoryPatient',$patient->slug) }}" class="btn btn-primary btn-block">Guardar Ir a Historia Clínica</a>
                             </div>
                     </div>
                 </form>

@@ -293,7 +293,7 @@ Paciente: {{ $patient->name }}
                             
                             
                             <div class="col-md-3">
-                                <button type="submit" name="clinic" value="on" class="btn btn-primary btn-block">ir a Historia Clínica</button>
+                                <button type="submit" name="clinic" value="on" class="btn btn-primary btn-block">Guardar ir a Historia Clínica</button>
                             </div>
                     </div>
                 </form>
