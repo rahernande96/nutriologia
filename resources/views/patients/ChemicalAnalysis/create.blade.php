@@ -42,12 +42,12 @@ Analisis Químicos
                                     <div class="form-group col-md-4">
                                         <label for="glucose">Glucosa en ayuno</label>
                                         <input type="number" min="0" step="0.1" min="0" step="0.1" class="form-control" id="glucose" placeholder="Glucosa en ayuno Glucosa" value="{{ old('glucose') }}" name="glucose" data-trigger="focus" data-toggle="tooltip" data-container="body"
-                                            data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
+                                            data-placement="top" data-title="70 a 100 mg/">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="glucose_pp">Glucosa en ayuno a 2h PP</label>
                                         <input type="number" min="0" step="0.1" min="0" step="0.1" class="form-control" id="glucose_pp" placeholder="Glucosa en ayuno Glucosa a 2 h PP" value="{{ old('glucose_pp') }}" name="glucose_pp" data-trigger="focus" data-toggle="tooltip" data-container="body"
-                                            data-placement="top" data-title="70 a 100 mg/dl< 140 mg/dl">
+                                            data-placement="top" data-title="< 140 mg/dl">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="proteins">Proteinas Totales</label>

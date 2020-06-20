@@ -18,13 +18,13 @@ class CreateDiametersTable extends Migration
 
             $table->unsignedInteger('body_measure_id');
 
-            $table->decimal('biepicondilar_humero', 11,2)->nullable();
-            $table->decimal('biepicondilar_femur', 11,2)->nullable();
-            $table->decimal('biacromial', 11,2)->nullable();
-            $table->decimal('biliocrestideo', 11,2)->nullable();
-            $table->decimal('longitud_pie', 11,2)->nullable();
-            $table->decimal('transverso_torax', 11,2)->nullable();
-            $table->decimal('profundidad_anteroposterior_torax', 11,2)->nullable();
+            $table->decimal('biepicondilar_humero', 11,3)->nullable();
+            $table->decimal('biepicondilar_femur', 11,3)->nullable();
+            $table->decimal('biacromial', 11,3)->nullable();
+            $table->decimal('biliocrestideo', 11,3)->nullable();
+            $table->decimal('longitud_pie', 11,3)->nullable();
+            $table->decimal('transverso_torax', 11,3)->nullable();
+            $table->decimal('profundidad_anteroposterior_torax', 11,3)->nullable();
 
             $table->foreign('body_measure_id')->references('id')->on('body_measures')->onDelete('cascade');
 

@@ -13,6 +13,86 @@ class FoodGroupEquivalentsTableSeeder extends Seeder
     public function run()
     {
         FoodGroupEquivalent::create([
+            'group_id'      => 1,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 2,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 3,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 4,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 5,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 6,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 7,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 8,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 9,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 10,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
+        ]);
+
+        FoodGroupEquivalent::create([
             'group_id'      => 11,
             'energy'        => 0,
             'protein'       => 0,
@@ -98,6 +178,14 @@ class FoodGroupEquivalentsTableSeeder extends Seeder
             'protein'       => 0,
             'lipids'        => 5,
             'carbohydrates' => 10
+        ]);
+
+        FoodGroupEquivalent::create([
+            'group_id'      => 22,
+            'energy'        => 0,
+            'protein'       => 0,
+            'lipids'        => 0,
+            'carbohydrates' => 0
         ]);
 
         

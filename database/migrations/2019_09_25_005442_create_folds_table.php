@@ -18,16 +18,16 @@ class CreateFoldsTable extends Migration
 
             $table->unsignedInteger('body_measure_id');
 
-            $table->decimal('bicep', 11,2)->nullable();
-            $table->decimal('tricep', 11,2)->nullable();
-            $table->decimal('subescapular', 11,2)->nullable();
-            $table->decimal('suprailiaco', 11,2)->nullable();
-            $table->decimal('supraespinal', 11,2)->nullable();
-            $table->decimal('abdominal', 11,2)->nullable();
-            $table->decimal('muslo_frontal', 11,2)->nullable();
-            $table->decimal('pantorrilla_medial', 11,2)->nullable();
-            $table->decimal('axilar_medial', 11,2)->nullable();
-            $table->decimal('pectoral', 11,2)->nullable();
+            $table->decimal('bicep', 11,3)->nullable();
+            $table->decimal('tricep', 11,3)->nullable();
+            $table->decimal('subescapular', 11,3)->nullable();
+            $table->decimal('suprailiaco', 11,3)->nullable();
+            $table->decimal('supraespinal', 11,3)->nullable();
+            $table->decimal('abdominal', 11,3)->nullable();
+            $table->decimal('muslo_frontal', 11,3)->nullable();
+            $table->decimal('pantorrilla_medial', 11,3)->nullable();
+            $table->decimal('axilar_medial', 11,3)->nullable();
+            $table->decimal('pectoral', 11,3)->nullable();
 
             $table->foreign('body_measure_id')->references('id')->on('body_measures')->onDelete('cascade');
             $table->timestamps();

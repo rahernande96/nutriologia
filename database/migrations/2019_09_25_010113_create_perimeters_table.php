@@ -18,19 +18,19 @@ class CreatePerimetersTable extends Migration
 
             $table->unsignedInteger('body_measure_id');
 
-            $table->decimal('muneca', 11,2)->nullable();
-            $table->decimal('cintura', 11,2)->nullable();
-            $table->decimal('cadera', 11,2)->nullable();
-            $table->decimal('brazo_relajado', 11,2)->nullable();
-            $table->decimal('brazo_contraido', 11,2)->nullable();
-            $table->decimal('pantorrilla', 11,2)->nullable();
-            $table->decimal('antebrazo', 11,2)->nullable();
-            $table->decimal('cabeza', 11,2)->nullable();
-            $table->decimal('cuello', 11,2)->nullable();
-            $table->decimal('torax', 11,2)->nullable();
-            $table->decimal('muslo', 11,2)->nullable();
-            $table->decimal('muslo_medial', 11,2)->nullable();
-            $table->decimal('tobilo', 11,2)->nullable();
+            $table->decimal('muneca', 11,3)->nullable();
+            $table->decimal('cintura', 11,3)->nullable();
+            $table->decimal('cadera', 11,3)->nullable();
+            $table->decimal('brazo_relajado', 11,3)->nullable();
+            $table->decimal('brazo_contraido', 11,3)->nullable();
+            $table->decimal('pantorrilla', 11,3)->nullable();
+            $table->decimal('antebrazo', 11,3)->nullable();
+            $table->decimal('cabeza', 11,3)->nullable();
+            $table->decimal('cuello', 11,3)->nullable();
+            $table->decimal('torax', 11,3)->nullable();
+            $table->decimal('muslo', 11,3)->nullable();
+            $table->decimal('muslo_medial', 11,3)->nullable();
+            $table->decimal('tobilo', 11,3)->nullable();
 
             $table->foreign('body_measure_id')->references('id')->on('body_measures')->onDelete('cascade');
 

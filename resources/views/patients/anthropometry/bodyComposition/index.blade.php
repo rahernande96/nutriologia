@@ -79,16 +79,20 @@ Paciente: {{ $patient->name }}
                                                     Pequeña
                                                 @elseif($complex >= 9.6 && $complex <= 10.4)
                                                     Normal
-                                                @elseif($complex < 9.6)
+                                                @elseif($complex < 9.6 && $complex > 0)
                                                     Grande
+                                                @else
+                                                    Faltan datos
                                                 @endif
                                             @elseif($patient->gender == 'Femenino')
                                                 @if($complex > 11)
                                                     Pequeña
                                                 @elseif($complex >= 10.1 && $complex <= 11)
                                                     Normal
-                                                @elseif($complex < 10.1)
+                                                @elseif($complex < 10.1 && $complex > 0)
                                                     Grande
+                                                @else
+                                                    Faltan datos
                                                 @endif
                                             @endif
                                         </td>
@@ -376,29 +380,29 @@ Paciente: {{ $patient->name }}
                                         @if(number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') >= 0.01)
                                         <div class="marker text-center" style="margin-left:{{ (number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') - 8.2)/2 }}%;">
                                             <div class="range-marker marker-color-green"></div>
-                                            <span>Masa Osea</span><br>
-                                            <span>{{ number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') }} %</span>
+                                            
+                                            {{-- <span>{{ number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') }} %</span> --}}
                                         </div>
                                         @endif
                                         @if(number_format(($MG*100)/$Sum_Mass, '2', '.', ',') >= 0.01)
                                         <div class="marker text-center" style="margin-left:{{ (number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') + (number_format(($MG*100)/$Sum_Mass, '2', '.', ',')/2) - 8.2) }}%;">
                                             <div class="range-marker marker-color-orange"></div>
-                                            <span>Masa Grasa</span><br>
-                                            <span>{{ number_format(($MG*100)/$Sum_Mass, '2', '.', ',') }} %</span>
+                                           
+                                            {{-- <span>{{ number_format(($MG*100)/$Sum_Mass, '2', '.', ',') }} %</span> --}}
                                         </div>
                                         @endif
                                         @if(number_format(($MMT*100)/$Sum_Mass, '2', '.', ',') >= 0.01)
                                         <div class="marker text-center" style="margin-left:{{ (number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') + number_format(($MG*100)/$Sum_Mass, '2', '.', ',') + (number_format(($MMT*100)/$Sum_Mass, '2', '.', ',')/2) - 8.2) }}%;">
                                             <div class="range-marker marker-color-blue"></div>
-                                            <span>Masa Muscular Total</span><br>
-                                            <span>{{ number_format(($MMT*100)/$Sum_Mass, '2', '.', ',') }} %</span>
+                                           
+                                            {{-- <span>{{ number_format(($MMT*100)/$Sum_Mass, '2', '.', ',') }} %</span> --}}
                                         </div>
                                         @endif
                                         @if(number_format(($MR*100)/$Sum_Mass, '2', '.', ',') >= 0.01)
                                         <div class="marker text-center" style="margin-left:{{ (number_format(($MOR*100)/$Sum_Mass, '2', '.', ',') + number_format(($MG*100)/$Sum_Mass, '2', '.', ',') + number_format(($MMT*100)/$Sum_Mass, '2', '.', ',') + (number_format(($MR*100)/$Sum_Mass, '2', '.', ',')/2) - 8.2) }}%;">
                                             <div class="range-marker marker-color-violet"></div>
-                                            <span>Masa Residual</span><br>
-                                            <span>{{ number_format(($MR*100)/$Sum_Mass, '2', '.', ',') }} %</span>
+                                            
+                                            {{-- <span>{{ number_format(($MR*100)/$Sum_Mass, '2', '.', ',') }} %</span> --}}
                                         </div>
                                         @endif
                                     </div>

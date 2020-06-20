@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Patient;
-use App\BasicMeasure;
-use App\BodyMeasure;
-use App\GctDurninCol;
-use App\BioelectricImpedance;
-use App\Diameter;
-use App\Fold;
 use Alert;
+use App\Fold;
+use App\Patient;
+use App\Diameter;
 use App\Perimeter;
+use App\BodyMeasure;
+use App\BasicMeasure;
+use App\GctDurninCol;
 use Illuminate\Http\Request;
+use App\BioelectricImpedance;
+use App\Traits\MeasurementConverterTrait;
 use Illuminate\Support\Facades\Validator;
 
 class AnthropometryController extends Controller
 {
+    use MeasurementConverterTrait;
+
     public function index($slug)
     {
         $patient = Patient::Where('slug', '=', $slug)->first();
@@ -295,6 +298,7 @@ class AnthropometryController extends Controller
         BioelectricImpedance::create($input);
         Diameter::create($input);
         Fold::create($input);
+
         Perimeter::create($input);
 
         return back()->with('success', 'Datos guardados correctamente.');
@@ -506,7 +510,7 @@ class AnthropometryController extends Controller
   
         //Calculo Deurenberg y Colaboradores
         $constA_Douremberg = 1.2;
-        $constB_Douremberg = 0.3;
+        $constB_Douremberg = 0.23;
         $constD_Douremberg = 5.4;
 
         if($patient->gender == 'Masculino')
@@ -543,8 +547,8 @@ class AnthropometryController extends Controller
             $constB_Yuhasz = 0.153;
         }
 
-        $Yuhastz = $constA_Yuhasz + (($patient->BodyMeasure->Fold->tricep + $patient->BodyMeasure->Fold->subescapular + $patient->BodyMeasure->Fold->suprailiaco + $patient->BodyMeasure->Fold->abdominal + $patient->BodyMeasure->Fold->muslo + $patient->BodyMeasure->Fold->pantorrilla) * $constB_Yuhasz);
-
+        $Yuhastz = $constA_Yuhasz + (($patient->BodyMeasure->Fold->tricep + $patient->BodyMeasure->Fold->subescapular + $patient->BodyMeasure->Fold->suprailiaco + $patient->BodyMeasure->Fold->abdominal + $patient->BodyMeasure->Fold->muslo_frontal + $patient->BodyMeasure->Fold->pantorrilla_medial) * $constB_Yuhasz);
+        
         //Impdancia magnetica
         $magnetic_impedance = $patient->BodyMeasure->BioelectricImpedance->total_fat_porcent;
 
@@ -570,9 +574,14 @@ class AnthropometryController extends Controller
         else {
             $constB_AMBd = 6.5;
         }
+        $AMBd_result1 = $patient->BodyMeasure->Perimeter->brazo_relajado - ($pi * $this->mmToCm($patient->BodyMeasure->Fold->tricep)) ;
+        
+        $AMBd_result1 = pow($AMBd_result1,$constB_AMB);
+        
+        $AMBd_result1 = $AMBd_result1 - $constB_AMB;
 
-        $AMBd = ((($patient->BodyMeasure->Perimeter->brazo_relajado -($pi * ($patient->BodyMeasure->Fold->tricep/100))) * ($patient->BodyMeasure->Perimeter->brazo_relajado -($pi * ($patient->BodyMeasure->Fold->tricep/100)))) - $constB_AMBd)/($constC_AMBd * $pi);
-         
+        $AMBd = $AMBd_result1/($constC_AMBd * $pi);
+        
         if($patient->BodyMeasure->Perimeter->brazo_relajado == 0)
         {
             Alert::error('El perimetro del brazo debe ser diferente de cero.', 'Error en Medidas Básicas')->autoclose(3500);
@@ -610,18 +619,18 @@ class AnthropometryController extends Controller
         $constB_MOR = 400;
         $constC_MOR = 0.712;
         $talla_MOR = pow($patient->BasicMeasure->size,2);
-        $MOR = number_format($constA_MOR * pow(($talla_MOR * $patient->BodyMeasure->Perimeter->muneca * $patient->BodyMeasure->Diameter->biepicondilar_femur * $constB_MOR), $constC_MOR), 2, '.', '');
-
+        $MOR = number_format($constA_MOR * pow(($talla_MOR * $this->cmToMeters($patient->BodyMeasure->Perimeter->muneca) * $this->cmToMeters($patient->BodyMeasure->Diameter->biepicondilar_femur) * $constB_MOR), $constC_MOR), 2, '.', '');
+        // dd($patient->BodyMeasure->Perimeter->muneca);
         //Calculamos la Masa Grasa
         $const_MG = 100;
         $MG = number_format(($patient->BasicMeasure->weight * $DeurenbergCol)/$const_MG, 2, '.', '');
-
+        
         //Calculamos la Masa Muscular Total
         $constA_MMT = 0.0264;
         $constB_MMT = 0.0029;
 
-        $MMT = number_format($patient->BasicMeasure->size * ($constA_MMT + ($constB_MMT * $AMBd)), 2, '.', '');
-
+        $MMT = number_format($this->metersToCm($patient->BasicMeasure->size) * ($constA_MMT + ($constB_MMT * $AMBd)), 2, '.', '');
+        
         //calculo de Masa Residual. Wurch
         if($patient->gender == 'Masculino')
         { 
@@ -634,9 +643,10 @@ class AnthropometryController extends Controller
         $constB_MR = 100;
 
         $MR = number_format(($patient->BasicMeasure->weight * $constA_MR)/$constB_MR, 2, '.', '');
-
+        
         //SumatoriaTotal de Masas
         $Sum_Mass = $MOR + $MG + $MMT + $MR;
+        
         return View('patients.anthropometry.bodyComposition.index', compact('patient', 'complex', 'ICC', 'dos_pliegues', 'siri', 'DW', 'pliegues_4', 'DeurenbergCol', 'Faulkner', 'Yuhastz', 'magnetic_impedance', 'prom', 'AMB', 'AGB', 'IAG', 'ACT', 'MOR', 'MG', 'MMT', 'MR', 'Sum_Mass'));
     }
 
@@ -662,9 +672,9 @@ class AnthropometryController extends Controller
         $constC_Endomorph = 0.00068;
         $constD_Endomorph = 0.0000014;
         $pliegues_3 = $patient->BodyMeasure->Fold->tricep + $patient->BodyMeasure->Fold->subescapular + $patient->BodyMeasure->Fold->suprailiaco;
-
-        $Endomorph = number_format($constA_Endomorph + ($constB_Endomorph * $pliegues_3) - ($constC_Endomorph * pow($pliegues_3, 2)) + ($constD_Endomorph * pow($pliegues_3, 3)), 1, '.', '');
-
+        
+        $Endomorph = number_format((-$constA_Endomorph) + ($constB_Endomorph * $pliegues_3) - ($constC_Endomorph * pow($pliegues_3, 2)) + ($constD_Endomorph * pow($pliegues_3, 3)), 2, '.', '');
+        
         //Calculo de Mesomorfia
         $constA_Mesomorph = 0.858;
         $constB_Mesomorph = 0.601;
@@ -673,7 +683,8 @@ class AnthropometryController extends Controller
         $constE_Mesomorph = 0.131;
         $constF_Mesomorph = 4.5;
 
-        $brazo_corregido = $patient->BodyMeasure->Perimeter->brazo_contraido - $patient->BodyMeasure->Fold->tricep;
+        $brazo_corregido = $patient->BodyMeasure->Perimeter->brazo_contraido - $this->mmToCm($patient->BodyMeasure->Fold->tricep);
+        
         $pierna_corregido = $patient->BodyMeasure->Perimeter->pantorrilla - $patient->BodyMeasure->Fold->pantorrilla_medial;
 
         $Mesomorph = number_format((($constA_Mesomorph * $patient->BodyMeasure->Diameter->biepicondilar_humero) + ($constB_Mesomorph *$patient->BodyMeasure->Diameter->biepicondilar_femur) + ($constC_Mesomorph * $brazo_corregido) + ($constD_Mesomorph * $pierna_corregido)) - ($constE_Mesomorph * ($patient->BasicMeasure->size * 100)) + $constF_Mesomorph, 2, '.', '');
@@ -681,7 +692,7 @@ class AnthropometryController extends Controller
         //Calculo de Ectoomorfia
         //calculamos el indice ponderal
         $IP = number_format(($patient->BasicMeasure->size * 100)/pow($patient->BasicMeasure->weight, 1/3), 2, '.', '');
-
+        
         if($IP <= 38.25)
         {
             $Ectomorph = 0.1;

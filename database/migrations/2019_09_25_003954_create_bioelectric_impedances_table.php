@@ -18,31 +18,31 @@ class CreateBioelectricImpedancesTable extends Migration
 
             $table->unsignedInteger('body_measure_id');
 
-            $table->decimal('body_weight', 11,2)->nullable();
+            $table->decimal('body_weight', 11,3)->nullable();
 
-            $table->decimal('total_fat_kg', 11,2)->nullable();
-            $table->decimal('total_fat_porcent', 11,2)->nullable();
+            $table->decimal('total_fat_kg', 11,3)->nullable();
+            $table->decimal('total_fat_porcent', 11,3)->nullable();
 
-            $table->decimal('upper_fat_kg', 11,2)->nullable();
-            $table->decimal('upper_fat_porcent', 11,2)->nullable();
+            $table->decimal('upper_fat_kg', 11,3)->nullable();
+            $table->decimal('upper_fat_porcent', 11,3)->nullable();
 
-            $table->decimal('lower_fat_kg', 11,2)->nullable();
-            $table->decimal('lower_fat_porcent', 11,2)->nullable();
+            $table->decimal('lower_fat_kg', 11,3)->nullable();
+            $table->decimal('lower_fat_porcent', 11,3)->nullable();
 
-            $table->decimal('visceral_mass_kg', 11,2)->nullable();
-            $table->decimal('visceral_mass_porcent', 11,2)->nullable();
+            $table->decimal('visceral_mass_kg', 11,3)->nullable();
+            $table->decimal('visceral_mass_porcent', 11,3)->nullable();
 
-            $table->decimal('fat_free_dough_kg', 11,2)->nullable();
-            $table->decimal('fat_free_dough_porcent', 11,2)->nullable();
+            $table->decimal('fat_free_dough_kg', 11,3)->nullable();
+            $table->decimal('fat_free_dough_porcent', 11,3)->nullable();
 
-            $table->decimal('muscle_mass_kg', 11,2)->nullable();
-            $table->decimal('muscle_mass_porcent', 11,2)->nullable();
+            $table->decimal('muscle_mass_kg', 11,3)->nullable();
+            $table->decimal('muscle_mass_porcent', 11,3)->nullable();
 
-            $table->decimal('bone_weight_kg', 11,2)->nullable();
-            $table->decimal('bone_weight_porcent', 11,2)->nullable();
+            $table->decimal('bone_weight_kg', 11,3)->nullable();
+            $table->decimal('bone_weight_porcent', 11,3)->nullable();
 
-            $table->decimal('body_water_l', 11,2)->nullable();
-            $table->decimal('body_water_porcent', 11,2)->nullable();
+            $table->decimal('body_water_l', 11,3)->nullable();
+            $table->decimal('body_water_porcent', 11,3)->nullable();
 
             $table->integer('metabolic_age')->nullable();
 
