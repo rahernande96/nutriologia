@@ -454,7 +454,9 @@ class AnthropometryController extends Controller
         {
             $densidad = $c - ($m * log10($bic_tric));
           
-            $siri = number_format((($constA/$densidad) - $constA) * 100, 2, '.', '');
+            $siri = number_format((($constA/$densidad) - $constB) * 100, 2, '.', '');
+
+            
         }
         else
         {
@@ -685,7 +687,7 @@ class AnthropometryController extends Controller
 
         $brazo_corregido = $patient->BodyMeasure->Perimeter->brazo_contraido - $this->mmToCm($patient->BodyMeasure->Fold->tricep);
         
-        $pierna_corregido = $patient->BodyMeasure->Perimeter->pantorrilla - $patient->BodyMeasure->Fold->pantorrilla_medial;
+        $pierna_corregido = $patient->BodyMeasure->Perimeter->pantorrilla - $this->mmToCm($patient->BodyMeasure->Fold->pantorrilla_medial);
 
         $Mesomorph = number_format((($constA_Mesomorph * $patient->BodyMeasure->Diameter->biepicondilar_humero) + ($constB_Mesomorph *$patient->BodyMeasure->Diameter->biepicondilar_femur) + ($constC_Mesomorph * $brazo_corregido) + ($constD_Mesomorph * $pierna_corregido)) - ($constE_Mesomorph * ($patient->BasicMeasure->size * 100)) + $constF_Mesomorph, 2, '.', '');
 

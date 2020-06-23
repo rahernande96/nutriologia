@@ -56,7 +56,152 @@ Paciente: {{ $patient->name }}
 @section('extra-js')
 <!-- easycomplete -->
 <script src="{{ asset('js/easyautocomplete/js/jquery.easy-autocomplete.min.js') }}"></script>
+
+
+<script type="text/javascript">
+    const weight = "{{ $patient->basicMeasure->weight }}"; 
+
+    let kcal_element = document.getElementsByName('kcal')[0];
+    let kcal_element_value = kcal_element.value;
+
+    let supplement_value_element = document.getElementById('supplement_value');
+    let supplement_value_ = supplement_value_element.value;
+    
+    supplement_value_element.addEventListener('keyup',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+
+    });
+
+    supplement_value_element.addEventListener('mouseup',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+    });
+
+    supplement_value_element.addEventListener('wheel',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+    });
+
+
+    kcal_element.addEventListener('keyup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('mouseup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('wheel',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    function setGet(e){
+        if(supplement_value_ == ""){
+            supplement_value_ = 0;
+        }
+        
+        document.getElementsByName('get')[0].value = ((kcal_element_value * weight) - supplement_value_ ).toFixed(2);
+    }
+
+
+
+</script>
+
+
 <script>
+
+
+    $('.percentage_rapid').bind('keyup mouseup wheel', function (e) {
+
+        var event_control = true;
+
+        if(e.type == "keyup"){
+            if( e.which != 9 ) {
+                event_control = false;
+            }
+        }
+        
+
+        if(event_control){
+
+            var count = 0;
+            var elements = [];
+            var element_empty;
+            elements.push($('[name="percentage_carbohydrates"]'));
+
+            if(elements[0].val() == ""){
+
+                element_empty = $('[name="percentage_carbohydrates"]');
+
+                count++;
+
+            }
+
+            elements.push($('[name="percentage_protein"]'));
+
+            if(elements[1].val() == ""){
+
+                element_empty = $('[name="percentage_protein"]');
+
+                count++;
+
+            }
+
+            elements.push($('[name="percentage_lipids"]'));
+
+            if(elements[2].val() == ""){
+
+                element_empty = $('[name="percentage_lipids"]');
+
+                count++;
+
+            }
+
+            var value = 0;
+            var percentage = 100;
+            
+            if(count==1 && e.target.name == element_empty.attr('name')){
+                
+                for(var i=0; i < elements.length; i++ ){
+
+                    if(elements[i].attr('name') != element_empty.attr('name')){
+                        console.log(elements[i].val());
+                        value = value + parseFloat(elements[i].val());
+                    }
+
+                }
+                console.log(value);
+                if(value <= percentage){
+
+                }
+                    element_empty.val(percentage-value);
+
+            }
+                
+            calculateCarbohidrates();
+            calculateLipids();
+            calculateProteins();
+        }
+
+        
+
+
+         
+    });
+
     $('input[name="supplement"]').click(function(){
         if( $(this).is(':checked') )
         {
@@ -65,6 +210,8 @@ Paciente: {{ $patient->name }}
         else
         {
             $('input[name="supplement_value"]').attr('disabled', true);
+            supplement_value_ = document.getElementById('supplement_value').value = 0;
+            setGet();
         }
     });
 
@@ -512,4 +659,8 @@ Paciente: {{ $patient->name }}
 
 
 </script>
+
+@if($energy_requirement->type_get == 1 || $energy_requirement->type_get == 2)
+<script src="{{ asset('js/energy_requeriment.js') }}"></script>
+@endif
 @endsection

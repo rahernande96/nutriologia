@@ -242,9 +242,11 @@ class DieteticController extends Controller
             //Calculo de gramos/Kc
             $lipids_gr = number_format($lipids/$gr_Lp, 2, '.', '');
 
+
             //Calculo de proteinas
-            $protein_gr = $total_energy_expenditure->gr_kg_proteins * $patient->basicMeasure->weight;
-            $protein = $protein_gr * $gr_Pt;
+            $protein = ($total_energy_expenditure->percentage_protein * $total_energy_expenditure->get)/100;
+            $protein_gr = ($total_energy_expenditure->gr_kg_proteins * $patient->basicMeasure->weight)* $gr_Pt;
+            
 
             //$protein = ($total_energy_expenditure->percentage_protein * $total_energy_expenditure->get)/100;
             //$protein_gr = number_format($protein/$gr_Pt, 2, '.', '');

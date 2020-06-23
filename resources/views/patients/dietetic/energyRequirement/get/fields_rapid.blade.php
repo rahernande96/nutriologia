@@ -105,17 +105,18 @@
                             <input class="form-control percentage_rapid" name="percentage_carbohydrates" type="number" step="0.1" required >
                             
                         </td>
-                        <td>
+                        <td id="carboHidratesValue">
                             @if(isset($carboHidrates))
                                 {{ $carboHidrates }}
                             @endif
                         </td>
-                        <td>
+                        <td id="carboHidratesValueGr">
+
                             @if(isset($carboHidrates_gr))
                                 {{ $carboHidrates_gr }}
                             @endif
                         </td>
-                        <td>
+                        <td id="carboHidratesValueGrKg">
                             @if(isset($carboHidrates_gr))
                                 {{ $carboHidrates_gr/$patient->basicMeasure->weight }}
                             @endif
@@ -129,17 +130,17 @@
                         <td>
                             <input class="form-control percentage_rapid" name="percentage_lipids" type="number" step="0.1" required >
                         </td>
-                        <td>
+                        <td id="lipidsValue">
                             @if(isset($lipids))
                                 {{ $lipids }}
                             @endif
                         </td>
-                        <td>
+                        <td id="lipidsValueGr">
                             @if(isset($lipids_gr))
                                 {{ $lipids_gr }}
                             @endif
                         </td>
-                        <td>
+                        <td id="lipidsValueGrKg">
                             {{--
                             {!! Form::number('gr_kg_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
                             --}}
@@ -153,12 +154,12 @@
                         <td>
                             <input class="form-control percentage_rapid" name="percentage_protein"  type="number" step="0.1" required >
                         </td>
-                        <td>
+                        <td id="proteinValue">
                             @if(isset($protein))
                                 {{ $protein }}
                             @endif
                         </td>
-                        <td>
+                        <td id="proteinValueGr">
                             @if(isset($protein_gr))
                                 {{ $protein_gr }}
                             @endif

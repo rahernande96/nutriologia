@@ -60,9 +60,78 @@ Paciente: {{ $patient->name }}
 
     <!-- easycomplete -->
 <script src="{{ asset('js/easyautocomplete/js/jquery.easy-autocomplete.min.js') }}"></script>
+
+@if($energy_requirement->type_get == 1)
+<script type="text/javascript">
+    const weight = "{{ $patient->basicMeasure->weight }}"; 
+
+    let kcal_element = document.getElementsByName('kcal')[0];
+    let kcal_element_value = kcal_element.value;
+
+    let supplement_value_element = document.getElementById('supplement_value');
+    let supplement_value_ = supplement_value_element.value;
+    
+    supplement_value_element.addEventListener('keyup',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+
+    });
+
+    supplement_value_element.addEventListener('mouseup',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+    });
+
+    supplement_value_element.addEventListener('wheel',function(e){
+
+        supplement_value_ = supplement_value_element.value
+        setGet();
+    });
+
+
+    kcal_element.addEventListener('keyup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('mouseup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('wheel',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    function setGet(e){
+        if(supplement_value_ == ""){
+            supplement_value_ = 0;
+        }
+        
+        document.getElementsByName('get')[0].value = ((kcal_element_value * weight) - supplement_value_ ).toFixed(2);
+        
+        calculateCarbohidrates();
+        calculateLipids();
+        calculateProteins();
+    }
+
+
+
+</script>
+@endif
+
 <script>
 
-    @if($energy_requirement->type_get == 1 || $energy_requirement->type_get == 2)
+    
     
     $('[name="percentage_carbohydrates"]').val({{ $total_energy_expenditure->percentage_carbohydrates }});
     $('[name="percentage_protein"]').val({{ $total_energy_expenditure->percentage_protein }});
@@ -135,7 +204,9 @@ Paciente: {{ $patient->name }}
 
             }
                 
-
+            calculateCarbohidrates();
+            calculateLipids();
+            calculateProteins();
         }
 
         
@@ -145,7 +216,8 @@ Paciente: {{ $patient->name }}
     });
     
         
-    @endif
+
+ 
 
     $('input[name="supplement"]').click(function(){
         if( $(this).is(':checked') )
@@ -155,6 +227,9 @@ Paciente: {{ $patient->name }}
         else
         {
             $('input[name="supplement_value"]').attr('disabled', true);
+            supplement_value_ = document.getElementById('supplement_value').value = 0;
+            setGet();
+
         }
     });
 
@@ -495,7 +570,9 @@ Paciente: {{ $patient->name }}
         }
      });
 </script>
+
 @if(isset($macro_chart))
+
 <script>
     "use strict";
     // Class definition
@@ -549,8 +626,15 @@ Paciente: {{ $patient->name }}
     
     ChartsFrequencyComsumption.init();
 
-
     
+
 </script>
+
+
 @endif
+
+@if($energy_requirement->type_get == 1 || $energy_requirement->type_get == 2)
+<script src="{{ asset('js/energy_requeriment.js') }}"></script>
+@endif
+
 @endsection
