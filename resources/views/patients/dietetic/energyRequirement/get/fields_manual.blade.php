@@ -104,37 +104,24 @@
                             <td>
                                 {!! Form::number('percentage_carbohydrates', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
                             </td>
-                            <td>
+                            <td id="carboHidratesValue">
                                 @if(isset($carboHidrates))
                                     {{ $carboHidrates }}
                                 @endif
                             </td>
-                            <td>
+                            <td id="carboHidratesValueGr">
+    
                                 @if(isset($carboHidrates_gr))
                                     {{ $carboHidrates_gr }}
                                 @endif
                             </td>
-                            <td>
-                                {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'readonly']) !!}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Proteinas</td>
-                            <td>
-                                {!! Form::number('percentage_protein', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
-                            </td>
-                            <td>
-                                @if(isset($protein))
-                                    {{ $protein }}
+                            <td id="carboHidratesValueGrKg">
+                                @if(isset($carboHidrates_gr))
+                                    {{ $carboHidrates_gr/$patient->basicMeasure->weight }}
                                 @endif
-                            </td>
-                            <td>
-                                @if(isset($protein_gr))
-                                    {{ $protein_gr }}
-                                @endif
-                            </td>
-                            <td>
-                                {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1', 'readonly' ]) !!}
+                                {{--
+                                    {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                                --}}
                             </td>
                         </tr>
                         <tr>
@@ -142,18 +129,42 @@
                             <td>
                                 {!! Form::number('percentage_lipids', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
                             </td>
-                            <td>
+                            <td id="lipidsValue">
                                 @if(isset($lipids))
                                     {{ $lipids }}
                                 @endif
                             </td>
-                            <td>
+                            <td id="lipidsValueGr">
                                 @if(isset($lipids_gr))
                                     {{ $lipids_gr }}
                                 @endif
                             </td>
+                            <td id="lipidsValueGrKg">
+                                {{--
+                                {!! Form::number('gr_kg_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                                --}}
+                                @if(isset($lipids_gr))
+                                    {{ $lipids_gr/$patient->basicMeasure->weight }}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
                             <td>
-                                {!! Form::number('gr_kg_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => true]) !!}
+                                {!! Form::number('percentage_protein', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
+                            </td>
+                            <td id="proteinValue">
+                                @if(isset($protein))
+                                    {{ $protein }}
+                                @endif
+                            </td>
+                            <td id="proteinValueGr">
+                                @if(isset($protein_gr))
+                                    {{ $protein_gr }}
+                                @endif
+                            </td>
+                            <td>
+                                {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1' ]) !!}
                             </td>
                         </tr>
                     </tbody>

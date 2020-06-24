@@ -108,31 +108,31 @@
                                         <div class="form-group" id="fisic_activity_items" style="display:block;">
                                             <div class="form-check p-0">
                                                 <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Sedentario 1</span>
-                                                    {!! Form::radio('fisic_activity', '1') !!}
+                                                    {!! Form::radio('fisic_activity', '1', 'required') !!}
                                                     <span class="checkmark mt-1"></span>
                                                 </label>
                                             </div>
                                             <div class="form-check p-0">
                                                 <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Poco Activo 1.14</span>
-                                                    {!! Form::radio('fisic_activity', '2') !!}
+                                                    {!! Form::radio('fisic_activity', '2', 'required') !!}
                                                     <span class="checkmark mt-1"></span>
                                                 </label>
                                             </div>
                                             <div class="form-check p-0">
                                                 <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Activo 1.27</span>
-                                                    {!! Form::radio('fisic_activity', '3') !!}
+                                                    {!! Form::radio('fisic_activity', '3', 'required') !!}
                                                     <span class="checkmark mt-1"></span>
                                                 </label>
                                             </div>
                                             <div class="form-check p-0">
                                                 <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Muy Activo 1.45</span>
-                                                    {!! Form::radio('fisic_activity', '4') !!}
+                                                    {!! Form::radio('fisic_activity', '4', 'required') !!}
                                                     <span class="checkmark mt-1"></span>
                                                 </label>
                                             </div>
                                             <div class="form-check p-0">
                                                 <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Factor Añadido</span>
-                                                    {!! Form::radio('fisic_activity', '5') !!}
+                                                    {!! Form::radio('fisic_activity', '5', 'required') !!}
                                                     <span class="checkmark mt-1"></span>
                                                 </label>
                                             </div>
@@ -251,31 +251,32 @@
                                             <div class="form-group" id="fisic_activity_items" style="display:block;">
                                                 <div class="form-check p-0">
                                                     <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Sedentario 1</span>
-                                                        {!! Form::radio('fisic_activity', '1') !!}
+                                                        
+                                                        {!! Form::radio('fisic_activity', '1', 'required') !!}
                                                         <span class="checkmark mt-1"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-check p-0">
                                                     <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Poco Activo 1.14</span>
-                                                        {!! Form::radio('fisic_activity', '2') !!}
+                                                        {!! Form::radio('fisic_activity', '2', 'required') !!}
                                                         <span class="checkmark mt-1"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-check p-0">
                                                     <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Activo 1.27</span>
-                                                        {!! Form::radio('fisic_activity', '3') !!}
+                                                        {!! Form::radio('fisic_activity', '3', 'required') !!}
                                                         <span class="checkmark mt-1"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-check p-0">
                                                     <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Muy Activo 1.45</span>
-                                                        {!! Form::radio('fisic_activity', '4') !!}
+                                                        {!! Form::radio('fisic_activity', '4', 'required') !!}
                                                         <span class="checkmark mt-1"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-check p-0">
                                                     <label class="customradio mr-1 ml-1 pl-4"><span class="radiotextsty">Factor Añadido</span>
-                                                        {!! Form::radio('fisic_activity', '5') !!}
+                                                        {!! Form::radio('fisic_activity', '5', 'required') !!}
                                                         <span class="checkmark mt-1"></span>
                                                     </label>
                                                 </div>
@@ -493,26 +494,9 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::number('gr_kg_carbohydrates', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false, 'disabled'    => true]) !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Proteinas</td>
-                        <td>
-                            {!! Form::number('percentage_protein', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
-                        </td>
-                        <td>
-                            @if(isset($protein))
-                                {{ $protein }}
+                            @if(isset($carboHidrates_gr))
+                                {{ $carboHidrates_gr/$patient->basicMeasure->weight }}
                             @endif
-                        </td>
-                        <td>
-                            @if(isset($protein_gr))
-                                {{ $protein_gr }}
-                            @endif
-                        </td>
-                        <td>
-                            {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'  => true, 'disabled'    => true]) !!}
                         </td>
                     </tr>
                     <tr>
@@ -531,7 +515,28 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::number('gr_kg_lipids', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'    => false]) !!}
+                            @if(isset($lipids_gr))
+                                {{ $lipids_gr/$patient->basicMeasure->weight }}
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Proteinas</td>
+                        <td>
+                            {!! Form::number('percentage_protein', null, ['class'   => 'form-control percentage_rapid', 'step'   => '0.1', 'required'    => true]) !!}
+                        </td>
+                        <td>
+                            @if(isset($protein))
+                                {{ $protein }}
+                            @endif
+                        </td>
+                        <td>
+                            @if(isset($protein_gr))
+                                {{ $protein_gr }}
+                            @endif
+                        </td>
+                        <td>
+                            {!! Form::number('gr_kg_proteins', null, ['class'   => 'form-control', 'step'   => '0.1', 'required'  => true]) !!}
                         </td>
                     </tr>
                 </tbody>

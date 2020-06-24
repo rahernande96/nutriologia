@@ -60,3 +60,80 @@ document.getElementsByName('gr_kg_proteins')[0].addEventListener('wheel',functio
     calculateProteins();
 
 });
+
+
+
+if(TYPE_GET == 1){
+        
+    let kcal_element = document.getElementsByName('kcal')[0];
+
+    let kcal_element_value = kcal_element.value;
+
+}
+
+
+let supplement_value_element = document.getElementById('supplement_value');
+let supplement_value_ = supplement_value_element.value;
+
+supplement_value_element.addEventListener('keyup',function(e){
+
+    supplement_value_ = supplement_value_element.value
+    setGet();
+
+});
+
+supplement_value_element.addEventListener('mouseup',function(e){
+
+    supplement_value_ = supplement_value_element.value
+    setGet();
+});
+
+supplement_value_element.addEventListener('wheel',function(e){
+
+    supplement_value_ = supplement_value_element.value
+    setGet();
+});
+
+
+if(TYPE_GET == 1){
+
+
+    kcal_element.addEventListener('keyup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('mouseup',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+    kcal_element.addEventListener('wheel',function(e){
+
+        kcal_element_value = kcal_element.value
+        setGet();
+
+    });
+
+}
+
+function setGet(e){
+
+    if(TYPE_GET == 1){
+
+    if(supplement_value_ == ""){
+        supplement_value_ = 0;
+    }
+    
+        document.getElementsByName('get')[0].value = ((kcal_element_value * weight) - supplement_value_ ).toFixed(2);
+    } else {
+
+    } 
+    calculateCarbohidrates();
+    calculateLipids();
+    calculateProteins();
+}
