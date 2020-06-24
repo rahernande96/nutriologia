@@ -64,7 +64,7 @@ Paciente: {{ $patient->name }}
 
 <script type="text/javascript">
 
-    const TYPE_GET = "{{$energy_requirement->type_get}}";
+    const TYPE_GET = {{$energy_requirement->type_get}};
 
     const weight = "{{ $patient->basicMeasure->weight }}"; 
 
@@ -98,6 +98,8 @@ Paciente: {{ $patient->name }}
             var elements = [];
             var element_empty;
             elements.push($('[name="percentage_carbohydrates"]'));
+
+            document.getElementById('macro_chart').setAttribute('style','display:none;');
 
             if(elements[0].val() == ""){
 

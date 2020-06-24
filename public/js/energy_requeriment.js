@@ -63,14 +63,6 @@ document.getElementsByName('gr_kg_proteins')[0].addEventListener('wheel',functio
 
 
 
-if(TYPE_GET == 1){
-        
-    let kcal_element = document.getElementsByName('kcal')[0];
-
-    let kcal_element_value = kcal_element.value;
-
-}
-
 
 let supplement_value_element = document.getElementById('supplement_value');
 let supplement_value_ = supplement_value_element.value;
@@ -97,6 +89,9 @@ supplement_value_element.addEventListener('wheel',function(e){
 
 if(TYPE_GET == 1){
 
+    var kcal_element = document.getElementsByName('kcal')[0];
+
+    var kcal_element_value = kcal_element.value;
 
     kcal_element.addEventListener('keyup',function(e){
 

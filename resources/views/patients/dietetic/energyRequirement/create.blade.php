@@ -60,7 +60,7 @@ Paciente: {{ $patient->name }}
 
 <script type="text/javascript">
 
-    const TYPE_GET = "{{$energy_requirement->type_get}}";
+    const TYPE_GET = {{$energy_requirement->type_get}};
 
     const weight = "{{ $patient->basicMeasure->weight }}"; 
 
