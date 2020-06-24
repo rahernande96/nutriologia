@@ -148,45 +148,45 @@ class FoodGroupEquivalentsTableSeeder extends Seeder
             'carbohydrates' => 30
         ]);
 
-        FoodGroupEquivalent::create([
-            'group_id'      => 18,
-            'energy'        => 45,
-            'protein'       => 0,
-            'lipids'        => 5,
-            'carbohydrates' => 0
-        ]);
+        // FoodGroupEquivalent::create([
+        //     'group_id'      => 18,
+        //     'energy'        => 45,
+        //     'protein'       => 0,
+        //     'lipids'        => 5,
+        //     'carbohydrates' => 0
+        // ]);
 
-        FoodGroupEquivalent::create([
-            'group_id'      => 19,
-            'energy'        => 70,
-            'protein'       => 3,
-            'lipids'        => 5,
-            'carbohydrates' => 3
-        ]);
+        // FoodGroupEquivalent::create([
+        //     'group_id'      => 19,
+        //     'energy'        => 70,
+        //     'protein'       => 3,
+        //     'lipids'        => 5,
+        //     'carbohydrates' => 3
+        // ]);
 
-        FoodGroupEquivalent::create([
-            'group_id'      => 20,
-            'energy'        => 40,
-            'protein'       => 0,
-            'lipids'        => 0,
-            'carbohydrates' => 10
-        ]);
+        // FoodGroupEquivalent::create([
+        //     'group_id'      => 20,
+        //     'energy'        => 40,
+        //     'protein'       => 0,
+        //     'lipids'        => 0,
+        //     'carbohydrates' => 10
+        // ]);
 
-        FoodGroupEquivalent::create([
-            'group_id'      => 21,
-            'energy'        => 85,
-            'protein'       => 0,
-            'lipids'        => 5,
-            'carbohydrates' => 10
-        ]);
+        // FoodGroupEquivalent::create([
+        //     'group_id'      => 21,
+        //     'energy'        => 85,
+        //     'protein'       => 0,
+        //     'lipids'        => 5,
+        //     'carbohydrates' => 10
+        // ]);
 
-        FoodGroupEquivalent::create([
-            'group_id'      => 22,
-            'energy'        => 0,
-            'protein'       => 0,
-            'lipids'        => 0,
-            'carbohydrates' => 0
-        ]);
+        // FoodGroupEquivalent::create([
+        //     'group_id'      => 22,
+        //     'energy'        => 0,
+        //     'protein'       => 0,
+        //     'lipids'        => 0,
+        //     'carbohydrates' => 0
+        // ]);
 
         
     }

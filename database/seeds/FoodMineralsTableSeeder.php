@@ -751,226 +751,226 @@ class FoodMineralsTableSeeder extends Seeder
             'selenio' => 0.7
         ]);
 
-         FoodMineral::create([
-            'food_id' => 83, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.4, 
-            'sodio' => 382.5, 
-            'calcio' => 3.0, 
-            'fosforo' => 0, 
-            'selenio' => 0.8
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 83, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.4, 
+        //     'sodio' => 382.5, 
+        //     'calcio' => 3.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0.8
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 84, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.1, 
-            'sodio' => 564.9, 
-            'calcio' => 236.0, 
-            'fosforo' => 0, 
-            'selenio' => 1.1
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 84, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.1, 
+        //     'sodio' => 564.9, 
+        //     'calcio' => 236.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 1.1
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 85, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.8, 
-            'sodio' => 133.2, 
-            'calcio' => 50.4, 
-            'fosforo' => 0, 
-            'selenio' => 0.2
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 85, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.8, 
+        //     'sodio' => 133.2, 
+        //     'calcio' => 50.4, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0.2
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 86, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.2, 
-            'sodio' => 219.5, 
-            'calcio' => 176.8, 
-            'fosforo' => 0, 
-            'selenio' => 1.3
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 86, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.2, 
+        //     'sodio' => 219.5, 
+        //     'calcio' => 176.8, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 1.3
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 87, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 1.0, 
-            'sodio' => 0, 
-            'calcio' => 140.7, 
-            'fosforo' => 0, 
-            'selenio' => 1.1
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 87, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 1.0, 
+        //     'sodio' => 0, 
+        //     'calcio' => 140.7, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 1.1
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 88, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.5, 
-            'sodio' => 252.8, 
-            'calcio' => 4.4, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 88, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.5, 
+        //     'sodio' => 252.8, 
+        //     'calcio' => 4.4, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 89, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0.9, 
-            'sodio' => 22.8, 
-            'calcio' => 5.9, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 89, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0.9, 
+        //     'sodio' => 22.8, 
+        //     'calcio' => 5.9, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 90, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 126.0, 
-            'calcio' => 302.0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 90, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 126.0, 
+        //     'calcio' => 302.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 91, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 120.0, 
-            'calcio' => 247.7, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 91, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 120.0, 
+        //     'calcio' => 247.7, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 92, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 36.6, 
-            'calcio' => 99.0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 92, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 36.6, 
+        //     'calcio' => 99.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
 
-         FoodMineral::create([
-            'food_id' => 93, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 1.1, 
-            'sodio' => 123.0, 
-            'calcio' => 300.0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 93, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 1.1, 
+        //     'sodio' => 123.0, 
+        //     'calcio' => 300.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 94, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 118.0, 
-            'calcio' => 286.2, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 94, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 118.0, 
+        //     'calcio' => 286.2, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 95, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 105.0, 
-            'calcio' => 274.0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 95, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 105.0, 
+        //     'calcio' => 274.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 96, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 105.0, 
-            'calcio' => 274.0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 96, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 105.0, 
+        //     'calcio' => 274.0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 97, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 79.2, 
-            'calcio' => 126.7, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 97, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 79.2, 
+        //     'calcio' => 126.7, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 98, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 0, 
-            'calcio' => 0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 98, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 0, 
+        //     'calcio' => 0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 99, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 604.8, 
-            'calcio' => 0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 99, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 604.8, 
+        //     'calcio' => 0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 100, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 354.0, 
-            'calcio' => 0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 100, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 354.0, 
+        //     'calcio' => 0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 101, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 1.0, 
-            'calcio' => 0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 101, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 1.0, 
+        //     'calcio' => 0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
-         FoodMineral::create([
-            'food_id' => 102, 
-            'hierro_NO' => 0, 
-            'potasio' => 0, 
-            'hierro' => 0, 
-            'sodio' => 10.5, 
-            'calcio' => 0, 
-            'fosforo' => 0, 
-            'selenio' => 0
-        ]);
+        //  FoodMineral::create([
+        //     'food_id' => 102, 
+        //     'hierro_NO' => 0, 
+        //     'potasio' => 0, 
+        //     'hierro' => 0, 
+        //     'sodio' => 10.5, 
+        //     'calcio' => 0, 
+        //     'fosforo' => 0, 
+        //     'selenio' => 0
+        // ]);
 
         /* FoodMineral::create([
             'food_id' => 103, 

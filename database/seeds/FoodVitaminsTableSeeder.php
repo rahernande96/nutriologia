@@ -483,146 +483,146 @@ class FoodVitaminsTableSeeder extends Seeder
             'acido_folico' => 0
         ]);
 
-         FoodVitamin::create([
-            'food_id' => 83, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 83, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 84, 
-            'vitamina_A' => 47.9, 
-            'acido_ascorbico' => 0,            
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 84, 
+        //     'vitamina_A' => 47.9, 
+        //     'acido_ascorbico' => 0,            
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 85, 
-            'vitamina_A' => 81.5, 
-            'acido_ascorbico' => 0,
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 85, 
+        //     'vitamina_A' => 81.5, 
+        //     'acido_ascorbico' => 0,
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 86, 
-            'vitamina_A' => 60.9, 
-            'acido_ascorbico' => 0,
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 86, 
+        //     'vitamina_A' => 60.9, 
+        //     'acido_ascorbico' => 0,
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 87, 
-            'vitamina_A' => 0.8, 
-            'acido_ascorbico' => 0,            
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 87, 
+        //     'vitamina_A' => 0.8, 
+        //     'acido_ascorbico' => 0,            
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 88, 
-            'vitamina_A' => 4.1, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 88, 
+        //     'vitamina_A' => 4.1, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 89, 
-            'vitamina_A' => 26.2, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 89, 
+        //     'vitamina_A' => 26.2, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 90, 
-            'vitamina_A' => 149.0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 90, 
+        //     'vitamina_A' => 149.0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 91, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 91, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 92, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 92, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
 
-         FoodVitamin::create([
-            'food_id' => 93, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 93, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 94, 
-            'vitamina_A' => 74.8, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 94, 
+        //     'vitamina_A' => 74.8, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 95, 
-            'vitamina_A' => 68.0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 95, 
+        //     'vitamina_A' => 68.0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 96, 
-            'vitamina_A' => 68.0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 96, 
+        //     'vitamina_A' => 68.0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 97, 
-            'vitamina_A' => 114.8, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 97, 
+        //     'vitamina_A' => 114.8, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 98, 
-           'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 98, 
+        //    'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 99, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 99, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 100, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 100, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 101, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 101, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
-         FoodVitamin::create([
-            'food_id' => 102, 
-            'vitamina_A' => 0, 
-            'acido_ascorbico' => 0,          
-            'acido_folico' => 0
-        ]);
+        //  FoodVitamin::create([
+        //     'food_id' => 102, 
+        //     'vitamina_A' => 0, 
+        //     'acido_ascorbico' => 0,          
+        //     'acido_folico' => 0
+        // ]);
 
          /*FoodVitamin::create([
             'food_id' => 103, 

@@ -21,7 +21,7 @@ class GroupsFoodsTableSeeder extends Seeder
         ]);
 
         FoodGroup::create([
-        	'name' => 'CEREALES SIN GRASA'
+        	'name' => 'CEREALES Y TUBÉRCULOS'
         ]);
 
         FoodGroup::create([
@@ -33,31 +33,31 @@ class GroupsFoodsTableSeeder extends Seeder
         ]);
 
         FoodGroup::create([
-            'name' => 'ALIMENTOS DE ORIGEN ANIMAL MUY BAJO APORTE DE GRASA'
+            'name' => 'AOA MUY BAJO APORTE DE GRASA'
         ]);
 
         FoodGroup::create([
-            'name' => 'ALIMENTOS DE ORIGEN ANIMAL BAJO APORTE DE GRASA'
+            'name' => 'AOA BAJO APORTE DE GRASA'
         ]);
 
         FoodGroup::create([
-            'name' => 'ALIMENTOS DE ORIGEN ANIMAL MODERADO APORTE DE GRASA'
+            'name' => 'AOA MODERADO APORTE DE GRASA'
         ]);
 
         FoodGroup::create([
-            'name' => 'ALIMENTOS DE ORIGEN ANIMAL ALTO APORTE DE GRASA'
+            'name' => 'AOA ALTO APORTE DE GRASA'
         ]);
 
         FoodGroup::create([
-            'name' => 'LECHE DESCREMADA'
-        ]);
-
-        FoodGroup::create([
-            'name' => 'LECHE ENTERA'
+            'name' => 'LECHE'
         ]);
 
         FoodGroup::create([
             'name' => 'LECHE SEMIDESCREMADA'
+        ]);
+
+        FoodGroup::create([
+            'name' => 'LECHE ENTERA'
         ]);
 
         FoodGroup::create([
@@ -73,32 +73,13 @@ class GroupsFoodsTableSeeder extends Seeder
         ]);
 
         FoodGroup::create([
-            'name' => 'ACEITES SIN GRASAS'
+            'name' => 'AZÚCARES SIN GRASA'
         ]);
 
         FoodGroup::create([
-            'name' => 'ACEITES CON GRASAS'
+            'name' => 'AZÚCARES CON GRASA'
         ]);
 
-        FoodGroup::create([
-            'name' => 'ALIMENTOS LIBRES EN ENERGÍA'
-        ]);
-
-        FoodGroup::create([
-            'name' => 'BEBIDAS ALCOHOLICAS'
-        ]);
-
-        FoodGroup::create([
-            'name' => 'PRODUTOS YAKULT'
-        ]);
-
-        FoodGroup::create([
-            'name' => 'PLATILLOS'
-        ]);
-        
-        FoodGroup::create([
-            'name' => 'COMIDA RAPIDA'
-        ]);
     }
 }
 
