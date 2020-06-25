@@ -226,6 +226,15 @@ class DieteticController extends Controller
        
         $total_energy_expenditure = TotalEnergyExpenditure::Where('energy_requirement_id', '=', $energy_requirement->id)->first();
 
+        if(!isset($patient->basicMeasure->weight)){
+         
+            alert()->error('El paciente no tiene las medidas basicas, debe tomarlas')->persistent('Close');
+            return redirect()->route('dietetic.index',[$patient->slug,$history->id]);
+    
+    
+        }
+
+
         if($total_energy_expenditure)
         {
             //Constantes
@@ -263,8 +272,13 @@ class DieteticController extends Controller
         }
         else
         {
+            
+         
             return view('patients.dietetic.energyRequirement.create', compact('patient', 'history', 'energy_requirement'));
+        
+           
         }
+
     }
 
     public function getStore(Request $request)
