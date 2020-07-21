@@ -17,15 +17,15 @@
             <td>25 - 29.9</td>
         </tr>
         <tr>
-            <td>Obecidad I</td>
+            <td>Obesidad I</td>
             <td>30 - 34.9</td>
         </tr>
         <tr>
-            <td>Obecidad II</td>
+            <td>Obesidad II</td>
             <td>35 - 39.9</td>
         </tr>
         <tr>
-            <td>Obecidad III</td>
+            <td>Obesidad III</td>
             <td>> 40</td>
         </tr>
     </tbody>

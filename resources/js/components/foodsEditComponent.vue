@@ -61,7 +61,7 @@
                             <div class="col-md-12">
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h5>1 véz al día</h5>
+                                        <h5>1 vez al día</h5>
                                     </div>
                                     <div class="card-body">
                                         <draggable class="list-group" :list="one_day" group="foods" :element="'div'">
@@ -87,7 +87,7 @@
 
                             <div class="card card-primary">
                                     <div class="card-header">
-                                        <h5>1 a la semana</h5>
+                                        <h5>1 vez a la semana</h5>
                                     </div>
                                     <div class="card-body">
                                       <draggable class="list-group" :list="oneForWeek" group="foods" :element="'div'">

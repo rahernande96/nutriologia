@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="patient" class="col-sm-4 col-form-label text-right">Seleccione Metodo de Requerimiento Hidrico:</label>
+            <label for="patient" class="col-sm-4 col-form-label text-right">Seleccione Método de Requerimiento Hídrico:</label>
             <div class="form-check mt-2 col-sm-4 pl-0">
                 <label class="customradio mr-1 pl-4"><span class="radiotextsty">Edad/ml/kg</span>
                 {!! Form::radio('method_water_requirement', '1', ['checked' => true]) !!}
@@ -66,13 +66,13 @@
             </div>
         </div>
         <div class="form-group row" id="requirement_h_manual" @if(isset($total_energy_expenditure) && $total_energy_expenditure->method_water_requirement == 3) style="display:flex" @else style="display:none" @endif>
-                <label for="patient" class="col-sm-4 col-form-label text-right">Ingrese Requerimiento Hidrico:</label>
+                <label for="patient" class="col-sm-4 col-form-label text-right">Ingrese Requerimiento Hídrico:</label>
             <div class="col-sm-4">
                 {!!Form::number('water_requirement_manual', null, ['class' => 'form-control', 'id' => '', 'min' => 0, 'step' => 0.1]) !!}
             </div>
         </div>
         <div class="form-group row">
-            <label for="patient" class="col-sm-4 col-form-label text-right">Requerimiento Hidrico:</label>
+            <label for="patient" class="col-sm-4 col-form-label text-right">Requerimiento Hídrico:</label>
             <div class="col-sm-3 mt-4">
                 {{--{!!Form::number('water_requirement', null, ['class' => 'form-control-plaintext', 'id' => 'supplement_value', 'min' => 0, 'step' => 0.1, 'readonly' => true]) !!}--}}
                 @if(isset($total_energy_expenditure->water_requirement))

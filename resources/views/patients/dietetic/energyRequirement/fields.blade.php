@@ -48,7 +48,7 @@
 <div class="form-group row mt-2">
 <label for="imc" class="col-sm-4 col-form-label text-right">Como quieres obtener el GET?</label>
 <div class="col-sm-6">
-    {!! Form::select('type_get', [1 => 'Calculo rapido (regla del pulgar)', 2 => 'Formulas', 3 => 'Ingreso manual'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione']) !!}
+    {!! Form::select('type_get', [1 => 'Cálculo rápido (regla del pulgar)', 2 => 'Fórmulas', 3 => 'Ingreso manual'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione']) !!}
 </div>
 </div>
 

@@ -29,12 +29,12 @@ Paciente: {{ $patient->name }}
                                 <tbody>
                                     <tr>
                                         <td>Peso Actual:</td>
-                                        <td>{{ $patient->BasicMeasure->weight }}</td>
+                                        <td>{{ round($patient->BasicMeasure->weight, 2) }}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Imc</td>
-                                        <td>{{ $patient->BasicMeasure->imc }}</td>
+                                        <td>IMC</td>
+                                        <td>{{ round($patient->BasicMeasure->imc, 2) }}</td>
                                         <td>
                                             @if($patient->BasicMeasure->imc < 18)
                                                 Bajo peso
@@ -71,7 +71,7 @@ Paciente: {{ $patient->name }}
                                     <tr>
                                         <td>Complexión corporal</td>
                                         <td>
-                                            {{ $complex }}
+                                            {{ round($complex, 2) }}
                                         </td>
                                         <td>
                                             @if($patient->gender == 'Masculino')
@@ -100,7 +100,7 @@ Paciente: {{ $patient->name }}
                                     <tr>
                                         <td>Circunferencia de cintura</td>
                                         <td>
-                                            {{ $patient->BodyMeasure->Perimeter->cintura}}
+                                            {{ round($patient->BodyMeasure->Perimeter->cintura, 2)}}
                                         </td>
                                         <td>
                                             @if($patient->gender == 'Masculino')
@@ -120,7 +120,7 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Índice cintura cadera</td>
-                                        <td>{{ $ICC }}</td>
+                                        <td>{{ round($ICC, 2) }}</td>
                                         <td>
                                             @if($patient->gender == 'Masculino')
                                                 @if($ICC < 0.71)
@@ -147,7 +147,7 @@ Paciente: {{ $patient->name }}
                                     <tr>
                                         <td>Frisancho 2 pliegues</td>
                                         <td>
-                                            {{ $dos_pliegues }}%
+                                            {{ round($dos_pliegues, 2) }}%
                                         </td>
                                         <td>
                                             @if($dos_pliegues >= 0 || $dos_pliegues <= 5.0)
@@ -165,17 +165,17 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Siri</td>
-                                        <td>{{ $siri }}%</td>
+                                        <td>{{ round($siri,2) }}%</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Durnin y Womersley</td>
-                                        <td>{{ $DW }} %</td>
+                                        <td>{{ round($DW, 2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Durnin y colaboradores</td>
-                                        <td>{{ $pliegues_4 }}</td>
+                                        <td>{{ round($pliegues_4, 2) }}</td>
                                         <td>
                                             @if($patient->gender == 'Masculino')
                                                 @if($pliegues_4 >= 2 && $pliegues_4 <= 4)
@@ -206,27 +206,27 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Deurenberg y colaboradores</td>
-                                        <td>{{ $DeurenbergCol }} %</td>
+                                        <td>{{ round($DeurenbergCol,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Faulkner</td>
-                                        <td>{{ $Faulkner }} %</td>
+                                        <td>{{ round($Faulkner,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Yuhasz 6 pliegues</td>
-                                        <td>{{ $Yuhastz }} %</td>
+                                        <td>{{ round($Yuhastz,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Impedancia magnética</td>
-                                        <td>{{ $magnetic_impedance }} %</td>
+                                        <td>{{ round($magnetic_impedance,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Promedio</td>
-                                        <td>{{ $prom }} %</td>
+                                        <td>{{ round($prom,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -234,7 +234,7 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Área Muscular Braquial</td>
-                                        <td>{{ $AMB }} cm<sup>2</sup></td>
+                                        <td>{{ round($AMB,2) }} cm<sup>2</sup></td>
                                         <td>
                                             @if($AMB < 5)
                                                 Musculatura reducida
@@ -251,7 +251,7 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Área Grasa Braquial</td>
-                                        <td>{{ $AGB }} cm<sup>2</sup></td>
+                                        <td>{{ round($AGB,2) }} cm<sup>2</sup></td>
                                         <td>
                                             @if($AMB < 5)
                                                 Magro
@@ -268,12 +268,12 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Índice de Área Grasa</td>
-                                        <td>{{ $IAG }} %</td>
+                                        <td>{{ round($IAG,2) }} %</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>Agua Corporal Total</td>
-                                        <td>{{ $ACT }} Litros</td>
+                                        <td>{{ round($ACT,2) }} Litros</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -281,22 +281,22 @@ Paciente: {{ $patient->name }}
                                     </tr>
                                     <tr>
                                         <td>Masa ósea. Rocha</td>
-                                        <td>{{ $MOR }} Kg</td>
+                                        <td>{{ round($MOR,2) }} Kg</td>
                                         <td>{{ number_format(($MOR/$Sum_Mass) * 100, 2, '.', '') }} %</td>
                                     </tr>
                                     <tr>
                                         <td>Masa grasa</td>
-                                        <td>{{ $MG }} Kg</td>
+                                        <td>{{ round($MG,2) }} Kg</td>
                                         <td>{{ number_format(($MG/$Sum_Mass) * 100, 2, '.', '') }} %</td>
                                     </tr>
                                     <tr>
                                         <td>Masa Muscular Total</td>
-                                        <td>{{ $MMT }} Kg</td>
+                                        <td>{{ round($MMT,2) }} Kg</td>
                                         <td>{{ number_format(($MMT/$Sum_Mass) * 100, 2, '.', '') }} %</td>
                                     </tr>
                                     <tr>
                                         <td>Masa Residual. Wurch</td>
-                                        <td>{{ $MR }} Kg</td>
+                                        <td>{{ round($MR,2) }} Kg</td>
                                         <td>{{ number_format(($MR/$Sum_Mass) * 100, 2, '.', '') }} %</td>
                                     </tr>
                                 </tbody>
@@ -316,7 +316,7 @@ Paciente: {{ $patient->name }}
                                         <tbody>
                                             <tr>
                                                 <td>IMC</td>
-                                                <td>{{ $patient->BasicMeasure->imc }}</td>
+                                                <td>{{ round($patient->BasicMeasure->imc,2) }}</td>
                                                 <td>
                                                     @if($patient->BasicMeasure->imc < 18)
                                                         Bajo peso

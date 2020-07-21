@@ -47,7 +47,7 @@ Paciente: {{ $patient->name }}
                                     <a class="nav-link" id="detail-tab" data-toggle="tab" href="#perimetro" role="tab" aria-controls="perimetro" aria-selected="false">Perimetros</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="detail-tab" data-toggle="tab" href="#diametro" role="tab" aria-controls="diametro" aria-selected="false">Diametros</a>
+                                    <a class="nav-link" id="detail-tab" data-toggle="tab" href="#diametro" role="tab" aria-controls="diametro" aria-selected="false">Diámetros</a>
                                 </li>
                             </ul>
                             
